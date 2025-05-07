@@ -1,0 +1,17 @@
+// firestore.rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /* Anyone may READ any question */
+    match /questions/{id} {
+      allow read:  if true;
+      allow write: if request.auth.token.admin == true;
+    }
+
+    /* Each user may read & write only their own progress doc */
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}

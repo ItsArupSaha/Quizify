@@ -1,0 +1,142 @@
+[
+  {
+    "id": "easy-100",
+    "level": "easy",
+    "prompt": "Fix the function so it returns the square of n.",
+    "starter": "def solution(n):\n    return n + n  # buggy",
+    "hint": "Use the power operator **.",
+    "tests": [
+      { "callArgs": "3", "expected": "9", "hidden": false },
+      { "callArgs": "5", "expected": "25", "hidden": true },
+      { "callArgs": "0", "expected": "0", "hidden": true },
+      { "callArgs": "-2", "expected": "4", "hidden": true },
+      { "callArgs": "11", "expected": "121", "hidden": true }
+    ]
+  },
+  {
+    "id": "easy-101",
+    "level": "easy",
+    "prompt": "Return True if a number is even.",
+    "starter": "def solution(n):\n    return n % 2 == 1  # buggy",
+    "hint": "An even number has remainder 0 when divided by 2.",
+    "tests": [
+      { "callArgs": "4", "expected": "True", "hidden": false },
+      { "callArgs": "7", "expected": "False", "hidden": true },
+      { "callArgs": "0", "expected": "True", "hidden": true },
+      { "callArgs": "-2", "expected": "True", "hidden": true },
+      { "callArgs": "9", "expected": "False", "hidden": true }
+    ]
+  },
+  {
+    "id": "easy-102",
+    "level": "easy",
+    "prompt": "Return the reverse of a string.",
+    "starter": "def solution(s):\n    return s  # buggy",
+    "hint": "Try Python slicing with a negative step.",
+    "tests": [
+      { "callArgs": "\"abc\"", "expected": "\"cba\"", "hidden": false },
+      { "callArgs": "\"\"", "expected": "\"\"", "hidden": true },
+      { "callArgs": "\"a\"", "expected": "\"a\"", "hidden": true },
+      { "callArgs": "\"race\"", "expected": "\"ecar\"", "hidden": true },
+      { "callArgs": "\"madam\"", "expected": "\"madam\"", "hidden": true }
+    ]
+  },
+
+  {
+    "id": "medium-200",
+    "level": "medium",
+    "prompt": "Return a list of primes ≤ n.",
+    "starter": "def solution(n):\n    return [2, 3]  # buggy, placeholder",
+    "hint": "Use the Sieve of Eratosthenes or trial division.",
+    "tests": [
+      { "callArgs": "10", "expected": "[2, 3, 5, 7]", "hidden": false },
+      { "callArgs": "1", "expected": "[]", "hidden": true },
+      { "callArgs": "2", "expected": "[2]", "hidden": true },
+      {
+        "callArgs": "20",
+        "expected": "[2, 3, 5, 7, 11, 13, 17, 19]",
+        "hidden": true
+      },
+      {
+        "callArgs": "50",
+        "expected": "[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-201",
+    "level": "medium",
+    "prompt": "Return the factorial of n.",
+    "starter": "def solution(n):\n    return n  # buggy",
+    "hint": "Use a loop or math.prod / recursion.",
+    "tests": [
+      { "callArgs": "5", "expected": "120", "hidden": false },
+      { "callArgs": "0", "expected": "1", "hidden": true },
+      { "callArgs": "1", "expected": "1", "hidden": true },
+      { "callArgs": "3", "expected": "6", "hidden": true },
+      { "callArgs": "7", "expected": "5040", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-202",
+    "level": "medium",
+    "prompt": "Return the nth Fibonacci number (0‑indexed).",
+    "starter": "def solution(n):\n    return n  # buggy",
+    "hint": "Iterative approach is fine for small n.",
+    "tests": [
+      { "callArgs": "6", "expected": "8", "hidden": false },
+      { "callArgs": "0", "expected": "0", "hidden": true },
+      { "callArgs": "1", "expected": "1", "hidden": true },
+      { "callArgs": "10", "expected": "55", "hidden": true },
+      { "callArgs": "15", "expected": "610", "hidden": true }
+    ]
+  },
+
+  {
+    "id": "hard-300",
+    "level": "hard",
+    "prompt": "Determine if a string is a valid palindrome **after** removing non‑alphanumeric characters and ignoring case.",
+    "starter": "def solution(s):\n    return False  # buggy",
+    "hint": "Use str.isalnum and two‑pointer technique.",
+    "tests": [
+      {
+        "callArgs": "\"A man, a plan, a canal: Panama\"",
+        "expected": "True",
+        "hidden": false
+      },
+      { "callArgs": "\"race a car\"", "expected": "False", "hidden": true },
+      { "callArgs": "\" \"", "expected": "True", "hidden": true },
+      { "callArgs": "\"No 'x' in Nixon\"", "expected": "True", "hidden": true },
+      { "callArgs": "\"abc\"", "expected": "False", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-301",
+    "level": "hard",
+    "prompt": "Return the length of the longest substring without repeating characters.",
+    "starter": "def solution(s):\n    return len(s)  # buggy",
+    "hint": "Sliding‑window with a hash map.",
+    "tests": [
+      { "callArgs": "\"abcabcbb\"", "expected": "3", "hidden": false },
+      { "callArgs": "\"bbbbb\"", "expected": "1", "hidden": true },
+      { "callArgs": "\"pwwkew\"", "expected": "3", "hidden": true },
+      { "callArgs": "\"\"", "expected": "0", "hidden": true },
+      { "callArgs": "\"dvdf\"", "expected": "3", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-302",
+    "level": "hard",
+    "prompt": "Given a list of integers, return the maximum product of any three numbers.",
+    "starter": "def solution(nums):\n    return max(nums)  # buggy",
+    "hint": "Sort and compare ends (-3 * -2 * max vs. top three).",
+    "tests": [
+      { "callArgs": "[1,2,3]", "expected": "6", "hidden": false },
+      { "callArgs": "[1,2,3,4]", "expected": "24", "hidden": true },
+      { "callArgs": "[-1,-2,-3]", "expected": "-6", "hidden": true },
+      { "callArgs": "[-10,-10,5,2]", "expected": "500", "hidden": true },
+      { "callArgs": "[1, -4, 3, -6, 7, 0]", "expected": "168", "hidden": true }
+    ]
+  }
+]
