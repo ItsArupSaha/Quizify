@@ -24,3 +24,8 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.next-dev-overlay,
+.next-dev-toggle {
+  display: none !important;
+}

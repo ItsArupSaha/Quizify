@@ -1,36 +1,20 @@
 // src/app/page.tsx
 "use client";
 
-import { auth, signInWithGoogle, useUser } from "@/lib/firebase";
+import Features from "@/components/Features";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 
-export default function Home() {
-  const user = useUser();
-
-  if (!user) {
-    return (
-      <main className="flex h-screen items-center justify-center">
-        <button
-          onClick={signInWithGoogle}
-          className="rounded bg-blue-600 px-6 py-2 font-semibold text-white shadow"
-        >
-          Sign in with Google
-        </button>
-      </main>
-    );
-  }
-
+export default function LandingPage() {
   return (
-    <main className="flex h-screen flex-col items-center justify-center gap-4">
-      <h1 className="text-3xl font-bold">Hello, {user.displayName}</h1>
-      <button
-        onClick={() => auth.signOut()}
-        className="text-sm underline underline-offset-2"
-      >
-        Sign out
-      </button>
-      <a href="/q/easy-100" className="underline">
-        Try easy‑100
-      </a>
-    </main>
+    <>
+      <Header />
+      <main className="bg-gray-50 min-h-screen">
+        <Hero />
+        <Features />
+        <Footer />
+      </main>
+    </>
   );
 }
