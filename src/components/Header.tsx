@@ -32,6 +32,7 @@ export default function Header() {
     { name: "Easy", path: "/easy" },
     { name: "Medium", path: "/medium" },
     { name: "Hard", path: "/hard" },
+    { name: "Revise", path: "/revise" },
   ];
 
   return (

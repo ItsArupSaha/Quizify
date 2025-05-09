@@ -13,8 +13,8 @@ export default function LandingPage() {
       <main className="bg-gray-50 min-h-screen">
         <Hero />
         <Features />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

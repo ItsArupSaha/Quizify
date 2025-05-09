@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="w-full bg-gray-800 text-gray-300 py-6 mt-16">
+    <footer className="w-full bg-gray-800 text-gray-300 py-6">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
         {/* Links */}
         <div className="flex space-x-4 mb-4 md:mb-0">
@@ -23,9 +23,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-sm">
           © {new Date().getFullYear()} Quizify. Built by{" "}
-          <span className="italic font-semibold font-stretch-50%">
-            Arup Saha
-          </span>
+          <span className="font-semibold font-stretch-50%">Arup Saha</span>
         </div>
       </div>
     </footer>
