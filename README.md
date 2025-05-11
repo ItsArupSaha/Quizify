@@ -45,7 +45,3 @@ An interactive quiz platform built with Next.js and Firebase, featuring Python p
 ## Deployment
 
 This project is configured for deployment on Vercel. Simply connect your GitHub repository to Vercel for automatic deployments.
-
-## License
-
-MIT
