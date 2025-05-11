@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 /* ---------- page component ---------- */
 export default async function LevelPage({ params }: PageProps) {
-  const { level } = await params;
+  const { level } = params;
 
   if (!ALLOWED_LEVELS.includes(level)) {
     notFound();
