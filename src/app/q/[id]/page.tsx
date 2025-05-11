@@ -1,4 +1,4 @@
-// app/q/[id]/page.tsx
+// src/app/q/[id]/page.tsx
 import CodeRunner from "@/components/CodeRunner";
 import QuestionHeader from "@/components/QuestionHeader";
 import { adminDb } from "@/lib/firebaseAdmin";
@@ -18,17 +18,16 @@ type Question = {
   tests: TestCase[];
 };
 
-export default async function QuestionPage({
-  params,
-}: {
+type RouteParams = {
   params: { id: string };
-}) {
-  const { id } = await params;
+};
+
+export default async function QuestionPage({ params }: RouteParams) {
+  const { id } = params;
+
   const docSnap = await adminDb.collection("questions").doc(id).get();
   if (!docSnap.exists) notFound();
   const data = docSnap.data() as Question;
-
-  console.log("📝 fetched tests for", id, data.tests);
 
   return (
     <div className="max-w-2xl mx-auto p-4">
