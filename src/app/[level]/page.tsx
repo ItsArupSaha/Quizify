@@ -1,22 +1,24 @@
 import LevelWrapper from "@/components/LevelWrapper";
 import { adminDb } from "@/lib/firebaseAdmin";
+import type { DocumentData } from "firebase-admin/firestore";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 /** Only these three levels are valid */
 const ALLOWED_LEVELS = ["easy", "medium", "hard"] as const;
 type Level = (typeof ALLOWED_LEVELS)[number];
 
-/** What Next.js actually passes to this page */
-interface PageProps {
-  params: {
-    level: Level; // now a plain string union, not a Promise
-  };
-}
+type PageProps = {
+  params: { level: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { level } = params;
 
-  if (!ALLOWED_LEVELS.includes(level)) {
+  if (!ALLOWED_LEVELS.includes(level as Level)) {
     return { title: "Not Found – Quizify" };
   }
 
@@ -25,10 +27,10 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 /* ---------- page component ---------- */
-export default async function LevelPage({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const { level } = params;
 
-  if (!ALLOWED_LEVELS.includes(level)) {
+  if (!ALLOWED_LEVELS.includes(level as Level)) {
     notFound();
   }
 
@@ -44,7 +46,7 @@ export default async function LevelPage({ params }: PageProps) {
   }
 
   const questions = snapshot.docs.map((doc) => {
-    const data = doc.data();
+    const data = doc.data() as DocumentData;
     return { id: doc.id, prompt: data.prompt as string };
   });
 
@@ -53,7 +55,7 @@ export default async function LevelPage({ params }: PageProps) {
       <h2 className="text-3xl font-bold mb-4">
         {level.charAt(0).toUpperCase() + level.slice(1)} Challenges
       </h2>
-      <LevelWrapper level={level} questions={questions} />
+      <LevelWrapper level={level as Level} questions={questions} />
     </main>
   );
 }
