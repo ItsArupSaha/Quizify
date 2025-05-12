@@ -1,17 +1,30 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const router = useRouter();
+
+  const handleFeaturesClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const featuresSection = document.getElementById("features");
+    if (featuresSection) {
+      featuresSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   const footerLinks = {
     product: [
-      { name: "Features", href: "#features" },
-      { name: "Pricing", href: "/pricing" },
+      { name: "Features", href: "#features", onClick: handleFeaturesClick },
       { name: "Challenges", href: "/easy" },
     ],
     company: [
       { name: "About", href: "/about" },
-      { name: "Blog", href: "/blog" },
       { name: "Contact", href: "/contact" },
     ],
     resources: [
@@ -38,6 +51,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
+                    onClick={link.onClick}
                     className="hover:text-white transition-colors"
                   >
                     {link.name}

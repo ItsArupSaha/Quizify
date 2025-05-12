@@ -20,7 +20,10 @@ export default function Features() {
   ];
 
   return (
-    <section className="w-full py-20 bg-white relative overflow-hidden">
+    <section
+      id="features"
+      className="w-full py-20 bg-white relative overflow-hidden"
+    >
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-primary-50/50 to-transparent"></div>
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-secondary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
