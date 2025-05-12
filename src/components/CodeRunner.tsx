@@ -2,7 +2,7 @@
 "use client";
 
 import { useUser, db as webDb } from "@/lib/firebase";
-import Editor from "@monaco-editor/react";
+import Editor, { loader } from "@monaco-editor/react";
 import {
   collection,
   doc,
@@ -15,6 +15,31 @@ import {
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+// Configure Monaco editor
+loader.init().then((monaco) => {
+  monaco.editor.defineTheme("customTheme", {
+    base: "vs",
+    inherit: true,
+    rules: [
+      { token: "comment", foreground: "6A9955" },
+      { token: "keyword", foreground: "C586C0" },
+      { token: "string", foreground: "CE9178" },
+      { token: "number", foreground: "B5CEA8" },
+      { token: "type", foreground: "4EC9B0" },
+    ],
+    colors: {
+      "editor.background": "#f3f4f6",
+      "editor.foreground": "#1f2937",
+      "editor.lineHighlightBackground": "#e5e7eb",
+      "editor.selectionBackground": "#d1d5db",
+      "editor.inactiveSelectionBackground": "#e5e7eb",
+      "editor.lineHighlightBorder": "#e5e7eb",
+      "editorLineNumber.foreground": "#9ca3af",
+      "editorLineNumber.activeForeground": "#4b5563",
+    },
+  });
+});
 
 const TIMEOUT_MS = 3000;
 function withTimeout<T>(p: Promise<T>) {
@@ -242,66 +267,136 @@ export default function CodeRunner({
     levelIds.length > 0 && levelIds.every((id) => solvedMap[id]);
 
   return (
-    <div className="max-w-4xl mx-auto mt-6">
-      <div className="relative rounded-lg shadow-lg overflow-hidden">
-        <Editor
-          height="300px"
-          width="100%"
-          defaultLanguage="python"
-          value={code}
-          theme="vs-dark"
-          onChange={(v) => v !== undefined && setCode(v)}
-          options={{
-            minimap: { enabled: false },
-            automaticLayout: true,
-            scrollBeyondLastLine: false,
-          }}
-        />
-
-        <div className="absolute top-2 right-2 flex space-x-2 z-20">
+    <div>
+      {/* Editor toolbar */}
+      <div className="flex items-center justify-between p-4 bg-neutral-50 border-b border-neutral-200">
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 rounded-full bg-red-500"></span>
+          <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
+          <span className="w-3 h-3 rounded-full bg-green-500"></span>
+        </div>
+        <div className="flex items-center gap-3">
           <button
             onClick={handleRun}
             disabled={loading}
-            className="px-3 py-1 bg-green-600 hover:bg-green-700 text-white rounded disabled:opacity-50"
+            className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 disabled:opacity-50"
           >
-            Run
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Run Code
           </button>
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded disabled:opacity-50"
+            className="px-4 py-2 bg-secondary-600 text-white rounded-lg font-medium hover:bg-secondary-700 transition-colors flex items-center gap-2 disabled:opacity-50"
           >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
             Submit
           </button>
         </div>
       </div>
 
-      <pre className="mt-4 bg-black text-white p-4 rounded font-mono h-40 overflow-y-auto whitespace-pre-wrap">
-        {output || "No output yet…"}
-      </pre>
-      <div className="mt-4 flex justify-between">
-        {/* Previous button */}
+      {/* Editor and output container */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
+        {/* Code editor */}
+        <div className="h-[400px] rounded-lg overflow-hidden border border-neutral-200">
+          <Editor
+            height="100%"
+            defaultLanguage="python"
+            theme="customTheme"
+            value={code}
+            onChange={(value) => setCode(value ?? "")}
+            options={{
+              minimap: { enabled: false },
+              fontSize: 14,
+              lineNumbers: "on",
+              roundedSelection: false,
+              scrollBeyondLastLine: false,
+              automaticLayout: true,
+            }}
+          />
+        </div>
+
+        {/* Output console */}
+        <div className="h-[400px] bg-neutral-900 rounded-lg p-4 font-mono text-sm text-neutral-100 overflow-auto">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-2 h-2 rounded-full bg-green-500"></span>
+            <span className="text-neutral-400">Output</span>
+          </div>
+          <pre className="whitespace-pre-wrap">{output}</pre>
+        </div>
+      </div>
+
+      {/* Navigation buttons */}
+      <div className="flex items-center justify-between p-4 bg-neutral-50 border-t border-neutral-200">
         <button
           onClick={() => prevId && router.push(`/q/${prevId}`)}
           disabled={!prevId}
-          title={!prevId ? "No previous question" : undefined}
-          className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2 text-neutral-600 hover:text-neutral-900 disabled:opacity-50 disabled:hover:text-neutral-600 transition-colors flex items-center gap-2"
         >
-          ← Previous
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          Previous
         </button>
-
-        {/* Next button */}
         <button
           onClick={() => nextId && router.push(`/q/${nextId}`)}
-          disabled={isLastInLevel && !allLevelSolved}
-          title={
-            isLastInLevel && !allLevelSolved
-              ? "You must solve all problems to move further!"
-              : undefined
-          }
-          className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded transition disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={!nextId || (isLastInLevel && !allLevelSolved)}
+          className="px-4 py-2 text-neutral-600 hover:text-neutral-900 disabled:opacity-50 disabled:hover:text-neutral-600 transition-colors flex items-center gap-2"
         >
-          Next →
+          Next
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
         </button>
       </div>
     </div>

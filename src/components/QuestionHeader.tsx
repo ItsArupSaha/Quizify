@@ -28,22 +28,32 @@ export default function QuestionHeader({ id, hint }: QuestionHeaderProps) {
   }, [isOpen]);
 
   return (
-    <div ref={containerRef} className="relative mb-6">
+    <div ref={containerRef} className="relative">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Question: {id}</h1>
+        <div>
+          <h1 className="text-3xl font-display font-bold text-neutral-900">
+            Challenge #{id}
+          </h1>
+        </div>
         <button
           onClick={() => setIsOpen((v) => !v)}
-          className="flex items-center px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition"
+          className="flex items-center gap-2 px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
           aria-label={isOpen ? "Hide Hint" : "Show Hint"}
         >
-          <Lightbulb className="w-5 h-5 mr-1" />
+          <Lightbulb className="w-5 h-5" />
+          <span className="font-medium">Hint</span>
         </button>
       </div>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-72 bg-gray-500 border border-gray-300 rounded shadow-lg p-4 z-10">
-          <h2 className="font-semibold mb-1">Hint</h2>
-          <p>{hint}</p>
+        <div className="absolute right-0 mt-2 w-96 bg-white border border-neutral-200 rounded-xl shadow-lg p-4 z-10">
+          <div className="flex items-center gap-2 mb-3">
+            <Lightbulb className="w-5 h-5 text-primary-500" />
+            <h2 className="font-display font-semibold text-neutral-900">
+              Hint
+            </h2>
+          </div>
+          <p className="text-neutral-700 leading-relaxed">{hint}</p>
         </div>
       )}
     </div>

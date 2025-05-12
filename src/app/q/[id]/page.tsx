@@ -30,21 +30,32 @@ export default async function QuestionPage({ params }: RouteParams) {
   const data = docSnap.data() as Question;
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <QuestionHeader id={id} hint={data.hint} />
+    <div className="pt-20 min-h-screen bg-gradient-to-br from-neutral-50 to-white">
+      <div className="container-custom py-8">
+        <div className="max-w-4xl mx-auto space-y-8">
+          {/* Question Header */}
+          <QuestionHeader id={id} hint={data.hint} />
 
-      <section className="mb-6">
-        <h2 className="text-xl font-semibold mb-1">Prompt</h2>
-        <p>{data.prompt}</p>
-      </section>
+          {/* Problem Description */}
+          <section className="bg-white rounded-2xl shadow-soft p-6 border border-neutral-200">
+            <h2 className="text-xl font-display font-semibold mb-4 text-neutral-900">
+              Problem Description
+            </h2>
+            <div className="prose prose-neutral max-w-none">
+              <p className="text-neutral-700 leading-relaxed">{data.prompt}</p>
+            </div>
+          </section>
 
-      <section>
-        <CodeRunner
-          questionId={id}
-          initialCode={data.starter}
-          tests={data.tests}
-        />
-      </section>
+          {/* Code Editor */}
+          <section className="bg-white rounded-2xl shadow-soft overflow-hidden border border-neutral-200">
+            <CodeRunner
+              questionId={id}
+              initialCode={data.starter}
+              tests={data.tests}
+            />
+          </section>
+        </div>
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useUser, db as webDb } from "@/lib/firebase";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaRegStar, FaStar } from "react-icons/fa"; // for a revise star icon
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 interface Question {
   id: string;
@@ -42,60 +42,75 @@ export default function QuestionList({ questions }: { questions: Question[] }) {
   };
 
   return (
-    <div className="overflow-x-auto">
-      <table className="min-w-full bg-white rounded shadow">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="px-4 py-2 text-left text-gray-700">Problem</th>
-            <th className="px-4 py-2 text-center text-gray-700">Solved</th>
-            <th className="px-4 py-2 text-center text-gray-700">Revise</th>
-          </tr>
-        </thead>
-        <tbody>
-          {questions.map(({ id, prompt }) => {
-            const isSolved = Boolean(solvedMap[id]);
-            const isRevise = Boolean(reviseMap[id]);
-            return (
-              <tr key={id} className="border-t">
-                {/* Problem */}
-                <td className="px-4 py-3">
+    <div className="p-6">
+      <div className="grid gap-4">
+        {questions.map(({ id, prompt }) => {
+          const isSolved = Boolean(solvedMap[id]);
+          const isRevise = Boolean(reviseMap[id]);
+          return (
+            <div
+              key={id}
+              className="bg-white rounded-xl border border-neutral-200 p-4 hover:border-primary-200 transition-colors"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-grow">
                   <Link
                     href={`/q/${id}`}
-                    className="text-blue-600 font-medium hover:underline"
+                    className="text-lg font-medium text-primary-600 hover:text-primary-700 transition-colors"
                   >
                     {id}
                   </Link>
-                  <div className="text-gray-600 text-sm truncate max-w-xl">
-                    {prompt}
+                  <p className="text-neutral-600 mt-1 line-clamp-2">{prompt}</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  {/* Solved status */}
+                  <div className="flex items-center">
+                    {isSolved ? (
+                      <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                        <svg
+                          className="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        Solved
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center px-3 py-1 bg-neutral-100 text-neutral-600 rounded-full text-sm font-medium">
+                        Unsolved
+                      </span>
+                    )}
                   </div>
-                </td>
 
-                {/* Solved */}
-                <td className="px-4 py-3 text-center">
-                  {isSolved ? (
-                    <span className="inline-block px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
-                      ✓
-                    </span>
-                  ) : (
-                    <span className="text-gray-400">–</span>
-                  )}
-                </td>
-
-                {/* Revise */}
-                <td className="px-4 py-3 text-center">
+                  {/* Revise button */}
                   <button
                     onClick={() => toggleRevise(id)}
-                    className="text-xl text-yellow-600 hover:text-yellow-700 transition"
+                    className={`p-2 rounded-lg transition-colors ${
+                      isRevise
+                        ? "text-yellow-500 bg-yellow-50 hover:bg-yellow-100"
+                        : "text-neutral-400 hover:text-yellow-500 hover:bg-yellow-50"
+                    }`}
                     title={isRevise ? "Remove from revise" : "Mark to revise"}
                   >
-                    {isRevise ? <FaStar /> : <FaRegStar />}
+                    {isRevise ? (
+                      <FaStar className="w-5 h-5" />
+                    ) : (
+                      <FaRegStar className="w-5 h-5" />
+                    )}
                   </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
