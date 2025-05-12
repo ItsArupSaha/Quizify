@@ -5,12 +5,14 @@ import { signOut } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   const user = useUser();
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -19,6 +21,20 @@ export default function Header() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Handle click outside to close profile menu
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSignIn = async () => {
@@ -33,6 +49,7 @@ export default function Header() {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
+      setIsProfileOpen(false);
       router.refresh();
     } catch (e) {
       console.error("Sign out error", e);
@@ -100,22 +117,45 @@ export default function Header() {
 
         {/* Auth */}
         {user ? (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4" ref={profileRef}>
             <span className="hidden md:block text-sm font-medium text-white/90">
               {user.displayName}
             </span>
-            <div
-              onClick={handleSignOut}
-              className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white/30 shadow-sm hover:shadow-md transition-all cursor-pointer"
-              title="Click to sign out"
-            >
-              <Image
-                src={user.photoURL ?? "/avatar-placeholder.png"}
-                alt={user.displayName ?? "User avatar"}
-                fill
-                className="object-cover"
-                sizes="40px"
-              />
+            <div className="relative">
+              <div
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+                className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white/30 shadow-sm hover:shadow-md transition-all cursor-pointer"
+                title="Click to open profile menu"
+              >
+                <Image
+                  src={user.photoURL ?? "/avatar-placeholder.png"}
+                  alt={user.displayName ?? "User avatar"}
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                />
+              </div>
+
+              {/* Profile Dropdown */}
+              {isProfileOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
+                  <div className="px-4 py-2 border-b border-gray-100">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user.displayName}
+                    </p>
+                    <p className="text-xs text-gray-500 truncate">
+                      {user.email}
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={handleSignOut}
+                    className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         ) : (
