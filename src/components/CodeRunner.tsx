@@ -22,21 +22,22 @@ loader.init().then((monaco) => {
     base: "vs",
     inherit: true,
     rules: [
-      { token: "comment", foreground: "6A9955" },
-      { token: "keyword", foreground: "C586C0" },
-      { token: "string", foreground: "CE9178" },
-      { token: "number", foreground: "B5CEA8" },
-      { token: "type", foreground: "4EC9B0" },
+      { token: "comment", foreground: "008000" },
+      { token: "keyword", foreground: "0000FF" },
+      { token: "string", foreground: "A31515" },
+      { token: "number", foreground: "098658" },
+      { token: "type", foreground: "267F99" },
+      { token: "default", foreground: "000000" },
     ],
     colors: {
       "editor.background": "#f3f4f6",
-      "editor.foreground": "#1f2937",
+      "editor.foreground": "#000000",
       "editor.lineHighlightBackground": "#e5e7eb",
       "editor.selectionBackground": "#d1d5db",
       "editor.inactiveSelectionBackground": "#e5e7eb",
       "editor.lineHighlightBorder": "#e5e7eb",
-      "editorLineNumber.foreground": "#9ca3af",
-      "editorLineNumber.activeForeground": "#4b5563",
+      "editorLineNumber.foreground": "#6B7280",
+      "editorLineNumber.activeForeground": "#374151",
     },
   });
 });
@@ -237,10 +238,15 @@ export default function CodeRunner({
       if (allPassed) {
         if (user && user.uid) {
           lines.push("", "🎉 All tests passed!");
+          const timestamp = Date.now();
           const userRef = doc(webDb, "users", user.uid);
           await setDoc(
             userRef,
-            { solved: { [questionId]: true } },
+            {
+              solved: { [questionId]: true },
+              lastSolved: new Date().toISOString(),
+              [`solved_${questionId}`]: timestamp,
+            },
             { merge: true }
           );
           setSolvedMap((prev) => ({ ...prev, [questionId]: true }));
