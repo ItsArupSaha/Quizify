@@ -1,25 +1,14 @@
 // src/app/q/[id]/page.tsx
 import CodeRunner from "@/components/CodeRunner";
 import QuestionHeader from "@/components/QuestionHeader";
-import { adminDb } from "@/lib/firebaseAdmin";
+import { getQuestionById } from "@/data/questions";
 import { notFound } from "next/navigation";
 
-type TestCase = {
-  input: string;
-  output: string;
-  hidden: boolean;
-};
-
-type Question = {
-  level: string;
-  prompt: string;
-  hint: string;
-  tests: TestCase[];
-};
-
-type RouteParams = {
-  params: { id: string };
-};
+interface RouteParams {
+  params: {
+    id: string;
+  };
+}
 
 function formatPrompt(prompt: string) {
   // Split the prompt into sections
@@ -63,17 +52,18 @@ function formatPrompt(prompt: string) {
 
 export default async function QuestionPage({ params }: RouteParams) {
   const { id } = params;
+  const question = getQuestionById(id);
 
-  const docSnap = await adminDb.collection("questions").doc(id).get();
-  if (!docSnap.exists) notFound();
-  const data = docSnap.data() as Question;
+  if (!question) {
+    notFound();
+  }
 
   return (
     <div className="pt-20 min-h-screen bg-gradient-to-br from-neutral-50 to-white">
       <div className="container-custom py-8">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Question Header */}
-          <QuestionHeader id={id} hint={data.hint} />
+          <QuestionHeader id={id} hint={question.hint} />
 
           {/* Problem Description */}
           <section className="bg-white rounded-2xl shadow-soft p-6 border border-neutral-200">
@@ -81,13 +71,13 @@ export default async function QuestionPage({ params }: RouteParams) {
               Problem Description
             </h2>
             <div className="prose prose-neutral max-w-none">
-              {formatPrompt(data.prompt)}
+              {formatPrompt(question.prompt)}
             </div>
           </section>
 
           {/* Code Editor */}
           <section className="bg-white rounded-2xl shadow-soft overflow-hidden border border-neutral-200">
-            <CodeRunner questionId={id} tests={data.tests} />
+            <CodeRunner questionId={id} tests={question.tests} />
           </section>
         </div>
       </div>

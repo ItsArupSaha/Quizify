@@ -90,10 +90,10 @@ export default function Header() {
             <Link
               key={cat.name}
               href={cat.path}
-              className="relative font-medium text-white/90 hover:text-white py-2 group transition-colors"
+              className="relative font-medium text-white/90 hover:text-white py-2 group transition-all duration-300"
             >
               {cat.name}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300 ease-in-out"></span>
             </Link>
           ))}
         </nav>
