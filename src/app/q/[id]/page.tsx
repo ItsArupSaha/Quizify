@@ -5,15 +5,14 @@ import { adminDb } from "@/lib/firebaseAdmin";
 import { notFound } from "next/navigation";
 
 type TestCase = {
-  callArgs: string;
-  expected: string;
+  input: string;
+  output: string;
   hidden: boolean;
 };
 
 type Question = {
   level: string;
   prompt: string;
-  starter: string;
   hint: string;
   tests: TestCase[];
 };
@@ -21,6 +20,46 @@ type Question = {
 type RouteParams = {
   params: { id: string };
 };
+
+function formatPrompt(prompt: string) {
+  // Split the prompt into sections
+  const sections = prompt.split("\n\n");
+
+  // The first section is always the problem statement
+  const problemStatement = sections[0];
+
+  // Find input and output format sections
+  const inputFormat = sections.find((s) => s.startsWith("Input Format:"));
+  const outputFormat = sections.find((s) => s.startsWith("Output Format:"));
+
+  return (
+    <div className="space-y-4">
+      {/* Problem Statement */}
+      <p className="text-neutral-700 leading-relaxed">{problemStatement}</p>
+
+      {/* Input/Output Format */}
+      <div className="space-y-3">
+        {inputFormat && (
+          <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+            <h3 className="text-blue-800 font-medium mb-2">Input Format:</h3>
+            <p className="text-blue-700 whitespace-pre-line">
+              {inputFormat.replace("Input Format:", "").trim()}
+            </p>
+          </div>
+        )}
+
+        {outputFormat && (
+          <div className="bg-green-50 p-4 rounded-lg border border-green-100">
+            <h3 className="text-green-800 font-medium mb-2">Output Format:</h3>
+            <p className="text-green-700 whitespace-pre-line">
+              {outputFormat.replace("Output Format:", "").trim()}
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default async function QuestionPage({ params }: RouteParams) {
   const { id } = params;
@@ -42,17 +81,13 @@ export default async function QuestionPage({ params }: RouteParams) {
               Problem Description
             </h2>
             <div className="prose prose-neutral max-w-none">
-              <p className="text-neutral-700 leading-relaxed">{data.prompt}</p>
+              {formatPrompt(data.prompt)}
             </div>
           </section>
 
           {/* Code Editor */}
           <section className="bg-white rounded-2xl shadow-soft overflow-hidden border border-neutral-200">
-            <CodeRunner
-              questionId={id}
-              initialCode={data.starter}
-              tests={data.tests}
-            />
+            <CodeRunner questionId={id} tests={data.tests} />
           </section>
         </div>
       </div>

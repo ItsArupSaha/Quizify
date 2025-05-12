@@ -2,64 +2,131 @@
   {
     "id": "easy-100",
     "level": "easy",
-    "prompt": "Fix the function so it returns the square of n.",
-    "starter": "def solution(n):\n    return n + n  # buggy",
-    "hint": "Use the power operator **.",
+    "prompt": "Given a number n, print its square.\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint the square of n.",
+    "hint": "Read the input using input() and convert it to integer using int(). Then multiply the number by itself or use the power operator **.",
     "tests": [
-      { "callArgs": "3", "expected": "9", "hidden": false },
-      { "callArgs": "5", "expected": "25", "hidden": true },
-      { "callArgs": "0", "expected": "0", "hidden": true },
-      { "callArgs": "-2", "expected": "4", "hidden": true },
-      { "callArgs": "11", "expected": "121", "hidden": true }
+      {
+        "input": "3",
+        "output": "9",
+        "hidden": false
+      },
+      {
+        "input": "5",
+        "output": "25",
+        "hidden": true
+      },
+      {
+        "input": "0",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "-2",
+        "output": "4",
+        "hidden": true
+      },
+      {
+        "input": "11",
+        "output": "121",
+        "hidden": true
+      }
     ]
   },
   {
     "id": "easy-101",
     "level": "easy",
-    "prompt": "Return True if a number is even.",
-    "starter": "def solution(n):\n    return n % 2 == 1  # buggy",
-    "hint": "An even number has remainder 0 when divided by 2.",
+    "prompt": "Given a number n, print True if it is even, False otherwise.\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint True if n is even, False otherwise.",
+    "hint": "Read the input using input() and convert it to integer. Use the modulo operator % to check if the number is divisible by 2.",
     "tests": [
-      { "callArgs": "4", "expected": "True", "hidden": false },
-      { "callArgs": "7", "expected": "False", "hidden": true },
-      { "callArgs": "0", "expected": "True", "hidden": true },
-      { "callArgs": "-2", "expected": "True", "hidden": true },
-      { "callArgs": "9", "expected": "False", "hidden": true }
+      {
+        "input": "4",
+        "output": "True",
+        "hidden": false
+      },
+      {
+        "input": "7",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "0",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "-2",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "9",
+        "output": "False",
+        "hidden": true
+      }
     ]
   },
   {
     "id": "easy-102",
     "level": "easy",
-    "prompt": "Return the reverse of a string.",
-    "starter": "def solution(s):\n    return s  # buggy",
-    "hint": "Try Python slicing with a negative step.",
+    "prompt": "Given a string s, print its reverse.\n\nInput Format:\nA single string s.\n\nOutput Format:\nPrint the reverse of s.",
+    "hint": "Read the input string using input(). You can reverse it using string slicing with a negative step (s[::-1]) or by converting to a list and using reverse().",
     "tests": [
-      { "callArgs": "\"abc\"", "expected": "\"cba\"", "hidden": false },
-      { "callArgs": "\"\"", "expected": "\"\"", "hidden": true },
-      { "callArgs": "\"a\"", "expected": "\"a\"", "hidden": true },
-      { "callArgs": "\"race\"", "expected": "\"ecar\"", "hidden": true },
-      { "callArgs": "\"madam\"", "expected": "\"madam\"", "hidden": true }
-    ]
-  },
-
-  {
-    "id": "medium-200",
-    "level": "medium",
-    "prompt": "Return a list of primes ≤ n.",
-    "starter": "def solution(n):\n    return [2, 3]  # buggy, placeholder",
-    "hint": "Use the Sieve of Eratosthenes or trial division.",
-    "tests": [
-      { "callArgs": "10", "expected": "[2, 3, 5, 7]", "hidden": false },
-      { "callArgs": "1", "expected": "[]", "hidden": true },
-      { "callArgs": "2", "expected": "[2]", "hidden": true },
       {
-        "callArgs": "20",
-        "expected": "[2, 3, 5, 7, 11, 13, 17, 19]",
+        "input": "abc",
+        "output": "cba",
+        "hidden": false
+      },
+      {
+        "input": "",
+        "output": "",
         "hidden": true
       },
       {
-        "callArgs": "50",
-        "expected": "[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]",
+        "input": "a",
+        "output": "a",
+        "hidden": true
+      },
+      {
+        "input": "race",
+        "output": "ecar",
+        "hidden": true
+      },
+      {
+        "input": "madam",
+        "output": "madam",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-200",
+    "level": "medium",
+    "prompt": "Given a number n, print all prime numbers less than or equal to n in ascending order.\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint a list of prime numbers ≤ n in ascending order.",
+    "hint": "Read the input using input() and convert to integer. You can use the Sieve of Eratosthenes algorithm: create a boolean array of size n+1, mark multiples of primes as non-prime, then collect all primes.",
+    "tests": [
+      {
+        "input": "10",
+        "output": "[2, 3, 5, 7]",
+        "hidden": false
+      },
+      {
+        "input": "1",
+        "output": "[]",
+        "hidden": true
+      },
+      {
+        "input": "2",
+        "output": "[2]",
+        "hidden": true
+      },
+      {
+        "input": "20",
+        "output": "[2, 3, 5, 7, 11, 13, 17, 19]",
+        "hidden": true
+      },
+      {
+        "input": "50",
+        "output": "[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]",
         "hidden": true
       }
     ]
@@ -67,76 +134,166 @@
   {
     "id": "medium-201",
     "level": "medium",
-    "prompt": "Return the factorial of n.",
-    "starter": "def solution(n):\n    return n  # buggy",
-    "hint": "Use a loop or math.prod / recursion.",
+    "prompt": "Given a number n, print its factorial.\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint the factorial of n.",
+    "hint": "Read the input using input() and convert to integer. Use a loop to multiply numbers from 1 to n, or use math.factorial() if you import the math module.",
     "tests": [
-      { "callArgs": "5", "expected": "120", "hidden": false },
-      { "callArgs": "0", "expected": "1", "hidden": true },
-      { "callArgs": "1", "expected": "1", "hidden": true },
-      { "callArgs": "3", "expected": "6", "hidden": true },
-      { "callArgs": "7", "expected": "5040", "hidden": true }
+      {
+        "input": "5",
+        "output": "120",
+        "hidden": false
+      },
+      {
+        "input": "0",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "1",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "3",
+        "output": "6",
+        "hidden": true
+      },
+      {
+        "input": "7",
+        "output": "5040",
+        "hidden": true
+      }
     ]
   },
   {
     "id": "medium-202",
     "level": "medium",
-    "prompt": "Return the nth Fibonacci number (0‑indexed).",
-    "starter": "def solution(n):\n    return n  # buggy",
-    "hint": "Iterative approach is fine for small n.",
+    "prompt": "Given a number n, print the nth Fibonacci number (0-indexed).\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint the nth Fibonacci number.",
+    "hint": "Read the input using input() and convert to integer. Use a loop to calculate Fibonacci numbers iteratively, or use a recursive approach with memoization for better performance.",
     "tests": [
-      { "callArgs": "6", "expected": "8", "hidden": false },
-      { "callArgs": "0", "expected": "0", "hidden": true },
-      { "callArgs": "1", "expected": "1", "hidden": true },
-      { "callArgs": "10", "expected": "55", "hidden": true },
-      { "callArgs": "15", "expected": "610", "hidden": true }
+      {
+        "input": "6",
+        "output": "8",
+        "hidden": false
+      },
+      {
+        "input": "0",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "1",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "10",
+        "output": "55",
+        "hidden": true
+      },
+      {
+        "input": "15",
+        "output": "610",
+        "hidden": true
+      }
     ]
   },
-
   {
     "id": "hard-300",
     "level": "hard",
-    "prompt": "Determine if a string is a valid palindrome **after** removing non‑alphanumeric characters and ignoring case.",
-    "starter": "def solution(s):\n    return False  # buggy",
-    "hint": "Use str.isalnum and two‑pointer technique.",
+    "prompt": "Given a string s, print True if it is a valid palindrome after removing all non-alphanumeric characters and ignoring case, False otherwise.\n\nInput Format:\nA single string s.\n\nOutput Format:\nPrint True if s is a valid palindrome after processing, False otherwise.",
+    "hint": "Read the input string using input(). First, convert the string to lowercase and remove non-alphanumeric characters using isalnum(). Then check if it's a palindrome by comparing characters from both ends.",
     "tests": [
       {
-        "callArgs": "\"A man, a plan, a canal: Panama\"",
-        "expected": "True",
+        "input": "A man, a plan, a canal: Panama",
+        "output": "True",
         "hidden": false
       },
-      { "callArgs": "\"race a car\"", "expected": "False", "hidden": true },
-      { "callArgs": "\" \"", "expected": "True", "hidden": true },
-      { "callArgs": "\"No 'x' in Nixon\"", "expected": "True", "hidden": true },
-      { "callArgs": "\"abc\"", "expected": "False", "hidden": true }
+      {
+        "input": "race a car",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": " ",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "No 'x' in Nixon",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "abc",
+        "output": "False",
+        "hidden": true
+      }
     ]
   },
   {
     "id": "hard-301",
     "level": "hard",
-    "prompt": "Return the length of the longest substring without repeating characters.",
-    "starter": "def solution(s):\n    return len(s)  # buggy",
-    "hint": "Sliding‑window with a hash map.",
+    "prompt": "Given a string s, print the length of the longest substring without repeating characters.\n\nInput Format:\nA single string s.\n\nOutput Format:\nPrint the length of the longest substring without repeating characters.",
+    "hint": "Read the input string using input(). Use a sliding window approach with a dictionary to track character positions. When you find a repeating character, move the window start to the position after the previous occurrence.",
     "tests": [
-      { "callArgs": "\"abcabcbb\"", "expected": "3", "hidden": false },
-      { "callArgs": "\"bbbbb\"", "expected": "1", "hidden": true },
-      { "callArgs": "\"pwwkew\"", "expected": "3", "hidden": true },
-      { "callArgs": "\"\"", "expected": "0", "hidden": true },
-      { "callArgs": "\"dvdf\"", "expected": "3", "hidden": true }
+      {
+        "input": "abcabcbb",
+        "output": "3",
+        "hidden": false
+      },
+      {
+        "input": "bbbbb",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "pwwkew",
+        "output": "3",
+        "hidden": true
+      },
+      {
+        "input": "",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "dvdf",
+        "output": "3",
+        "hidden": true
+      }
     ]
   },
   {
     "id": "hard-302",
     "level": "hard",
-    "prompt": "Given a list of integers, return the maximum product of any three numbers.",
-    "starter": "def solution(nums):\n    return max(nums)  # buggy",
-    "hint": "Sort and compare ends (-3 * -2 * max vs. top three).",
+    "prompt": "Given a list of integers, print the maximum product of any three numbers.\n\nInput Format:\nA list of integers separated by spaces.\n\nOutput Format:\nPrint the maximum product of any three numbers.",
+    "hint": "Read the input using input() and split it into a list of integers. Sort the list and consider both the product of the three largest numbers and the product of the two smallest (negative) numbers with the largest number.",
     "tests": [
-      { "callArgs": "[1,2,3]", "expected": "6", "hidden": false },
-      { "callArgs": "[1,2,3,4]", "expected": "24", "hidden": true },
-      { "callArgs": "[-1,-2,-3]", "expected": "-6", "hidden": true },
-      { "callArgs": "[-10,-10,5,2]", "expected": "500", "hidden": true },
-      { "callArgs": "[1, -4, 3, -6, 7, 0]", "expected": "168", "hidden": true }
+      {
+        "input": "1 2 3",
+        "output": "6",
+        "hidden": false
+      },
+      {
+        "input": "1 2 3 4",
+        "output": "24",
+        "hidden": true
+      },
+      {
+        "input": "-1 -2 -3",
+        "output": "-6",
+        "hidden": true
+      },
+      {
+        "input": "-10 -10 5 2",
+        "output": "500",
+        "hidden": true
+      },
+      {
+        "input": "1 -4 3 -6 7 0",
+        "output": "168",
+        "hidden": true
+      }
     ]
   }
 ]

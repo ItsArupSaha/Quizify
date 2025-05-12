@@ -50,21 +50,16 @@ function withTimeout<T>(p: Promise<T>) {
   return Promise.race([p, timeout]) as Promise<T>;
 }
 
-type TestCase = { callArgs: string; expected: string; hidden: boolean };
+type TestCase = { input: string; output: string; hidden: boolean };
 
 interface CodeRunnerProps {
   questionId: string;
-  initialCode: string;
   tests: TestCase[];
 }
 
-export default function CodeRunner({
-  questionId,
-  initialCode,
-  tests,
-}: CodeRunnerProps) {
+export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
   const user = useUser();
-  const [code, setCode] = useState(initialCode);
+  const [code, setCode] = useState("");
   const [output, setOutput] = useState<string>("");
   const [pyodide, setPyodide] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -178,18 +173,35 @@ export default function CodeRunner({
     }
     try {
       setOutput("");
+
+      // Set up input/output redirection
+      const { input, output: expected } = tests[0];
+      let actualOutput = "";
+
+      // Mock input() function
+      pyodide.globals.set("input", () => input);
+
+      // Mock print() function to capture output
+      pyodide.globals.set("print", (...args: any[]) => {
+        actualOutput += args.join(" ") + "\n";
+      });
+
+      // Run the code
       await withTimeout(pyodide.runPythonAsync(code));
 
-      const { callArgs, expected } = tests[0];
-      const actual: string = pyodide.runPython(
-        `str(solution(${callArgs})) if isinstance(solution(${callArgs}), bool) else __import__('json').dumps(solution(${callArgs}))`
-      );
-      const passed = actual === expected;
+      // Clean up output (remove trailing newline)
+      actualOutput = actualOutput.trim();
+
+      // Handle boolean values case-insensitively
+      const normalizedExpected = expected.toLowerCase();
+      const normalizedActual = actualOutput.toLowerCase();
+      const passed = normalizedActual === normalizedExpected;
+
       const status = passed ? "🔥 You did it!!" : "😢 Try again!";
       const message =
-        `Test:     solution(${callArgs})\n` +
-        `Expected: ${expected}\n` +
-        `Actual:   ${actual}\n` +
+        `Input:\n${input}\n\n` +
+        `Expected Output:\n${expected}\n\n` +
+        `Your Output:\n${actualOutput}\n\n` +
         `${status}`;
 
       console.log("➡️ Run feedback:\n" + message);
@@ -209,28 +221,41 @@ export default function CodeRunner({
     }
     try {
       setOutput("");
-      await withTimeout(pyodide.runPythonAsync(code));
-
       let allPassed = true;
       const lines: string[] = [];
 
-      for (const { callArgs, expected, hidden } of tests) {
-        let actual: string;
+      for (const { input, output: expected, hidden } of tests) {
+        let actualOutput = "";
         let passed = false;
+
         try {
-          actual = pyodide.runPython(
-            `str(solution(${callArgs})) if isinstance(solution(${callArgs}), bool) else __import__('json').dumps(solution(${callArgs}))`
-          );
-          passed = actual === expected;
+          // Reset input/output for each test
+          pyodide.globals.set("input", () => input);
+          pyodide.globals.set("print", (...args: any[]) => {
+            actualOutput += args.join(" ") + "\n";
+          });
+
+          // Run the code
+          await withTimeout(pyodide.runPythonAsync(code));
+
+          // Clean up output
+          actualOutput = actualOutput.trim();
+
+          // Handle boolean values case-insensitively
+          const normalizedExpected = expected.toLowerCase();
+          const normalizedActual = actualOutput.toLowerCase();
+          passed = normalizedActual === normalizedExpected;
         } catch (err: any) {
-          actual = `⚠️ ${err.message || err}`;
+          actualOutput = `⚠️ ${err.message || err}`;
         }
+
         if (!passed) allPassed = false;
         if (!hidden) {
           lines.push(
-            `solution(${callArgs}) → ${actual} ${
-              passed ? "✅" : `❌ (expected ${expected})`
-            }`
+            `Input:\n${input}\n` +
+              `Expected Output:\n${expected}\n` +
+              `Your Output:\n${actualOutput}\n` +
+              `${passed ? "✅" : "❌"}\n`
           );
         }
       }
@@ -249,18 +274,10 @@ export default function CodeRunner({
             },
             { merge: true }
           );
-          setSolvedMap((prev) => ({ ...prev, [questionId]: true }));
-          console.log("💾 Solved status saved for", questionId);
-        } else {
-          console.warn("🔒 No user signed in, skipping solved write");
         }
-      } else {
-        lines.push("", "Some tests failed. Check above.");
       }
 
-      const message = lines.join("\n");
-      console.log("➡️ Submit feedback:\n" + message);
-      setOutput(message);
+      setOutput(lines.join("\n"));
     } catch (e: any) {
       console.error("❌ Submit error", e);
       setOutput(`Error: ${e.message || e}`);
