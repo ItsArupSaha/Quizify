@@ -13,6 +13,11 @@ type PageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {

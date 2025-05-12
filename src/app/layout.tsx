@@ -8,7 +8,11 @@ export const metadata = {
   description:
     "Learn Python through interactive coding challenges and quizzes with real-time feedback",
   keywords: "python, learning, coding, challenges, quizzes, programming",
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

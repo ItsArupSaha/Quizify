@@ -5,29 +5,31 @@ import Editor, { loader } from "@monaco-editor/react";
 import { useEffect, useState } from "react";
 
 // Configure Monaco editor
-loader.init().then((monaco) => {
-  monaco.editor.defineTheme("customTheme", {
-    base: "vs",
-    inherit: true,
-    rules: [
-      { token: "comment", foreground: "6A9955" },
-      { token: "keyword", foreground: "C586C0" },
-      { token: "string", foreground: "CE9178" },
-      { token: "number", foreground: "B5CEA8" },
-      { token: "type", foreground: "4EC9B0" },
-    ],
-    colors: {
-      "editor.background": "#f3f4f6",
-      "editor.foreground": "#1f2937",
-      "editor.lineHighlightBackground": "#e5e7eb",
-      "editor.selectionBackground": "#d1d5db",
-      "editor.inactiveSelectionBackground": "#e5e7eb",
-      "editor.lineHighlightBorder": "#e5e7eb",
-      "editorLineNumber.foreground": "#9ca3af",
-      "editorLineNumber.activeForeground": "#4b5563",
-    },
+if (typeof window !== "undefined") {
+  loader.init().then((monaco) => {
+    monaco.editor.defineTheme("customTheme", {
+      base: "vs",
+      inherit: true,
+      rules: [
+        { token: "comment", foreground: "6A9955" },
+        { token: "keyword", foreground: "C586C0" },
+        { token: "string", foreground: "CE9178" },
+        { token: "number", foreground: "B5CEA8" },
+        { token: "type", foreground: "4EC9B0" },
+      ],
+      colors: {
+        "editor.background": "#f3f4f6",
+        "editor.foreground": "#1f2937",
+        "editor.lineHighlightBackground": "#e5e7eb",
+        "editor.selectionBackground": "#d1d5db",
+        "editor.inactiveSelectionBackground": "#e5e7eb",
+        "editor.lineHighlightBorder": "#e5e7eb",
+        "editorLineNumber.foreground": "#9ca3af",
+        "editorLineNumber.activeForeground": "#4b5563",
+      },
+    });
   });
-});
+}
 
 export default function PythonPlayground() {
   const [code, setCode] = useState<string>("# Write Python here\n");
@@ -37,6 +39,8 @@ export default function PythonPlayground() {
 
   // Load Pyodide
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     async function init() {
       if (!(window as any).loadPyodide) {
         const script = document.createElement("script");
