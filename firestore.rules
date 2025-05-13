@@ -2,16 +2,27 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return request.auth != null && 
+        request.auth.token.email in ['growwitharup@gmail.com'];
+    }
 
     /* Anyone may READ any question */
     match /questions/{id} {
-      allow read:  if true;
-      allow write: if request.auth.token.admin == true;
+      allow read: if true;
+      allow write: if isAdmin();
     }
 
     /* Each user may read & write only their own progress doc */
     match /users/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    /* Allow admins to list all users */
+    match /users/{document=**} {
+      allow list: if isAdmin();
     }
   }
 }
