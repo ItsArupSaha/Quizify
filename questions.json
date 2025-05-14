@@ -1619,34 +1619,14 @@
   {
     "id": "medium-030",
     "level": "medium",
-    "prompt": "Print the first n terms of an arithmetic progression starting at a with difference d, space\u2011separated.",
-    "hint": "Loop n times adding d.",
+    "prompt": "Calculate the sum of all prime numbers less than or equal to n.",
+    "hint": "Use a loop and check divisibility for each number.",
     "tests": [
-      {
-        "input": "1 -4 4",
-        "output": "-4",
-        "hidden": false
-      },
-      {
-        "input": "8 1 1",
-        "output": "1 2 3 4 5 6 7 8",
-        "hidden": true
-      },
-      {
-        "input": "4 12 -3",
-        "output": "12 9 6 3",
-        "hidden": true
-      },
-      {
-        "input": "10 20 -5",
-        "output": "20 15 10 5 0 -5 -10 -15 -20 -25",
-        "hidden": true
-      },
-      {
-        "input": "10 18 2",
-        "output": "18 20 22 24 26 28 30 32 34 36",
-        "hidden": true
-      }
+      { "input": "10", "output": "17", "hidden": false },
+      { "input": "20", "output": "77", "hidden": true },
+      { "input": "1", "output": "0", "hidden": true },
+      { "input": "2", "output": "2", "hidden": true },
+      { "input": "30", "output": "129", "hidden": true }
     ]
   },
   {
