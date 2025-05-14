@@ -3,16 +3,9 @@
 "use client";
 
 import QuestionList from "@/components/QuestionList";
+import { getQuestionsByLevel } from "@/data/questions";
 import { db, useUser } from "@/lib/firebase";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const LEVELS = ["easy", "medium", "hard"] as const;
@@ -46,16 +39,8 @@ export default function LevelWrapper({ level, questions }: LevelWrapperProps) {
       return;
     }
     const prevLevel = LEVELS[idx - 1];
-    async function fetchPrevIds() {
-      const q = query(
-        collection(db, "questions"),
-        where("level", "==", prevLevel),
-        orderBy("id")
-      );
-      const snap = await getDocs(q);
-      setPrevLevelIds(snap.docs.map((d) => d.id));
-    }
-    fetchPrevIds();
+    const prevQuestions = getQuestionsByLevel(prevLevel);
+    setPrevLevelIds(prevQuestions.map((q) => q.id));
   }, [level]);
 
   // 3) Lock if any previous‐level ID is unsolved

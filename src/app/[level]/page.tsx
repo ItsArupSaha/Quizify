@@ -1,6 +1,5 @@
 import LevelWrapper from "@/components/LevelWrapper";
-import { adminDb } from "@/lib/firebaseAdmin";
-import type { DocumentData } from "firebase-admin/firestore";
+import { getQuestionsByLevel } from "@/data/questions";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -8,10 +7,11 @@ import { notFound } from "next/navigation";
 const ALLOWED_LEVELS = ["easy", "medium", "hard"] as const;
 type Level = (typeof ALLOWED_LEVELS)[number];
 
-type PageProps = {
-  params: { level: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+interface PageProps {
+  params: {
+    level: string;
+  };
+}
 
 export const viewport = {
   width: "device-width",
@@ -31,29 +31,22 @@ export async function generateMetadata({
   return { title: `${capitalized} Challenges – Quizify` };
 }
 
-/* ---------- page component ---------- */
-export default async function Page({ params }: PageProps) {
+export async function generateStaticParams() {
+  return ALLOWED_LEVELS.map((level) => ({ level }));
+}
+
+export default async function Page({ params }: { params: { level: string } }) {
   const { level } = params;
 
   if (!ALLOWED_LEVELS.includes(level as Level)) {
     notFound();
   }
 
-  /* Fetch all questions for this level */
-  const snapshot = await adminDb
-    .collection("questions")
-    .where("level", "==", level)
-    .orderBy("id")
-    .get();
+  const questions = getQuestionsByLevel(level);
 
-  if (snapshot.empty) {
+  if (questions.length === 0) {
     notFound();
   }
-
-  const questions = snapshot.docs.map((doc) => {
-    const data = doc.data() as DocumentData;
-    return { id: doc.id, prompt: data.prompt as string };
-  });
 
   return (
     <section className="w-full py-20 bg-neutral-50 relative overflow-hidden">

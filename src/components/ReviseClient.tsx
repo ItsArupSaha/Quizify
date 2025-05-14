@@ -3,6 +3,7 @@
 "use client";
 
 import QuestionList from "@/components/QuestionList";
+import { allQuestions } from "@/data/questions";
 import { db, useUser } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -45,15 +46,10 @@ export default function ReviseClient() {
         return;
       }
 
-      // 3) fetch each question doc
-      const qList: Question[] = [];
-      for (const qid of reviseIds) {
-        const qSnap = await getDoc(doc(db, "questions", qid));
-        if (qSnap.exists()) {
-          const qData = qSnap.data();
-          qList.push({ id: qid, prompt: (qData as any).prompt as string });
-        }
-      }
+      // 3) get questions from static data
+      const qList = allQuestions
+        .filter((q) => reviseIds.includes(q.id))
+        .map((q) => ({ id: q.id, prompt: q.prompt }));
 
       setQuestions(qList);
       setLoading(false);

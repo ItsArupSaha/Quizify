@@ -1,18 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { allQuestions } from "@/data/questions";
 import { useUser, db as webDb } from "@/lib/firebase";
 import Editor, { loader } from "@monaco-editor/react";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  orderBy,
-  query,
-  setDoc,
-  where,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -98,59 +90,50 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
     // Define the level order
     const levels = ["easy", "medium", "hard"];
 
-    // Helper to load IDs for a given level
-    async function loadIdsFor(lvl: string) {
-      const q = query(
-        collection(webDb, "questions"),
-        where("level", "==", lvl),
-        orderBy("id") // requires your composite index
-      );
-      const snap = await getDocs(q);
-      return snap.docs.map((d) => d.id);
+    // Get all questions for the current level
+    const levelQuestions = allQuestions.filter((q) => q.level === level);
+    const ids = levelQuestions.map((q) => q.id);
+    setLevelIds(ids);
+
+    const idx = ids.indexOf(questionId);
+
+    // Compute previous question
+    if (idx > 0) {
+      // just the previous in this level
+      setPrevId(ids[idx - 1]);
+    } else {
+      // first in this level → go to last of prior level (if any)
+      const prevLevel = levels[levels.indexOf(level) - 1];
+      if (prevLevel) {
+        const prevIds = allQuestions
+          .filter((q) => q.level === prevLevel)
+          .map((q) => q.id);
+        setPrevId(prevIds.length ? prevIds[prevIds.length - 1] : null);
+      } else {
+        setPrevId(null);
+      }
     }
 
-    async function computeNext() {
-      // 1) load IDs of current level
-      const ids = await loadIdsFor(level);
-      setLevelIds(ids);
-
-      const idx = ids.indexOf(questionId);
-
-      // ── new: compute prevId
-      if (idx > 0) {
-        // just the previous in this level
-        setPrevId(ids[idx - 1]);
-      } else {
-        // first in this level → go to last of prior level (if any)
-        const prevLevel = levels[levels.indexOf(level) - 1];
-        if (prevLevel) {
-          const prevIds = await loadIdsFor(prevLevel);
-          setPrevId(prevIds.length ? prevIds[prevIds.length - 1] : null);
-        } else {
-          setPrevId(null);
-        }
-      }
-
-      if (idx >= 0 && idx < ids.length - 1) {
-        // simply next in same level
-        setNextId(ids[idx + 1]);
+    // Compute next question
+    if (idx >= 0 && idx < ids.length - 1) {
+      // simply next in same level
+      setNextId(ids[idx + 1]);
+      return;
+    }
+    // else no more in this level → find next level
+    const nextLevel = levels[levels.indexOf(level) + 1];
+    if (nextLevel) {
+      const nextIds = allQuestions
+        .filter((q) => q.level === nextLevel)
+        .map((q) => q.id);
+      if (nextIds.length) {
+        setNextId(nextIds[0]);
         return;
       }
-      // 2) else no more in this level → find next level
-      const nextLevel = levels[levels.indexOf(level) + 1];
-      if (nextLevel) {
-        const nextIds = await loadIdsFor(nextLevel);
-        if (nextIds.length) {
-          setNextId(nextIds[0]);
-          return;
-        }
-      }
-
-      // 3) nowhere to go
-      setNextId(null);
     }
 
-    computeNext();
+    // nowhere to go
+    setNextId(null);
   }, [questionId]);
 
   useEffect(() => {

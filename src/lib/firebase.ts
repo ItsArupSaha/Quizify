@@ -7,7 +7,7 @@ import {
   signInWithPopup,
   User,
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const firebaseConfig = {
@@ -25,7 +25,21 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();
 
-export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
+export const signInWithGoogle = async () => {
+  const result = await signInWithPopup(auth, googleProvider);
+  const user = result.user;
+  // Sync user info to Firestore
+  await setDoc(
+    doc(db, "users", user.uid),
+    {
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+    },
+    { merge: true }
+  );
+  return result;
+};
 
 // Simple React hook so pages can read the current user
 export function useUser(): User | null {
