@@ -9,30 +9,32 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // Configure Monaco editor
-loader.init().then((monaco) => {
-  monaco.editor.defineTheme("customTheme", {
-    base: "vs",
-    inherit: true,
-    rules: [
-      { token: "comment", foreground: "008000" },
-      { token: "keyword", foreground: "0000FF" },
-      { token: "string", foreground: "A31515" },
-      { token: "number", foreground: "098658" },
-      { token: "type", foreground: "267F99" },
-      { token: "default", foreground: "000000" },
-    ],
-    colors: {
-      "editor.background": "#f3f4f6",
-      "editor.foreground": "#000000",
-      "editor.lineHighlightBackground": "#e5e7eb",
-      "editor.selectionBackground": "#d1d5db",
-      "editor.inactiveSelectionBackground": "#e5e7eb",
-      "editor.lineHighlightBorder": "#e5e7eb",
-      "editorLineNumber.foreground": "#6B7280",
-      "editorLineNumber.activeForeground": "#374151",
-    },
+if (typeof window !== "undefined") {
+  loader.init().then((monaco) => {
+    monaco.editor.defineTheme("customTheme", {
+      base: "vs",
+      inherit: true,
+      rules: [
+        { token: "comment", foreground: "008000" },
+        { token: "keyword", foreground: "0000FF" },
+        { token: "string", foreground: "A31515" },
+        { token: "number", foreground: "098658" },
+        { token: "type", foreground: "267F99" },
+        { token: "default", foreground: "000000" },
+      ],
+      colors: {
+        "editor.background": "#f3f4f6",
+        "editor.foreground": "#000000",
+        "editor.lineHighlightBackground": "#e5e7eb",
+        "editor.selectionBackground": "#d1d5db",
+        "editor.inactiveSelectionBackground": "#e5e7eb",
+        "editor.lineHighlightBorder": "#e5e7eb",
+        "editorLineNumber.foreground": "#6B7280",
+        "editorLineNumber.activeForeground": "#374151",
+      },
+    });
   });
-});
+}
 
 const TIMEOUT_MS = 3000;
 function withTimeout<T>(p: Promise<T>) {
