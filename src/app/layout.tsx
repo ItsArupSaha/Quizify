@@ -1,6 +1,5 @@
 // src/app/layout.tsx
 import Header from "@/components/Header";
-import LoadingIndicator from "@/components/LoadingIndicator";
 import Script from "next/script";
 import "./globals.css";
 
@@ -32,7 +31,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="min-h-screen flex flex-col antialiased text-neutral-800 bg-gradient-to-br from-white to-neutral-50">
-        <LoadingIndicator />
         <Header />
         <main className="flex-grow">{children}</main>
       </body>

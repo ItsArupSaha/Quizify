@@ -161,8 +161,28 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
       const { input, output: expected } = tests[0];
       let actualOutput = "";
 
-      // Mock input() function
-      pyodide.globals.set("input", () => input);
+      // Enhanced input handling for single-line and multi-line inputs
+      let inputLines = input.includes("\n")
+        ? input.split("\n")
+        : input.split(" ");
+      let inputIndex = 0;
+      pyodide.globals.set("input", () => {
+        if (inputIndex < inputLines.length) {
+          const currentInput = inputLines[inputIndex++];
+          // Automatically split single-line input into individual integers if needed
+          if (
+            currentInput.includes(" ") &&
+            !isNaN(parseInt(currentInput.split(" ")[0]))
+          ) {
+            inputLines = currentInput.split(" ");
+            inputIndex = 0;
+            return inputLines[inputIndex++];
+          }
+          return currentInput;
+        } else {
+          throw new Error("No more input lines available");
+        }
+      });
 
       // Mock print() function to capture output
       pyodide.globals.set("print", (...args: any[]) => {
@@ -213,7 +233,27 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
 
         try {
           // Reset input/output for each test
-          pyodide.globals.set("input", () => input);
+          let inputLines = input.includes("\n")
+            ? input.split("\n")
+            : input.split(" ");
+          let inputIndex = 0;
+          pyodide.globals.set("input", () => {
+            if (inputIndex < inputLines.length) {
+              const currentInput = inputLines[inputIndex++];
+              // Automatically split single-line input into individual integers if needed
+              if (
+                currentInput.includes(" ") &&
+                !isNaN(parseInt(currentInput.split(" ")[0]))
+              ) {
+                inputLines = currentInput.split(" ");
+                inputIndex = 0;
+                return inputLines[inputIndex++];
+              }
+              return currentInput;
+            } else {
+              throw new Error("No more input lines available");
+            }
+          });
           pyodide.globals.set("print", (...args: any[]) => {
             actualOutput += args.join(" ") + "\n";
           });
