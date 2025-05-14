@@ -57,7 +57,7 @@ export default function LevelWrapper({ level, questions }: LevelWrapperProps) {
         <QuestionList questions={questions} />
       </div>
       {locked && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-10">
+        <div className="absolute inset-0 flex items-start justify-center bg-white/80 backdrop-blur-sm z-10">
           <div className="text-center p-8 max-w-md">
             <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg
