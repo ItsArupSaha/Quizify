@@ -1,151 +1,311 @@
 [
   {
-    "id": "easy-100",
+    "id": "easy-001",
     "level": "easy",
-    "prompt": "Given a number n, print its square.\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint the square of n.",
-    "hint": "Read the input using input() and convert it to integer using int(). Then multiply the number by itself or use the power operator **.",
+    "prompt": "Read two integers a and b and print their sum.",
+    "hint": "Use the + operator.",
     "tests": [
       {
-        "input": "3",
-        "output": "9",
+        "input": "-6 -17",
+        "output": "-23",
         "hidden": false
       },
       {
-        "input": "5",
+        "input": "15 11",
+        "output": "26",
+        "hidden": true
+      },
+      {
+        "input": "8 -3",
+        "output": "5",
+        "hidden": true
+      },
+      {
+        "input": "-7 49",
+        "output": "42",
+        "hidden": true
+      },
+      {
+        "input": "-9 34",
         "output": "25",
         "hidden": true
-      },
-      {
-        "input": "0",
-        "output": "0",
-        "hidden": true
-      },
-      {
-        "input": "-2",
-        "output": "4",
-        "hidden": true
-      },
-      {
-        "input": "11",
-        "output": "121",
-        "hidden": true
       }
     ]
   },
   {
-    "id": "easy-101",
+    "id": "easy-002",
     "level": "easy",
-    "prompt": "Given a number n, print True if it is even, False otherwise.\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint True if n is even, False otherwise.",
-    "hint": "Read the input using input() and convert it to integer. Use the modulo operator % to check if the number is divisible by 2.",
+    "prompt": "Given two integers a and b, print a minus b.",
+    "hint": "Subtract using -.",
     "tests": [
       {
-        "input": "4",
-        "output": "True",
+        "input": "-46 -47",
+        "output": "1",
         "hidden": false
       },
       {
-        "input": "7",
-        "output": "False",
+        "input": "-39 -23",
+        "output": "-16",
         "hidden": true
       },
       {
-        "input": "0",
-        "output": "True",
+        "input": "-21 14",
+        "output": "-35",
         "hidden": true
       },
       {
-        "input": "-2",
-        "output": "True",
+        "input": "27 -47",
+        "output": "74",
         "hidden": true
       },
       {
-        "input": "9",
-        "output": "False",
+        "input": "21 -25",
+        "output": "46",
         "hidden": true
       }
     ]
   },
   {
-    "id": "easy-102",
+    "id": "easy-003",
     "level": "easy",
-    "prompt": "Given a string s, print its reverse.\n\nInput Format:\nA single string s.\n\nOutput Format:\nPrint the reverse of s.",
-    "hint": "Read the input string using input(). You can reverse it using string slicing with a negative step (s[::-1]) or by converting to a list and using reverse().",
+    "prompt": "Print the product of two integers.",
+    "hint": "Multiply with *.",
     "tests": [
       {
-        "input": "abc",
-        "output": "cba",
-        "hidden": false
-      },
-      {
-        "input": "",
-        "output": "",
-        "hidden": true
-      },
-      {
-        "input": "a",
-        "output": "a",
-        "hidden": true
-      },
-      {
-        "input": "race",
-        "output": "ecar",
-        "hidden": true
-      },
-      {
-        "input": "madam",
-        "output": "madam",
-        "hidden": true
-      }
-    ]
-  },
-  {
-    "id": "medium-200",
-    "level": "medium",
-    "prompt": "Given a number n, print all prime numbers less than or equal to n in ascending order.\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint a list of prime numbers ≤ n in ascending order.",
-    "hint": "Read the input using input() and convert to integer. You can use the Sieve of Eratosthenes algorithm: create a boolean array of size n+1, mark multiples of primes as non-prime, then collect all primes.",
-    "tests": [
-      {
-        "input": "10",
-        "output": "[2, 3, 5, 7]",
-        "hidden": false
-      },
-      {
-        "input": "1",
-        "output": "[]",
-        "hidden": true
-      },
-      {
-        "input": "2",
-        "output": "[2]",
-        "hidden": true
-      },
-      {
-        "input": "20",
-        "output": "[2, 3, 5, 7, 11, 13, 17, 19]",
-        "hidden": true
-      },
-      {
-        "input": "50",
-        "output": "[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]",
-        "hidden": true
-      }
-    ]
-  },
-  {
-    "id": "medium-201",
-    "level": "medium",
-    "prompt": "Given a number n, print its factorial.\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint the factorial of n.",
-    "hint": "Read the input using input() and convert to integer. Use a loop to multiply numbers from 1 to n, or use math.factorial() if you import the math module.",
-    "tests": [
-      {
-        "input": "5",
+        "input": "12 10",
         "output": "120",
         "hidden": false
       },
       {
-        "input": "0",
+        "input": "12 7",
+        "output": "84",
+        "hidden": true
+      },
+      {
+        "input": "3 -3",
+        "output": "-9",
+        "hidden": true
+      },
+      {
+        "input": "4 8",
+        "output": "32",
+        "hidden": true
+      },
+      {
+        "input": "-2 15",
+        "output": "-30",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-004",
+    "level": "easy",
+    "prompt": "Given two integers a and b, output a divided by b as a float.",
+    "hint": "Use /; no rounding needed.",
+    "tests": [
+      {
+        "input": "98 1",
+        "output": "98.0",
+        "hidden": false
+      },
+      {
+        "input": "90 6",
+        "output": "15.0",
+        "hidden": true
+      },
+      {
+        "input": "44 14",
+        "output": "3.142857142857143",
+        "hidden": true
+      },
+      {
+        "input": "20 9",
+        "output": "2.2222222222222223",
+        "hidden": true
+      },
+      {
+        "input": "98 7",
+        "output": "14.0",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-005",
+    "level": "easy",
+    "prompt": "Output the remainder when a is divided by b.",
+    "hint": "Use %.",
+    "tests": [
+      {
+        "input": "14 11",
+        "output": "3",
+        "hidden": false
+      },
+      {
+        "input": "49 3",
         "output": "1",
         "hidden": true
+      },
+      {
+        "input": "46 4",
+        "output": "2",
+        "hidden": true
+      },
+      {
+        "input": "78 12",
+        "output": "6",
+        "hidden": true
+      },
+      {
+        "input": "6 9",
+        "output": "6",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-006",
+    "level": "easy",
+    "prompt": "Raise a to the power of b and print the result.",
+    "hint": "Use **.",
+    "tests": [
+      {
+        "input": "8 4",
+        "output": "4096",
+        "hidden": false
+      },
+      {
+        "input": "2 3",
+        "output": "8",
+        "hidden": true
+      },
+      {
+        "input": "2 4",
+        "output": "16",
+        "hidden": true
+      },
+      {
+        "input": "5 5",
+        "output": "3125",
+        "hidden": true
+      },
+      {
+        "input": "6 4",
+        "output": "1296",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-007",
+    "level": "easy",
+    "prompt": "Given length l and width w, print the area of the rectangle.",
+    "hint": "Area = l * w.",
+    "tests": [
+      {
+        "input": "7 23",
+        "output": "161",
+        "hidden": false
+      },
+      {
+        "input": "3 2",
+        "output": "6",
+        "hidden": true
+      },
+      {
+        "input": "22 8",
+        "output": "176",
+        "hidden": true
+      },
+      {
+        "input": "25 10",
+        "output": "250",
+        "hidden": true
+      },
+      {
+        "input": "3 28",
+        "output": "84",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-008",
+    "level": "easy",
+    "prompt": "Print the perimeter of a rectangle from its length l and width w.",
+    "hint": "Perimeter = 2*(l+w).",
+    "tests": [
+      {
+        "input": "8 28",
+        "output": "72",
+        "hidden": false
+      },
+      {
+        "input": "4 13",
+        "output": "34",
+        "hidden": true
+      },
+      {
+        "input": "9 15",
+        "output": "48",
+        "hidden": true
+      },
+      {
+        "input": "21 27",
+        "output": "96",
+        "hidden": true
+      },
+      {
+        "input": "12 6",
+        "output": "36",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-009",
+    "level": "easy",
+    "prompt": "Given radius r, print the area of the circle using \u03c0 = 3.1416.",
+    "hint": "Area = 3.1416*r*r.",
+    "tests": [
+      {
+        "input": "12",
+        "output": "452.3904",
+        "hidden": false
+      },
+      {
+        "input": "12",
+        "output": "452.3904",
+        "hidden": true
+      },
+      {
+        "input": "7",
+        "output": "153.9384",
+        "hidden": true
+      },
+      {
+        "input": "9",
+        "output": "254.4696",
+        "hidden": true
+      },
+      {
+        "input": "3",
+        "output": "28.2744",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-010",
+    "level": "easy",
+    "prompt": "Given the length a of a cube’s edge, output its volume.",
+    "hint": "Use ** opeator.",
+    "tests": [
+      {
+        "input": "3",
+        "output": "27",
+        "hidden": false
       },
       {
         "input": "1",
@@ -153,26 +313,130 @@
         "hidden": true
       },
       {
-        "input": "3",
-        "output": "6",
+        "input": "4",
+        "output": "64",
         "hidden": true
       },
       {
         "input": "7",
-        "output": "5040",
+        "output": "343",
+        "hidden": true
+      },
+      {
+        "input": "10",
+        "output": "1000",
         "hidden": true
       }
     ]
   },
   {
-    "id": "medium-202",
-    "level": "medium",
-    "prompt": "Given a number n, print the nth Fibonacci number (0-indexed).\n\nInput Format:\nA single integer n.\n\nOutput Format:\nPrint the nth Fibonacci number.",
-    "hint": "Read the input using input() and convert to integer. Use a loop to calculate Fibonacci numbers iteratively, or use a recursive approach with memoization for better performance.",
+    "id": "easy-011",
+    "level": "easy",
+    "prompt": "Convert temperature C in Celsius to Fahrenheit.",
+    "hint": "F = C*9/5 + 32.",
     "tests": [
       {
-        "input": "6",
-        "output": "8",
+        "input": "10",
+        "output": "50.0",
+        "hidden": false
+      },
+      {
+        "input": "21",
+        "output": "69.8",
+        "hidden": true
+      },
+      {
+        "input": "4",
+        "output": "39.2",
+        "hidden": true
+      },
+      {
+        "input": "-22",
+        "output": "-7.600000000000001",
+        "hidden": true
+      },
+      {
+        "input": "-3",
+        "output": "26.6",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-012",
+    "level": "easy",
+    "prompt": "Convert Fahrenheit F to Celsius.",
+    "hint": "C = (F-32)*5/9.",
+    "tests": [
+      {
+        "input": "58",
+        "output": "14.44",
+        "hidden": false
+      },
+      {
+        "input": "32",
+        "output": "0.0",
+        "hidden": true
+      },
+      {
+        "input": "105",
+        "output": "40.56",
+        "hidden": true
+      },
+      {
+        "input": "79",
+        "output": "26.11",
+        "hidden": true
+      },
+      {
+        "input": "95",
+        "output": "35.0",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-013",
+    "level": "easy",
+    "prompt": "Read five integers and output their average.",
+    "hint": "Sum then divide by 5.",
+    "tests": [
+      {
+        "input": "-2 13 -3 11 48",
+        "output": "13.4",
+        "hidden": false
+      },
+      {
+        "input": "13 34 31 26 8",
+        "output": "22.4",
+        "hidden": true
+      },
+      {
+        "input": "-3 45 43 -9 -14",
+        "output": "12.4",
+        "hidden": true
+      },
+      {
+        "input": "-6 -1 0 34 -12",
+        "output": "3.0",
+        "hidden": true
+      },
+      {
+        "input": "29 28 39 47 12",
+        "output": "31.0",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-014",
+    "level": "easy",
+    "prompt": "Convert hours h to minutes.",
+    "hint": "Multiply by 60.",
+    "tests": [
+      {
+        "input": "17",
+        "output": "1020",
         "hidden": false
       },
       {
@@ -181,8 +445,630 @@
         "hidden": true
       },
       {
+        "input": "21",
+        "output": "1260",
+        "hidden": true
+      },
+      {
+        "input": "23",
+        "output": "1380",
+        "hidden": true
+      },
+      {
+        "input": "3",
+        "output": "180",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-015",
+    "level": "easy",
+    "prompt": "Convert days d to seconds.",
+    "hint": "d*24*60*60.",
+    "tests": [
+      {
+        "input": "21",
+        "output": "1814400",
+        "hidden": false
+      },
+      {
+        "input": "28",
+        "output": "2419200",
+        "hidden": true
+      },
+      {
+        "input": "17",
+        "output": "1468800",
+        "hidden": true
+      },
+      {
+        "input": "24",
+        "output": "2073600",
+        "hidden": true
+      },
+      {
+        "input": "8",
+        "output": "691200",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-016",
+    "level": "easy",
+    "prompt": "Print the square of an integer n.",
+    "hint": "n ** 2.",
+    "tests": [
+      {
+        "input": "48",
+        "output": "2304",
+        "hidden": false
+      },
+      {
+        "input": "32",
+        "output": "1024",
+        "hidden": true
+      },
+      {
+        "input": "-7",
+        "output": "49",
+        "hidden": true
+      },
+      {
+        "input": "-36",
+        "output": "1296",
+        "hidden": true
+      },
+      {
+        "input": "-13",
+        "output": "169",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-017",
+    "level": "easy",
+    "prompt": "Print the cube of an integer n.",
+    "hint": "n ** 3.",
+    "tests": [
+      {
+        "input": "7",
+        "output": "343",
+        "hidden": false
+      },
+      {
+        "input": "-10",
+        "output": "-1000",
+        "hidden": true
+      },
+      {
+        "input": "9",
+        "output": "729",
+        "hidden": true
+      },
+      {
+        "input": "-20",
+        "output": "-8000",
+        "hidden": true
+      },
+      {
+        "input": "-4",
+        "output": "-64",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-018",
+    "level": "easy",
+    "prompt": "Output the floor division of a by b.",
+    "hint": "Use //.",
+    "tests": [
+      {
+        "input": "98 17",
+        "output": "5",
+        "hidden": false
+      },
+      {
+        "input": "65 6",
+        "output": "10",
+        "hidden": true
+      },
+      {
+        "input": "81 4",
+        "output": "20",
+        "hidden": true
+      },
+      {
+        "input": "82 10",
+        "output": "8",
+        "hidden": true
+      },
+      {
+        "input": "78 17",
+        "output": "4",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-019",
+    "level": "easy",
+    "prompt": "Print the absolute difference between a and b.",
+    "hint": "Use abs(a-b).",
+    "tests": [
+      {
+        "input": "-50 -61",
+        "output": "11",
+        "hidden": false
+      },
+      {
+        "input": "-5 95",
+        "output": "100",
+        "hidden": true
+      },
+      {
+        "input": "-59 38",
+        "output": "97",
+        "hidden": true
+      },
+      {
+        "input": "99 35",
+        "output": "64",
+        "hidden": true
+      },
+      {
+        "input": "-100 53",
+        "output": "153",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "easy-020",
+    "level": "easy",
+    "prompt": "Given x, y and their weights wx, wy, print the weighted average.",
+    "hint": "(x*wx + y*wy)/(wx+wy).",
+    "tests": [
+      {
+        "input": "41 62 1 1",
+        "output": "51.5",
+        "hidden": false
+      },
+      {
+        "input": "46 39 2 1",
+        "output": "43.666666666666664",
+        "hidden": true
+      },
+      {
+        "input": "30 72 1 1",
+        "output": "51.0",
+        "hidden": true
+      },
+      {
+        "input": "93 62 1 5",
+        "output": "67.16666666666667",
+        "hidden": true
+      },
+      {
+        "input": "98 16 2 4",
+        "output": "43.333333333333336",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-001",
+    "level": "medium",
+    "prompt": "Check if an integer n is even. Print True or False.",
+    "hint": "Use n % 2 == 0 inside an if.",
+    "tests": [
+      {
+        "input": "-87",
+        "output": "False",
+        "hidden": false
+      },
+      {
+        "input": "-32",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "-78",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "96",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "4",
+        "output": "True",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-002",
+    "level": "medium",
+    "prompt": "Determine if a given year y is a leap year. Print True or False.",
+    "hint": "Leap year if divisible by 400 or divisible by 4 but not 100.",
+    "tests": [
+      {
+        "input": "1968",
+        "output": "True",
+        "hidden": false
+      },
+      {
+        "input": "1927",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "1909",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "1997",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "2037",
+        "output": "False",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-003",
+    "level": "medium",
+    "prompt": "Given three integers, print the largest.",
+    "hint": "Use if-elif-else or max().",
+    "tests": [
+      {
+        "input": "43 -15 -13",
+        "output": "43",
+        "hidden": false
+      },
+      {
+        "input": "-87 -60 -66",
+        "output": "-60",
+        "hidden": true
+      },
+      {
+        "input": "-14 43 -15",
+        "output": "43",
+        "hidden": true
+      },
+      {
+        "input": "79 -38 -59",
+        "output": "79",
+        "hidden": true
+      },
+      {
+        "input": "-100 11 98",
+        "output": "98",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-004",
+    "level": "medium",
+    "prompt": "Compute factorial of a non\u2011negative integer n.",
+    "hint": "Loop multiplying from 1 to n.",
+    "tests": [
+      {
         "input": "1",
         "output": "1",
+        "hidden": false
+      },
+      {
+        "input": "6",
+        "output": "720",
+        "hidden": true
+      },
+      {
+        "input": "1",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "0",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "5",
+        "output": "120",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-005",
+    "level": "medium",
+    "prompt": "Print the sum of all integers from 1 to n inclusive.",
+    "hint": "Use a loop or formula n*(n+1)//2.",
+    "tests": [
+      {
+        "input": "93",
+        "output": "4371",
+        "hidden": false
+      },
+      {
+        "input": "57",
+        "output": "1653",
+        "hidden": true
+      },
+      {
+        "input": "13",
+        "output": "91",
+        "hidden": true
+      },
+      {
+        "input": "5",
+        "output": "15",
+        "hidden": true
+      },
+      {
+        "input": "11",
+        "output": "66",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-006",
+    "level": "medium",
+    "prompt": "Count the number of digits in integer n.",
+    "hint": "Loop dividing by 10 or convert to str.",
+    "tests": [
+      {
+        "input": "89541769",
+        "output": "8",
+        "hidden": false
+      },
+      {
+        "input": "19082414",
+        "output": "8",
+        "hidden": true
+      },
+      {
+        "input": "16944947",
+        "output": "8",
+        "hidden": true
+      },
+      {
+        "input": "2850244",
+        "output": "7",
+        "hidden": true
+      },
+      {
+        "input": "39164936",
+        "output": "8",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-007",
+    "level": "medium",
+    "prompt": "Reverse the digits of integer n and print the reversed number.",
+    "hint": "Use a while loop extracting digits.",
+    "tests": [
+      {
+        "input": "56444",
+        "output": "44465",
+        "hidden": false
+      },
+      {
+        "input": "75157",
+        "output": "75157",
+        "hidden": true
+      },
+      {
+        "input": "62511",
+        "output": "11526",
+        "hidden": true
+      },
+      {
+        "input": "34776",
+        "output": "67743",
+        "hidden": true
+      },
+      {
+        "input": "61511",
+        "output": "11516",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-008",
+    "level": "medium",
+    "prompt": "Check if integer n is a palindrome. Print True or False.",
+    "hint": "Compare n with its reverse.",
+    "tests": [
+      {
+        "input": "4816",
+        "output": "False",
+        "hidden": false
+      },
+      {
+        "input": "39989",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "45018",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "68376",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "63302",
+        "output": "False",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-009",
+    "level": "medium",
+    "prompt": "Print the sum of the digits of integer n.",
+    "hint": "Extract digits in a loop.",
+    "tests": [
+      {
+        "input": "27113",
+        "output": "14",
+        "hidden": false
+      },
+      {
+        "input": "79810",
+        "output": "25",
+        "hidden": true
+      },
+      {
+        "input": "83723",
+        "output": "23",
+        "hidden": true
+      },
+      {
+        "input": "69084",
+        "output": "27",
+        "hidden": true
+      },
+      {
+        "input": "74031",
+        "output": "15",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-010",
+    "level": "medium",
+    "prompt": "Determine if integer n (>1) is prime. Print True or False.",
+    "hint": "Check divisibility up to \u221an.",
+    "tests": [
+      {
+        "input": "42",
+        "output": "False",
+        "hidden": false
+      },
+      {
+        "input": "3",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "52",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "100",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "84",
+        "output": "False",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-011",
+    "level": "medium",
+    "prompt": "Compute the GCD of two positive integers a and b.",
+    "hint": "Use Euclidean algorithm.",
+    "tests": [
+      {
+        "input": "66 56",
+        "output": "2",
+        "hidden": false
+      },
+      {
+        "input": "88 69",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "82 86",
+        "output": "2",
+        "hidden": true
+      },
+      {
+        "input": "77 63",
+        "output": "7",
+        "hidden": true
+      },
+      {
+        "input": "67 86",
+        "output": "1",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-012",
+    "level": "medium",
+    "prompt": "Compute the LCM of two positive integers a and b.",
+    "hint": "lcm = a*b // gcd.",
+    "tests": [
+      {
+        "input": "27 24",
+        "output": "216",
+        "hidden": false
+      },
+      {
+        "input": "33 3",
+        "output": "33",
+        "hidden": true
+      },
+      {
+        "input": "49 42",
+        "output": "294",
+        "hidden": true
+      },
+      {
+        "input": "12 47",
+        "output": "564",
+        "hidden": true
+      },
+      {
+        "input": "6 32",
+        "output": "96",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-013",
+    "level": "medium",
+    "prompt": "Print the nth Fibonacci number (0\u2011indexed).",
+    "hint": "Iterate n times adding previous two.",
+    "tests": [
+      {
+        "input": "8",
+        "output": "21",
+        "hidden": false
+      },
+      {
+        "input": "5",
+        "output": "5",
         "hidden": true
       },
       {
@@ -191,107 +1077,1894 @@
         "hidden": true
       },
       {
-        "input": "15",
-        "output": "610",
+        "input": "10",
+        "output": "55",
+        "hidden": true
+      },
+      {
+        "input": "17",
+        "output": "1597",
         "hidden": true
       }
     ]
   },
   {
-    "id": "hard-300",
-    "level": "hard",
-    "prompt": "Given a string s, print True if it is a valid palindrome after removing all non-alphanumeric characters and ignoring case, False otherwise.\n\nInput Format:\nA single string s.\n\nOutput Format:\nPrint True if s is a valid palindrome after processing, False otherwise.",
-    "hint": "Read the input string using input(). First, convert the string to lowercase and remove non-alphanumeric characters using isalnum(). Then check if it's a palindrome by comparing characters from both ends.",
+    "id": "medium-014",
+    "level": "medium",
+    "prompt": "Sum all even numbers from 1 to n inclusive.",
+    "hint": "Loop with step 2 or use formula.",
     "tests": [
       {
-        "input": "A man, a plan, a canal: Panama",
-        "output": "True",
+        "input": "51",
+        "output": "650",
         "hidden": false
       },
       {
-        "input": "race a car",
-        "output": "False",
+        "input": "10",
+        "output": "30",
         "hidden": true
       },
       {
-        "input": " ",
-        "output": "True",
+        "input": "93",
+        "output": "2162",
         "hidden": true
       },
       {
-        "input": "No 'x' in Nixon",
-        "output": "True",
+        "input": "59",
+        "output": "870",
         "hidden": true
       },
       {
-        "input": "abc",
-        "output": "False",
+        "input": "50",
+        "output": "650",
         "hidden": true
       }
     ]
   },
   {
-    "id": "hard-301",
-    "level": "hard",
-    "prompt": "Given a string s, print the length of the longest substring without repeating characters.\n\nInput Format:\nA single string s.\n\nOutput Format:\nPrint the length of the longest substring without repeating characters.",
-    "hint": "Read the input string using input(). Use a sliding window approach with a dictionary to track character positions. When you find a repeating character, move the window start to the position after the previous occurrence.",
+    "id": "medium-015",
+    "level": "medium",
+    "prompt": "Given n followed by n integers, print their average.",
+    "hint": "Sum inside a loop then divide.",
     "tests": [
       {
-        "input": "abcabcbb",
+        "input": "10\n49 -7 -48 -26 25 -39 30 -4 -49 -5",
+        "output": "-7.4",
+        "hidden": false
+      },
+      {
+        "input": "4\n1 18 14 42",
+        "output": "18.75",
+        "hidden": true
+      },
+      {
+        "input": "1\n31",
+        "output": "31.0",
+        "hidden": true
+      },
+      {
+        "input": "5\n13 47 30 42 -21",
+        "output": "22.2",
+        "hidden": true
+      },
+      {
+        "input": "9\n11 -28 -31 18 6 -2 46 9 -45",
+        "output": "-1.7777777777777777",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-016",
+    "level": "medium",
+    "prompt": "Given n integers, count how many are positive.",
+    "hint": "Increment a counter inside the loop.",
+    "tests": [
+      {
+        "input": "1\n-3",
+        "output": "0",
+        "hidden": false
+      },
+      {
+        "input": "8\n-2 -5 -1 0 5 -1 1 5",
         "output": "3",
-        "hidden": false
+        "hidden": true
       },
       {
-        "input": "bbbbb",
+        "input": "7\n-5 -4 4 -4 3 0 -4",
+        "output": "2",
+        "hidden": true
+      },
+      {
+        "input": "2\n1 -5",
         "output": "1",
         "hidden": true
       },
       {
-        "input": "pwwkew",
-        "output": "3",
+        "input": "9\n1 -4 3 5 1 -5 0 -1 2",
+        "output": "5",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-017",
+    "level": "medium",
+    "prompt": "Print the smallest and largest number from a list of n integers.",
+    "hint": "Track min and max or use built\u2011ins.",
+    "tests": [
+      {
+        "input": "1\n92",
+        "output": "92 92",
+        "hidden": false
+      },
+      {
+        "input": "9\n-15 6 -11 -94 63 62 -59 7 -84",
+        "output": "-94 63",
         "hidden": true
       },
       {
-        "input": "",
+        "input": "3\n-5 71 -40",
+        "output": "-40 71",
+        "hidden": true
+      },
+      {
+        "input": "2\n60 -86",
+        "output": "-86 60",
+        "hidden": true
+      },
+      {
+        "input": "9\n-1 37 -22 -63 67 97 -26 98 -1",
+        "output": "-63 98",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-018",
+    "level": "medium",
+    "prompt": "Count numbers between 1 and n inclusive divisible by 3 or 5.",
+    "hint": "Use a loop with an if condition.",
+    "tests": [
+      {
+        "input": "48",
+        "output": "22",
+        "hidden": false
+      },
+      {
+        "input": "17",
+        "output": "7",
+        "hidden": true
+      },
+      {
+        "input": "69",
+        "output": "32",
+        "hidden": true
+      },
+      {
+        "input": "44",
+        "output": "20",
+        "hidden": true
+      },
+      {
+        "input": "67",
+        "output": "31",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-019",
+    "level": "medium",
+    "prompt": "Compute n raised to power m without using ** (use loop).",
+    "hint": "Multiply in a for loop.",
+    "tests": [
+      {
+        "input": "1 5",
+        "output": "1",
+        "hidden": false
+      },
+      {
+        "input": "2 4",
+        "output": "16",
+        "hidden": true
+      },
+      {
+        "input": "6 3",
+        "output": "216",
+        "hidden": true
+      },
+      {
+        "input": "0 5",
         "output": "0",
         "hidden": true
       },
       {
-        "input": "dvdf",
+        "input": "2 3",
+        "output": "8",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-020",
+    "level": "medium",
+    "prompt": "Print the number of trailing zeros in n!.",
+    "hint": "Count factors of 5.",
+    "tests": [
+      {
+        "input": "42",
+        "output": "9",
+        "hidden": false
+      },
+      {
+        "input": "1",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "22",
+        "output": "4",
+        "hidden": true
+      },
+      {
+        "input": "28",
+        "output": "6",
+        "hidden": true
+      },
+      {
+        "input": "47",
+        "output": "10",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-021",
+    "level": "medium",
+    "prompt": "On a chessboard, grains double each square. Given k, print grains on square k.",
+    "hint": "Use 2**(k-1).",
+    "tests": [
+      {
+        "input": "15",
+        "output": "16384",
+        "hidden": false
+      },
+      {
+        "input": "10",
+        "output": "512",
+        "hidden": true
+      },
+      {
+        "input": "14",
+        "output": "8192",
+        "hidden": true
+      },
+      {
+        "input": "1",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "6",
+        "output": "32",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-022",
+    "level": "medium",
+    "prompt": "Compute the digital root of n.",
+    "hint": "Iteratively sum digits until one digit.",
+    "tests": [
+      {
+        "input": "8546",
+        "output": "5",
+        "hidden": false
+      },
+      {
+        "input": "5323",
+        "output": "4",
+        "hidden": true
+      },
+      {
+        "input": "8468",
+        "output": "8",
+        "hidden": true
+      },
+      {
+        "input": "8434",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "9119",
+        "output": "2",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-023",
+    "level": "medium",
+    "prompt": "Print the length of the Collatz sequence starting at n.",
+    "hint": "Apply 3n+1 if odd else n/2 until 1.",
+    "tests": [
+      {
+        "input": "18",
+        "output": "21",
+        "hidden": false
+      },
+      {
+        "input": "44",
+        "output": "17",
+        "hidden": true
+      },
+      {
+        "input": "65",
+        "output": "28",
+        "hidden": true
+      },
+      {
+        "input": "14",
+        "output": "18",
+        "hidden": true
+      },
+      {
+        "input": "70",
+        "output": "15",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-024",
+    "level": "medium",
+    "prompt": "Sum proper divisors of n.",
+    "hint": "Loop up to \u221an adding divisors.",
+    "tests": [
+      {
+        "input": "93",
+        "output": "35",
+        "hidden": false
+      },
+      {
+        "input": "48",
+        "output": "76",
+        "hidden": true
+      },
+      {
+        "input": "29",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "73",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "44",
+        "output": "40",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-025",
+    "level": "medium",
+    "prompt": "Print 1 if n is a perfect number, else 0.",
+    "hint": "Sum of proper divisors equals n.",
+    "tests": [
+      {
+        "input": "97",
+        "output": "0",
+        "hidden": false
+      },
+      {
+        "input": "280",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "954",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "520",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "251",
+        "output": "0",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-026",
+    "level": "medium",
+    "prompt": "Given n, print the largest power of 2 not exceeding n.",
+    "hint": "Repeatedly multiply by 2 or use bit tricks.",
+    "tests": [
+      {
+        "input": "209",
+        "output": "128",
+        "hidden": false
+      },
+      {
+        "input": "908",
+        "output": "512",
+        "hidden": true
+      },
+      {
+        "input": "330",
+        "output": "256",
+        "hidden": true
+      },
+      {
+        "input": "271",
+        "output": "256",
+        "hidden": true
+      },
+      {
+        "input": "408",
+        "output": "256",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-027",
+    "level": "medium",
+    "prompt": "Count numbers between 1 and n divisible by both 3 and 4.",
+    "hint": "They are divisible by 12.",
+    "tests": [
+      {
+        "input": "12",
+        "output": "1",
+        "hidden": false
+      },
+      {
+        "input": "129",
+        "output": "10",
+        "hidden": true
+      },
+      {
+        "input": "21",
+        "output": "1",
+        "hidden": true
+      },
+      {
+        "input": "51",
+        "output": "4",
+        "hidden": true
+      },
+      {
+        "input": "130",
+        "output": "10",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-028",
+    "level": "medium",
+    "prompt": "Compute the sum of the factorials of the digits of n.",
+    "hint": "Precompute factorial of digits.",
+    "tests": [
+      {
+        "input": "3268",
+        "output": "41048",
+        "hidden": false
+      },
+      {
+        "input": "281",
+        "output": "40323",
+        "hidden": true
+      },
+      {
+        "input": "3181",
+        "output": "40328",
+        "hidden": true
+      },
+      {
+        "input": "4395",
+        "output": "363030",
+        "hidden": true
+      },
+      {
+        "input": "9250",
+        "output": "363003",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-029",
+    "level": "medium",
+    "prompt": "Check if a is an exact power of b. Print True or False.",
+    "hint": "Keep dividing a by b until remainder.",
+    "tests": [
+      {
+        "input": "1 5",
+        "output": "True",
+        "hidden": false
+      },
+      {
+        "input": "9 3",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "4096 4",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "4096 4",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "59049 9",
+        "output": "True",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-030",
+    "level": "medium",
+    "prompt": "Print the first n terms of an arithmetic progression starting at a with difference d, space\u2011separated.",
+    "hint": "Loop n times adding d.",
+    "tests": [
+      {
+        "input": "1 -4 4",
+        "output": "-4",
+        "hidden": false
+      },
+      {
+        "input": "8 1 1",
+        "output": "1 2 3 4 5 6 7 8",
+        "hidden": true
+      },
+      {
+        "input": "4 12 -3",
+        "output": "12 9 6 3",
+        "hidden": true
+      },
+      {
+        "input": "10 20 -5",
+        "output": "20 15 10 5 0 -5 -10 -15 -20 -25",
+        "hidden": true
+      },
+      {
+        "input": "10 18 2",
+        "output": "18 20 22 24 26 28 30 32 34 36",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-001",
+    "level": "hard",
+    "prompt": "Reverse the given string.",
+    "hint": "Use slicing s[::-1].",
+    "tests": [
+      {
+        "input": "onmzubtxzq",
+        "output": "qzxtbuzmno",
+        "hidden": false
+      },
+      {
+        "input": "kpyd",
+        "output": "dypk",
+        "hidden": true
+      },
+      {
+        "input": "pwob",
+        "output": "bowp",
+        "hidden": true
+      },
+      {
+        "input": "eegfxmq",
+        "output": "qmxfgee",
+        "hidden": true
+      },
+      {
+        "input": "kcsrblwxju",
+        "output": "ujxwlbrsck",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-002",
+    "level": "hard",
+    "prompt": "Check if the given string is a palindrome. Print True or False.",
+    "hint": "Compare with its reverse.",
+    "tests": [
+      {
+        "input": "glzeho",
+        "output": "False",
+        "hidden": false
+      },
+      {
+        "input": "kakkak",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "fwswm",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "pxrsxy",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "oo",
+        "output": "True",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-003",
+    "level": "hard",
+    "prompt": "Count vowels in the string.",
+    "hint": "Check each char in 'aeiouAEIOU'.",
+    "tests": [
+      {
+        "input": "CIhipYEZ",
+        "output": "3",
+        "hidden": false
+      },
+      {
+        "input": "rNPHXiIW",
+        "output": "2",
+        "hidden": true
+      },
+      {
+        "input": "SYjJllrLtD",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "PZlacUbarskQp",
+        "output": "3",
+        "hidden": true
+      },
+      {
+        "input": "whPeFyorot",
         "output": "3",
         "hidden": true
       }
     ]
   },
   {
-    "id": "hard-302",
+    "id": "hard-004",
     "level": "hard",
-    "prompt": "Given a list of integers, print the maximum product of any three numbers.\n\nInput Format:\nA list of integers separated by spaces.\n\nOutput Format:\nPrint the maximum product of any three numbers.",
-    "hint": "Read the input using input() and split it into a list of integers. Sort the list and consider both the product of the three largest numbers and the product of the two smallest (negative) numbers with the largest number.",
+    "prompt": "Count consonants in the string (letters that are not vowels).",
+    "hint": "Use isalpha() and not in vowels.",
     "tests": [
       {
-        "input": "1 2 3",
-        "output": "6",
+        "input": "dUeABR",
+        "output": "3",
         "hidden": false
       },
       {
-        "input": "1 2 3 4",
-        "output": "24",
+        "input": "eVadJWanxGk",
+        "output": "8",
         "hidden": true
       },
       {
-        "input": "-1 -2 -3",
-        "output": "-6",
+        "input": "bKJqCtZfZUp",
+        "output": "10",
         "hidden": true
       },
       {
-        "input": "-10 -10 5 2",
-        "output": "500",
+        "input": "NIsTbJYPLFYhK",
+        "output": "12",
         "hidden": true
       },
       {
-        "input": "1 -4 3 -6 7 0",
-        "output": "168",
+        "input": "keFyyVPmlDrbEE",
+        "output": "11",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-005",
+    "level": "hard",
+    "prompt": "Remove all vowels from the string and print the result.",
+    "hint": "Create a new string skipping vowels.",
+    "tests": [
+      {
+        "input": "heoplqcvpuidc",
+        "output": "hplqcvpdc",
+        "hidden": false
+      },
+      {
+        "input": "udejynkpebifvw",
+        "output": "djynkpbfvw",
+        "hidden": true
+      },
+      {
+        "input": "hvamu",
+        "output": "hvm",
+        "hidden": true
+      },
+      {
+        "input": "gsdcvbo",
+        "output": "gsdcvb",
+        "hidden": true
+      },
+      {
+        "input": "zfprb",
+        "output": "zfprb",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-006",
+    "level": "hard",
+    "prompt": "Given a sentence, print the number of words.",
+    "hint": "Split on whitespace.",
+    "tests": [
+      {
+        "input": "fyu mdhvsp flzepy lfcwax",
+        "output": "4",
+        "hidden": false
+      },
+      {
+        "input": "bmxev cns vtompg bmtomi iqmc",
+        "output": "5",
+        "hidden": true
+      },
+      {
+        "input": "vk arb sdd piusc kizr ecepgr",
+        "output": "6",
+        "hidden": true
+      },
+      {
+        "input": "upo llrm jna xn fdqwv xsryd",
+        "output": "6",
+        "hidden": true
+      },
+      {
+        "input": "nu lvyb ikehxo dsrij ozkaoc",
+        "output": "5",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-007",
+    "level": "hard",
+    "prompt": "Print length of the longest word in the sentence.",
+    "hint": "Split then max(len).",
+    "tests": [
+      {
+        "input": "yz keaimiujaz ybbbd lr txl qp rukznwphq",
+        "output": "10",
+        "hidden": false
+      },
+      {
+        "input": "nkqhztfm xx okcg",
+        "output": "8",
+        "hidden": true
+      },
+      {
+        "input": "zeempfwrkx gtlzdettqp ck sdft fwj ffpxodrrfk kusp ehg",
+        "output": "10",
+        "hidden": true
+      },
+      {
+        "input": "agnzd mayik oh geg",
+        "output": "5",
+        "hidden": true
+      },
+      {
+        "input": "rwhb ikscw uhtsozxx ygoy zemwdxqkqs owb",
+        "output": "10",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-008",
+    "level": "hard",
+    "prompt": "Convert every word in the sentence to Title Case and print the result.",
+    "hint": "Use str.title().",
+    "tests": [
+      {
+        "input": "ajspp gj vry wiz",
+        "output": "Ajspp Gj Vry Wiz",
+        "hidden": false
+      },
+      {
+        "input": "rqtvh ln wseypp kito cwkw",
+        "output": "Rqtvh Ln Wseypp Kito Cwkw",
+        "hidden": true
+      },
+      {
+        "input": "ein qwxg eaejh zrl afgq fhv",
+        "output": "Ein Qwxg Eaejh Zrl Afgq Fhv",
+        "hidden": true
+      },
+      {
+        "input": "djsi vsa vl sbb rl qokx",
+        "output": "Djsi Vsa Vl Sbb Rl Qokx",
+        "hidden": true
+      },
+      {
+        "input": "lpgt mnjdgo dmp lkaw fltur",
+        "output": "Lpgt Mnjdgo Dmp Lkaw Fltur",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-009",
+    "level": "hard",
+    "prompt": "Check if two words are anagrams. Input is two space\u2011separated words. Print True or False.",
+    "hint": "Sort both words and compare.",
+    "tests": [
+      {
+        "input": "qpkop xadmu",
+        "output": "False",
+        "hidden": false
+      },
+      {
+        "input": "adqsj jmpke",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "wnkgz xerdn",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "gkujj fcpzu",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "foixh xhfoi",
+        "output": "True",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-010",
+    "level": "hard",
+    "prompt": "Replace every space in the sentence with a hyphen and print the result.",
+    "hint": "Use str.replace(' ', '-').",
+    "tests": [
+      {
+        "input": "la or ggln wsi ut",
+        "output": "la-or-ggln-wsi-ut",
+        "hidden": false
+      },
+      {
+        "input": "bkuec vri nrdxff jdgkk",
+        "output": "bkuec-vri-nrdxff-jdgkk",
+        "hidden": true
+      },
+      {
+        "input": "bvfd jmx ind gw",
+        "output": "bvfd-jmx-ind-gw",
+        "hidden": true
+      },
+      {
+        "input": "bg mxje pcmz uwlw",
+        "output": "bg-mxje-pcmz-uwlw",
+        "hidden": true
+      },
+      {
+        "input": "cztmnq mgun eo zbm",
+        "output": "cztmnq-mgun-eo-zbm",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-011",
+    "level": "hard",
+    "prompt": "Sum all the digits present in the string.",
+    "hint": "Loop through characters, check ch.isdigit().",
+    "tests": [
+      {
+        "input": "5raci",
+        "output": "5",
+        "hidden": false
+      },
+      {
+        "input": "1mus7vu0cmbqq9",
+        "output": "17",
+        "hidden": true
+      },
+      {
+        "input": "p3fbmnx4h5am",
+        "output": "12",
+        "hidden": true
+      },
+      {
+        "input": "aopsd",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "pglxud32w8rx",
+        "output": "13",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-012",
+    "level": "hard",
+    "prompt": "Compress the string using run\u2011length encoding (e.g., aaabb -> a3b2).",
+    "hint": "Count consecutive repeats.",
+    "tests": [
+      {
+        "input": "ccccacbbb",
+        "output": "c4a1c1b3",
+        "hidden": false
+      },
+      {
+        "input": "baccbcc",
+        "output": "b1a1c2b1c2",
+        "hidden": true
+      },
+      {
+        "input": "bcbacaac",
+        "output": "b1c1b1a1c1a2c1",
+        "hidden": true
+      },
+      {
+        "input": "abaacccca",
+        "output": "a1b1a2c4a1",
+        "hidden": true
+      },
+      {
+        "input": "ccbaacbac",
+        "output": "c2b1a2c1b1a1c1",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-013",
+    "level": "hard",
+    "prompt": "Count occurrences of substring sub in string s. Input: s on first line, sub on second. Overlaps allowed.",
+    "hint": "Loop index, use s.find starting positions.",
+    "tests": [
+      {
+        "input": "abababa\naba",
+        "output": "3",
+        "hidden": false
+      },
+      {
+        "input": "abababa\naba",
+        "output": "3",
+        "hidden": true
+      },
+      {
+        "input": "abababa\naba",
+        "output": "3",
+        "hidden": true
+      },
+      {
+        "input": "abababa\naba",
+        "output": "3",
+        "hidden": true
+      },
+      {
+        "input": "abababa\naba",
+        "output": "3",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-014",
+    "level": "hard",
+    "prompt": "Remove duplicate characters from string while keeping first occurrences.",
+    "hint": "Use a set to track seen characters.",
+    "tests": [
+      {
+        "input": "eaaedeacdb",
+        "output": "eadcb",
+        "hidden": false
+      },
+      {
+        "input": "cceddcedde",
+        "output": "ced",
+        "hidden": true
+      },
+      {
+        "input": "abcabbaebd",
+        "output": "abced",
+        "hidden": true
+      },
+      {
+        "input": "abedecacdd",
+        "output": "abedc",
+        "hidden": true
+      },
+      {
+        "input": "eaebedeada",
+        "output": "eabd",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-015",
+    "level": "hard",
+    "prompt": "Sort words of a sentence alphabetically and print them space\u2011separated.",
+    "hint": "Split, sort, join.",
+    "tests": [
+      {
+        "input": "dfyyl di ckghek ioqe ndolpd gmrs",
+        "output": "ckghek dfyyl di gmrs ioqe ndolpd",
+        "hidden": false
+      },
+      {
+        "input": "thtuj gignq dxbo",
+        "output": "dxbo gignq thtuj",
+        "hidden": true
+      },
+      {
+        "input": "ljocf has foml bdaipb jyd da",
+        "output": "bdaipb da foml has jyd ljocf",
+        "hidden": true
+      },
+      {
+        "input": "qmqxz jjwr lpzm nqa zkzez ugon",
+        "output": "jjwr lpzm nqa qmqxz ugon zkzez",
+        "hidden": true
+      },
+      {
+        "input": "knvup qe frtvga rn hkk ji",
+        "output": "frtvga hkk ji knvup qe rn",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-016",
+    "level": "hard",
+    "prompt": "Capitalize first and last letter of each word in the sentence.",
+    "hint": "Process each word separately.",
+    "tests": [
+      {
+        "input": "ip xarb pvnmdklw",
+        "output": "IP XarB PvnmdklW",
+        "hidden": false
+      },
+      {
+        "input": "uemvbiz nsb gcn zhwtnq bgpiikel cuis",
+        "output": "UemvbiZ NsB GcN ZhwtnQ BgpiikeL CuiS",
+        "hidden": true
+      },
+      {
+        "input": "ge ho bqkv kctbo hqwie uhiim",
+        "output": "GE HO BqkV KctbO HqwiE UhiiM",
+        "hidden": true
+      },
+      {
+        "input": "kfuc javoeq kbvq zlvoqlk zploj",
+        "output": "KfuC JavoeQ KbvQ ZlvoqlK ZploJ",
+        "hidden": true
+      },
+      {
+        "input": "xau albqiq libmdqgs frozazv",
+        "output": "XaU AlbqiQ LibmdqgS FrozazV",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-017",
+    "level": "hard",
+    "prompt": "Check if the sentence is a pangram (contains every letter a\u2011z). Print True or False.",
+    "hint": "Use a set of lowercase letters.",
+    "tests": [
+      {
+        "input": "the quick brown fox jumps over the lazy dog",
+        "output": "True",
+        "hidden": false
+      },
+      {
+        "input": "hello world",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "hello world",
+        "output": "False",
+        "hidden": true
+      },
+      {
+        "input": "the quick brown fox jumps over the lazy dog",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "hello world",
+        "output": "False",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-018",
+    "level": "hard",
+    "prompt": "Convert snake_case string to camelCase.",
+    "hint": "Split on '_' and capitalize from second word.",
+    "tests": [
+      {
+        "input": "rmf_kle_git",
+        "output": "rmfKleGit",
+        "hidden": false
+      },
+      {
+        "input": "ffr_cal_sbp",
+        "output": "ffrCalSbp",
+        "hidden": true
+      },
+      {
+        "input": "fxg_psv",
+        "output": "fxgPsv",
+        "hidden": true
+      },
+      {
+        "input": "oom_qvc_qga",
+        "output": "oomQvcQga",
+        "hidden": true
+      },
+      {
+        "input": "kxj_omq_vnt",
+        "output": "kxjOmqVnt",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-019",
+    "level": "hard",
+    "prompt": "Apply Caesar cipher shifting each lowercase letter by k (0\u2264k\u226425). Input: k on first line, then string.",
+    "hint": "Use (ord(ch)-97+k)%26.",
+    "tests": [
+      {
+        "input": "19\nulobmuwylj",
+        "output": "nehufnprec",
+        "hidden": false
+      },
+      {
+        "input": "5\nbzrkhmmhy ",
+        "output": "gewpmrrmd ",
+        "hidden": true
+      },
+      {
+        "input": "13\nibzhzpwwoy",
+        "output": "vomumcjjbl",
+        "hidden": true
+      },
+      {
+        "input": "17\naepvuihoxa",
+        "output": "rvgmlzyfor",
+        "hidden": true
+      },
+      {
+        "input": "19\nnpezzkorpn",
+        "output": "gixssdhkig",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-020",
+    "level": "hard",
+    "prompt": "Check if two strings differ by exactly one edit (insert/delete/replace one char). Input two lines.",
+    "hint": "Consider lengths and scan differences.",
+    "tests": [
+      {
+        "input": "pale\npales",
+        "output": "True",
+        "hidden": false
+      },
+      {
+        "input": "pale\npales",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "pale\npales",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "pale\npales",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "pale\npales",
+        "output": "True",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-021",
+    "level": "hard",
+    "prompt": "Find the most frequent character in the string. If tie, print the first such char.",
+    "hint": "Use a frequency dictionary.",
+    "tests": [
+      {
+        "input": "ababbc",
+        "output": "b",
+        "hidden": false
+      },
+      {
+        "input": "ababbc",
+        "output": "b",
+        "hidden": true
+      },
+      {
+        "input": "ababbc",
+        "output": "b",
+        "hidden": true
+      },
+      {
+        "input": "ababbc",
+        "output": "b",
+        "hidden": true
+      },
+      {
+        "input": "ababbc",
+        "output": "b",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-022",
+    "level": "hard",
+    "prompt": "Count uppercase and lowercase letters. Output: up low.",
+    "hint": "Use isupper()/islower().",
+    "tests": [
+      {
+        "input": "HelloWorld",
+        "output": "2 8",
+        "hidden": false
+      },
+      {
+        "input": "HelloWorld",
+        "output": "2 8",
+        "hidden": true
+      },
+      {
+        "input": "HelloWorld",
+        "output": "2 8",
+        "hidden": true
+      },
+      {
+        "input": "HelloWorld",
+        "output": "2 8",
+        "hidden": true
+      },
+      {
+        "input": "HelloWorld",
+        "output": "2 8",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-023",
+    "level": "hard",
+    "prompt": "Reverse each word in the sentence but keep word order.",
+    "hint": "Split, reverse, join.",
+    "tests": [
+      {
+        "input": "hello world",
+        "output": "olleh dlrow",
+        "hidden": false
+      },
+      {
+        "input": "hello world",
+        "output": "olleh dlrow",
+        "hidden": true
+      },
+      {
+        "input": "hello world",
+        "output": "olleh dlrow",
+        "hidden": true
+      },
+      {
+        "input": "hello world",
+        "output": "olleh dlrow",
+        "hidden": true
+      },
+      {
+        "input": "hello world",
+        "output": "olleh dlrow",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-024",
+    "level": "hard",
+    "prompt": "Count the number of digits in the string.",
+    "hint": "Use str.isdigit().",
+    "tests": [
+      {
+        "input": "a1b2c3",
+        "output": "3",
+        "hidden": false
+      },
+      {
+        "input": "a1b2c3",
+        "output": "3",
+        "hidden": true
+      },
+      {
+        "input": "a1b2c3",
+        "output": "3",
+        "hidden": true
+      },
+      {
+        "input": "a1b2c3",
+        "output": "3",
+        "hidden": true
+      },
+      {
+        "input": "a1b2c3",
+        "output": "3",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-025",
+    "level": "hard",
+    "prompt": "Evaluate a simple postfix expression with single\u2011digit operands. Operators +-*.",
+    "hint": "Use a stack.",
+    "tests": [
+      {
+        "input": "23+5*",
+        "output": "25",
+        "hidden": false
+      },
+      {
+        "input": "23+5*",
+        "output": "25",
+        "hidden": true
+      },
+      {
+        "input": "23+5*",
+        "output": "25",
+        "hidden": true
+      },
+      {
+        "input": "23+5*",
+        "output": "25",
+        "hidden": true
+      },
+      {
+        "input": "23+5*",
+        "output": "25",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-026",
+    "level": "hard",
+    "prompt": "Merge two sorted lists into one sorted list. Input: n, list1, m, list2. Output space\u2011separated merged list.",
+    "hint": "Two\u2011pointer merge.",
+    "tests": [
+      {
+        "input": "3\n1 3 5\n3\n2 4 6",
+        "output": "1 2 3 4 5 6",
+        "hidden": false
+      },
+      {
+        "input": "3\n1 3 5\n3\n2 4 6",
+        "output": "1 2 3 4 5 6",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 3 5\n3\n2 4 6",
+        "output": "1 2 3 4 5 6",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 3 5\n3\n2 4 6",
+        "output": "1 2 3 4 5 6",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 3 5\n3\n2 4 6",
+        "output": "1 2 3 4 5 6",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-027",
+    "level": "hard",
+    "prompt": "Flatten a nested list of integers represented with spaces and brackets removed (e.g., 1 [[2 3] 4] -> 1 2 3 4).",
+    "hint": "Use recursion or stack.",
+    "tests": [
+      {
+        "input": "[1,[2,[3]]]",
+        "output": "1 2 3",
+        "hidden": false
+      },
+      {
+        "input": "[1,[2,[3]]]",
+        "output": "1 2 3",
+        "hidden": true
+      },
+      {
+        "input": "[1,[2,[3]]]",
+        "output": "1 2 3",
+        "hidden": true
+      },
+      {
+        "input": "[1,[2,[3]]]",
+        "output": "1 2 3",
+        "hidden": true
+      },
+      {
+        "input": "[1,[2,[3]]]",
+        "output": "1 2 3",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-028",
+    "level": "hard",
+    "prompt": "Remove all None values from the list. Input: list length then elements (or 'None'). Output remaining elements space\u2011separated.",
+    "hint": "Filter where elem!='None'.",
+    "tests": [
+      {
+        "input": "3\n1 None 3",
+        "output": "1 3",
+        "hidden": false
+      },
+      {
+        "input": "3\n1 None 3",
+        "output": "1 3",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 None 3",
+        "output": "1 3",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 None 3",
+        "output": "1 3",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 None 3",
+        "output": "1 3",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-029",
+    "level": "hard",
+    "prompt": "Transpose a square matrix. Input: n then n lines. Output rows space\u2011separated.",
+    "hint": "Use zip(*matrix).",
+    "tests": [
+      {
+        "input": "2\n1 2\n3 4",
+        "output": "1 3\n2 4",
+        "hidden": false
+      },
+      {
+        "input": "2\n1 2\n3 4",
+        "output": "1 3\n2 4",
+        "hidden": true
+      },
+      {
+        "input": "2\n1 2\n3 4",
+        "output": "1 3\n2 4",
+        "hidden": true
+      },
+      {
+        "input": "2\n1 2\n3 4",
+        "output": "1 3\n2 4",
+        "hidden": true
+      },
+      {
+        "input": "2\n1 2\n3 4",
+        "output": "1 3\n2 4",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-030",
+    "level": "hard",
+    "prompt": "Given n lines of numbers, print sum of each row on separate lines.",
+    "hint": "Loop over rows.",
+    "tests": [
+      {
+        "input": "2 3\n1 2 3\n4 5 6",
+        "output": "6\n15",
+        "hidden": false
+      },
+      {
+        "input": "2 3\n1 2 3\n4 5 6",
+        "output": "6\n15",
+        "hidden": true
+      },
+      {
+        "input": "2 3\n1 2 3\n4 5 6",
+        "output": "6\n15",
+        "hidden": true
+      },
+      {
+        "input": "2 3\n1 2 3\n4 5 6",
+        "output": "6\n15",
+        "hidden": true
+      },
+      {
+        "input": "2 3\n1 2 3\n4 5 6",
+        "output": "6\n15",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-031",
+    "level": "hard",
+    "prompt": "Print absolute diagonal difference of an n\u00d7n matrix.",
+    "hint": "Sum primary and secondary diagonals.",
+    "tests": [
+      {
+        "input": "3\n1 2 3\n4 5 6\n7 8 9",
+        "output": "0",
+        "hidden": false
+      },
+      {
+        "input": "3\n1 2 3\n4 5 6\n7 8 9",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 2 3\n4 5 6\n7 8 9",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 2 3\n4 5 6\n7 8 9",
+        "output": "0",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 2 3\n4 5 6\n7 8 9",
+        "output": "0",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-032",
+    "level": "hard",
+    "prompt": "List unique words of a sentence preserving order.",
+    "hint": "Use ordered set.",
+    "tests": [
+      {
+        "input": "hello hello world",
+        "output": "hello world",
+        "hidden": false
+      },
+      {
+        "input": "hello hello world",
+        "output": "hello world",
+        "hidden": true
+      },
+      {
+        "input": "hello hello world",
+        "output": "hello world",
+        "hidden": true
+      },
+      {
+        "input": "hello hello world",
+        "output": "hello world",
+        "hidden": true
+      },
+      {
+        "input": "hello hello world",
+        "output": "hello world",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-033",
+    "level": "hard",
+    "prompt": "Extract domain name from email address.",
+    "hint": "Split on '@'.",
+    "tests": [
+      {
+        "input": "user@example.com",
+        "output": "example.com",
+        "hidden": false
+      },
+      {
+        "input": "user@example.com",
+        "output": "example.com",
+        "hidden": true
+      },
+      {
+        "input": "user@example.com",
+        "output": "example.com",
+        "hidden": true
+      },
+      {
+        "input": "user@example.com",
+        "output": "example.com",
+        "hidden": true
+      },
+      {
+        "input": "user@example.com",
+        "output": "example.com",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-034",
+    "level": "hard",
+    "prompt": "Validate an IPv4 address. Print True or False.",
+    "hint": "Split by '.', each part 0\u2011255, no leading zeros unless single 0.",
+    "tests": [
+      {
+        "input": "192.168.1.1",
+        "output": "True",
+        "hidden": false
+      },
+      {
+        "input": "192.168.1.1",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "192.168.1.1",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "192.168.1.1",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "192.168.1.1",
+        "output": "True",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-035",
+    "level": "hard",
+    "prompt": "Convert a Roman numeral (I,V,X,L,C,D,M) to integer.",
+    "hint": "Map symbols and subtract when lower before higher.",
+    "tests": [
+      {
+        "input": "IX",
+        "output": "9",
+        "hidden": false
+      },
+      {
+        "input": "IX",
+        "output": "9",
+        "hidden": true
+      },
+      {
+        "input": "IX",
+        "output": "9",
+        "hidden": true
+      },
+      {
+        "input": "IX",
+        "output": "9",
+        "hidden": true
+      },
+      {
+        "input": "IX",
+        "output": "9",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-036",
+    "level": "hard",
+    "prompt": "Given a list of words, print their longest common prefix.",
+    "hint": "Sort words then compare first and last.",
+    "tests": [
+      {
+        "input": "flower flow flight",
+        "output": "fl",
+        "hidden": false
+      },
+      {
+        "input": "flower flow flight",
+        "output": "fl",
+        "hidden": true
+      },
+      {
+        "input": "flower flow flight",
+        "output": "fl",
+        "hidden": true
+      },
+      {
+        "input": "flower flow flight",
+        "output": "fl",
+        "hidden": true
+      },
+      {
+        "input": "flower flow flight",
+        "output": "fl",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-037",
+    "level": "hard",
+    "prompt": "Convert binary string to decimal integer.",
+    "hint": "Use int(s,2).",
+    "tests": [
+      {
+        "input": "1010",
+        "output": "10",
+        "hidden": false
+      },
+      {
+        "input": "1010",
+        "output": "10",
+        "hidden": true
+      },
+      {
+        "input": "1010",
+        "output": "10",
+        "hidden": true
+      },
+      {
+        "input": "1010",
+        "output": "10",
+        "hidden": true
+      },
+      {
+        "input": "1010",
+        "output": "10",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-038",
+    "level": "hard",
+    "prompt": "Print number of distinct substrings of string s.",
+    "hint": "Use a set comprehension.",
+    "tests": [
+      {
+        "input": "aba",
+        "output": "5",
+        "hidden": false
+      },
+      {
+        "input": "aba",
+        "output": "5",
+        "hidden": true
+      },
+      {
+        "input": "aba",
+        "output": "5",
+        "hidden": true
+      },
+      {
+        "input": "aba",
+        "output": "5",
+        "hidden": true
+      },
+      {
+        "input": "aba",
+        "output": "5",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-039",
+    "level": "hard",
+    "prompt": "Check if brackets in string are balanced ( () [] {} ). Print True or False.",
+    "hint": "Use a stack.",
+    "tests": [
+      {
+        "input": "({[]})",
+        "output": "True",
+        "hidden": false
+      },
+      {
+        "input": "({[]})",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "({[]})",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "({[]})",
+        "output": "True",
+        "hidden": true
+      },
+      {
+        "input": "({[]})",
+        "output": "True",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-040",
+    "level": "hard",
+    "prompt": "Pretty\u2011print a minified JSON string with indentation of 2 spaces.",
+    "hint": "Use json.loads and json.dumps.",
+    "tests": [
+      {
+        "input": "{\"a\":1,\"b\":[2,3]}",
+        "output": "{\n  \"a\": 1, \n  \"b\": [\n    2, \n    3\n  ]\n}",
+        "hidden": false
+      },
+      {
+        "input": "{\"a\":1,\"b\":[2,3]}",
+        "output": "{\n  \"a\": 1, \n  \"b\": [\n    2, \n    3\n  ]\n}",
+        "hidden": true
+      },
+      {
+        "input": "{\"a\":1,\"b\":[2,3]}",
+        "output": "{\n  \"a\": 1, \n  \"b\": [\n    2, \n    3\n  ]\n}",
+        "hidden": true
+      },
+      {
+        "input": "{\"a\":1,\"b\":[2,3]}",
+        "output": "{\n  \"a\": 1, \n  \"b\": [\n    2, \n    3\n  ]\n}",
+        "hidden": true
+      },
+      {
+        "input": "{\"a\":1,\"b\":[2,3]}",
+        "output": "{\n  \"a\": 1, \n  \"b\": [\n    2, \n    3\n  ]\n}",
         "hidden": true
       }
     ]
