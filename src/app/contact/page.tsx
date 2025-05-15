@@ -2,6 +2,7 @@
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import emailjs from "@emailjs/browser";
 import { useState } from "react";
 
 export default function ContactPage() {
@@ -12,7 +13,7 @@ export default function ContactPage() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically handle the form submission
     console.log("Form submitted:", formData);
@@ -20,6 +21,20 @@ export default function ContactPage() {
     setFormData({ name: "", email: "", subject: "", message: "" });
     // Show success message (you can implement this)
     alert("Thank you for your message! We'll get back to you soon.");
+
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
+    await emailjs.send(
+      "quizify_contact",
+      "quizify_contact_form",
+      templateParams,
+      "2YXKlliLkOK-32ksU"
+    );
   };
 
   const handleChange = (
@@ -161,7 +176,9 @@ export default function ContactPage() {
                         <h3 className="font-semibold text-neutral-900">
                           Email
                         </h3>
-                        <p className="text-neutral-600">support@Quizify.com</p>
+                        <p className="text-neutral-600">
+                          growwitharup@gmail.com
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -190,7 +207,9 @@ export default function ContactPage() {
                         <h3 className="font-semibold text-neutral-900">
                           Location
                         </h3>
-                        <p className="text-neutral-600">San Francisco, CA</p>
+                        <p className="text-neutral-600">
+                          Metropolitan University, Sylhet
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -217,9 +236,10 @@ export default function ContactPage() {
                         Is Quizify free to use?
                       </h3>
                       <p className="text-neutral-600">
-                        Yes! We offer a wide range of free challenges. Premium
-                        features are available for those who want to accelerate
-                        their learning.
+                        Yes! We offer everything completely{" "}
+                        <span className="font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+                          free of cost!
+                        </span>
                       </p>
                     </div>
                   </div>
