@@ -45,7 +45,10 @@ export default function AdminPage() {
       }
 
       // Check if user is admin
-      const isAdmin = user.email === "growwitharup@gmail.com";
+      const isAdmin = [
+        "growwitharup@gmail.com",
+        "hasanraj3100@gmail.com",
+      ].includes(user.email ?? "");
       console.log("User email:", user.email);
       console.log("Is admin:", isAdmin);
 
