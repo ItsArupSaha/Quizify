@@ -80,7 +80,7 @@ export default function Header() {
         >
           <span className="text-3xl">🐍</span>
           <h1 className="text-2xl font-display font-bold text-white">
-            PyCrafters
+            Quizify
           </h1>
         </div>
 

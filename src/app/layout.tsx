@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata = {
-  title: "PyCrafters | Modern Python Learning Platform",
+  title: "Quizify | Modern Python Learning Platform",
   description:
     "Learn Python through interactive coding challenges and quizzes with real-time feedback",
   keywords: "python, learning, coding, challenges, quizzes, programming",

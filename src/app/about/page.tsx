@@ -15,7 +15,7 @@ export default function AboutPage() {
               <h1 className="text-4xl md:text-5xl font-display font-bold text-neutral-900 mb-6">
                 About{" "}
                 <span className="bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
-                  PyCrafters
+                  Quizify
                 </span>
               </h1>
               <p className="text-lg text-neutral-600">
@@ -30,8 +30,8 @@ export default function AboutPage() {
                 Our Mission
               </h2>
               <p className="text-neutral-600 leading-relaxed mb-6">
-                At PyCrafters, we believe that the best way to learn programming
-                is through hands-on practice. Our platform provides a structured
+                At Quizify, we believe that the best way to learn programming is
+                through hands-on practice. Our platform provides a structured
                 learning path with real-world coding challenges that help
                 developers build practical skills and confidence in Python
                 programming.

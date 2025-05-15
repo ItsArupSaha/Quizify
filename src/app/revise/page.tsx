@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import ReviseClient from "@/components/ReviseClient";
 
 export const metadata = {
-  title: "Revise Problems – PyCrafters",
+  title: "Revise Problems – Quizify",
 };
 
 export const viewport = {
