@@ -12,29 +12,47 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle the form submission
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    // Show success message (you can implement this)
-    alert("Thank you for your message! We'll get back to you soon.");
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
 
-    const templateParams = {
-      name: formData.name,
-      email: formData.email,
-      subject: formData.subject,
-      message: formData.message,
-    };
+    try {
+      // Replace these with your EmailJS credentials
+      const templateParams = {
+        name: formData.name,
+        title: formData.subject,
+        message: formData.message,
+        email: formData.email,
+      };
 
-    await emailjs.send(
-      "quizify_contact",
-      "quizify_contact_form",
-      templateParams,
-      "2YXKlliLkOK-32ksU"
-    );
+      await emailjs.send(
+        "quizify_contact",
+        "template_lwigcco",
+        templateParams,
+        "2YXKlliLkOK-32ksU"
+      );
+
+      setSubmitStatus({
+        type: "success",
+        message: "Thank you for your message! We'll get back to you soon.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Sorry, there was an error sending your message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -70,6 +88,17 @@ export default function ContactPage() {
                 <h2 className="text-2xl font-display font-semibold text-neutral-900 mb-6">
                   Send us a Message
                 </h2>
+                {submitStatus.type && (
+                  <div
+                    className={`mb-6 p-4 rounded-lg ${
+                      submitStatus.type === "success"
+                        ? "bg-green-50 text-green-700 border border-green-200"
+                        : "bg-red-50 text-red-700 border border-red-200"
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label
@@ -143,8 +172,12 @@ export default function ContactPage() {
                       placeholder="Your message..."
                     />
                   </div>
-                  <button type="submit" className="w-full btn btn-primary py-3">
-                    Send Message
+                  <button
+                    type="submit"
+                    className="w-full btn btn-primary py-3"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </button>
                 </form>
               </div>
