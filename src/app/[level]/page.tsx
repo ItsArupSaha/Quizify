@@ -24,11 +24,11 @@ export async function generateMetadata({
   const { level } = params;
 
   if (!ALLOWED_LEVELS.includes(level as Level)) {
-    return { title: "Not Found – Quizify" };
+    return { title: "Not Found – PyCrafters" };
   }
 
   const capitalized = level.charAt(0).toUpperCase() + level.slice(1);
-  return { title: `${capitalized} Challenges – Quizify` };
+  return { title: `${capitalized} Challenges – PyCrafters` };
 }
 
 export async function generateStaticParams() {

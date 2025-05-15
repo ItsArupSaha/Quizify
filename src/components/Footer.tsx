@@ -119,16 +119,18 @@ export default function Footer() {
             {/* Logo and copyright */}
             <div className="flex items-center gap-2">
               <span className="text-2xl">🐍</span>
-              <div className="text-white font-display font-bold">Quizify</div>
+              <div className="text-white font-display font-bold">
+                PyCrafters
+              </div>
             </div>
             <div className="text-sm text-neutral-500">
-              © {currentYear} Quizify. All rights reserved.
+              © {currentYear} PyCrafters. All rights reserved.
             </div>
 
             {/* Social links */}
             <div className="flex gap-4">
               <a
-                href="https://github.com/ItsArupSaha/quizify"
+                href="https://github.com/ItsArupSaha/PyCrafters"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-neutral-400 hover:text-white transition-colors"

@@ -161,7 +161,9 @@ export default function ContactPage() {
                         <h3 className="font-semibold text-neutral-900">
                           Email
                         </h3>
-                        <p className="text-neutral-600">support@quizify.com</p>
+                        <p className="text-neutral-600">
+                          support@PyCrafters.com
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -214,7 +216,7 @@ export default function ContactPage() {
                     </div>
                     <div className="bg-white p-6 rounded-xl shadow-soft border border-neutral-200">
                       <h3 className="font-semibold text-neutral-900 mb-2">
-                        Is Quizify free to use?
+                        Is PyCrafters free to use?
                       </h3>
                       <p className="text-neutral-600">
                         Yes! We offer a wide range of free challenges. Premium
