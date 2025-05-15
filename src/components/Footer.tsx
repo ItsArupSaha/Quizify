@@ -28,14 +28,14 @@ export default function Footer() {
       { name: "Contact", href: "/contact" },
     ],
     resources: [
-      { name: "Documentation", href: "/docs" },
-      { name: "Help Center", href: "/help" },
-      { name: "Community", href: "/community" },
+      { name: "Documentation", href: "/" },
+      { name: "Help Center", href: "/contact" },
+      { name: "Community", href: "/" },
     ],
     legal: [
-      { name: "Privacy", href: "/privacy" },
-      { name: "Terms", href: "/terms" },
-      { name: "Cookie Policy", href: "/cookies" },
+      { name: "Privacy", href: "/" },
+      { name: "Terms", href: "/" },
+      { name: "Cookie Policy", href: "/" },
     ],
   };
 
