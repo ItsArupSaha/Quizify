@@ -48,6 +48,8 @@ export default function AdminPage() {
       const isAdmin = [
         "growwitharup@gmail.com",
         "hasanraj3100@gmail.com",
+        "abhishekchowdhury054@gmail.com",
+        "kazihalim44@gmail.com",
       ].includes(user.email ?? "");
       console.log("User email:", user.email);
       console.log("Is admin:", isAdmin);
