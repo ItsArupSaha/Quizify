@@ -13,6 +13,23 @@ declare global {
         read: (x: string) => string;
         inputfun: (prompt: string) => string;
         inputfunTakesPrompt: boolean;
+        __future__?: {
+          python3?: boolean;
+          division?: boolean;
+          print_function?: boolean;
+          unicode_literals?: boolean;
+          class_repr?: boolean;
+          inherit_from_object?: boolean;
+          super_args?: boolean;
+          octal_number_literal?: boolean;
+          bankers_rounding?: boolean;
+          python_version?: boolean;
+          dunder_round?: boolean;
+          exceptions?: boolean;
+          no_long_type?: boolean;
+          ceil_floor_int?: boolean;
+          silent_octal_literal?: boolean;
+        };
       }) => void;
       misceval: {
         asyncToPromise: (f: () => any) => Promise<any>;
@@ -32,34 +49,6 @@ declare global {
   }
 }
 
-// Configure Monaco editor
-if (typeof window !== "undefined") {
-  loader.init().then((monaco) => {
-    monaco.editor.defineTheme("customTheme", {
-      base: "vs",
-      inherit: true,
-      rules: [
-        { token: "comment", foreground: "008000" },
-        { token: "keyword", foreground: "0000FF" },
-        { token: "string", foreground: "A31515" },
-        { token: "number", foreground: "098658" },
-        { token: "type", foreground: "267F99" },
-        { token: "default", foreground: "000000" },
-      ],
-      colors: {
-        "editor.background": "#f3f4f6",
-        "editor.foreground": "#000000",
-        "editor.lineHighlightBackground": "#e5e7eb",
-        "editor.selectionBackground": "#d1d5db",
-        "editor.inactiveSelectionBackground": "#e5e7eb",
-        "editor.lineHighlightBorder": "#e5e7eb",
-        "editorLineNumber.foreground": "#6B7280",
-        "editorLineNumber.activeForeground": "#374151",
-      },
-    });
-  });
-}
-
 export default function PythonPlayground() {
   const [code, setCode] = useState<string>("# Write Python here\n");
   const [output, setOutput] = useState<string>("No output yet…");
@@ -69,28 +58,68 @@ export default function PythonPlayground() {
   const [inputPrompt, setInputPrompt] = useState<string>("");
   const outputRef = useRef<string[]>([]);
   const inputResolveRef = useRef<((value: string) => void) | null>(null);
+  const [editorReady, setEditorReady] = useState<boolean>(false);
+
+  // Configure Monaco editor
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      loader.init().then((monaco) => {
+        monaco.editor.defineTheme("customTheme", {
+          base: "vs",
+          inherit: true,
+          rules: [
+            { token: "comment", foreground: "008000" },
+            { token: "keyword", foreground: "0000FF" },
+            { token: "string", foreground: "A31515" },
+            { token: "number", foreground: "098658" },
+            { token: "type", foreground: "267F99" },
+            { token: "default", foreground: "000000" },
+          ],
+          colors: {
+            "editor.background": "#f3f4f6",
+            "editor.foreground": "#000000",
+            "editor.lineHighlightBackground": "#e5e7eb",
+            "editor.selectionBackground": "#d1d5db",
+            "editor.inactiveSelectionBackground": "#e5e7eb",
+            "editor.lineHighlightBorder": "#e5e7eb",
+            "editorLineNumber.foreground": "#6B7280",
+            "editorLineNumber.activeForeground": "#374151",
+          },
+        });
+        setEditorReady(true);
+      });
+    }
+  }, []);
 
   // Load Skulpt
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     async function loadSkulpt() {
-      // Load Skulpt core
-      const skulptCore = document.createElement("script");
-      skulptCore.src = "https://skulpt.org/js/skulpt.min.js";
-      document.body.appendChild(skulptCore);
+      try {
+        // Load Skulpt core
+        const skulptCore = document.createElement("script");
+        skulptCore.src = "https://skulpt.org/js/skulpt.min.js";
+        await new Promise<void>((res, rej) => {
+          skulptCore.onload = () => res();
+          skulptCore.onerror = (e) => rej(e);
+          document.body.appendChild(skulptCore);
+        });
 
-      // Load Skulpt standard lib
-      const skulptStdLib = document.createElement("script");
-      skulptStdLib.src = "https://skulpt.org/js/skulpt-stdlib.js";
-      document.body.appendChild(skulptStdLib);
+        // Load Skulpt standard lib
+        const skulptStdLib = document.createElement("script");
+        skulptStdLib.src = "https://skulpt.org/js/skulpt-stdlib.js";
+        await new Promise<void>((res, rej) => {
+          skulptStdLib.onload = () => res();
+          skulptStdLib.onerror = (e) => rej(e);
+          document.body.appendChild(skulptStdLib);
+        });
 
-      // Wait for both scripts to load
-      await new Promise<void>((res) => {
-        skulptStdLib.onload = () => res();
-      });
-
-      setLoading(false);
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to load Skulpt:", error);
+        setOutput("Error: Failed to load Python interpreter");
+      }
     }
 
     loadSkulpt();
@@ -151,6 +180,23 @@ export default function PythonPlayground() {
         read: builtinRead,
         inputfun: inf as any,
         inputfunTakesPrompt: true,
+        __future__: {
+          python3: true,
+          division: true,
+          print_function: true,
+          unicode_literals: true,
+          class_repr: false,
+          inherit_from_object: false,
+          super_args: false,
+          octal_number_literal: false,
+          bankers_rounding: true,
+          python_version: true,
+          dunder_round: false,
+          exceptions: true,
+          no_long_type: true,
+          ceil_floor_int: true,
+          silent_octal_literal: true,
+        },
       });
 
       // Run the Python code
@@ -193,7 +239,7 @@ export default function PythonPlayground() {
             </div>
             <button
               onClick={handleRun}
-              disabled={loading}
+              disabled={loading || !editorReady}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 disabled:opacity-50"
             >
               <svg
@@ -215,7 +261,7 @@ export default function PythonPlayground() {
                   d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              Run Code
+              {loading || !editorReady ? "Loading..." : "Run Code"}
             </button>
           </div>
 
@@ -223,21 +269,28 @@ export default function PythonPlayground() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
             {/* Code editor */}
             <div className="h-[400px] rounded-lg overflow-hidden border border-neutral-200">
-              <Editor
-                height="100%"
-                defaultLanguage="python"
-                theme="customTheme"
-                value={code}
-                onChange={(value) => setCode(value ?? "")}
-                options={{
-                  minimap: { enabled: false },
-                  fontSize: 14,
-                  lineNumbers: "on",
-                  roundedSelection: false,
-                  scrollBeyondLastLine: false,
-                  automaticLayout: true,
-                }}
-              />
+              {editorReady ? (
+                <Editor
+                  height="100%"
+                  defaultLanguage="python"
+                  theme="customTheme"
+                  value={code}
+                  onChange={(value) => setCode(value ?? "")}
+                  options={{
+                    minimap: { enabled: false },
+                    fontSize: 14,
+                    lineNumbers: "on",
+                    roundedSelection: false,
+                    scrollBeyondLastLine: false,
+                    automaticLayout: true,
+                  }}
+                  loading={<div className="p-4">Loading editor...</div>}
+                />
+              ) : (
+                <div className="flex items-center justify-center h-full bg-neutral-50">
+                  <div className="text-neutral-600">Loading editor...</div>
+                </div>
+              )}
             </div>
 
             {/* Output console with input field */}
