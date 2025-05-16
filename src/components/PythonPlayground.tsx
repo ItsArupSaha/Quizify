@@ -2,7 +2,35 @@
 "use client";
 
 import Editor, { loader } from "@monaco-editor/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+// TypeScript definitions for Skulpt
+declare global {
+  interface Window {
+    Sk: {
+      configure: (config: {
+        output: (text: string) => void;
+        read: (x: string) => string;
+        inputfun: (prompt: string) => string;
+        inputfunTakesPrompt: boolean;
+      }) => void;
+      misceval: {
+        asyncToPromise: (f: () => any) => Promise<any>;
+      };
+      importMainWithBody: (
+        name: string,
+        dumpJS: boolean,
+        code: string,
+        useAsync: boolean
+      ) => any;
+      builtinFiles: {
+        files: {
+          [key: string]: string;
+        };
+      };
+    };
+  }
+}
 
 // Configure Monaco editor
 if (typeof window !== "undefined") {
@@ -35,52 +63,102 @@ if (typeof window !== "undefined") {
 export default function PythonPlayground() {
   const [code, setCode] = useState<string>("# Write Python here\n");
   const [output, setOutput] = useState<string>("No output yet…");
-  const [pyodide, setPyodide] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [inputValue, setInputValue] = useState<string>("");
+  const [waitingForInput, setWaitingForInput] = useState<boolean>(false);
+  const [inputPrompt, setInputPrompt] = useState<string>("");
+  const outputRef = useRef<string[]>([]);
+  const inputResolveRef = useRef<((value: string) => void) | null>(null);
 
-  // Load Pyodide
+  // Load Skulpt
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    async function init() {
-      if (!(window as any).loadPyodide) {
-        const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/pyodide.js";
-        document.body.appendChild(script);
-        await new Promise<void>((res) => {
-          script.onload = () => res();
-        });
-      }
-      const py = await (window as any).loadPyodide({
-        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/",
+    async function loadSkulpt() {
+      // Load Skulpt core
+      const skulptCore = document.createElement("script");
+      skulptCore.src = "https://skulpt.org/js/skulpt.min.js";
+      document.body.appendChild(skulptCore);
+
+      // Load Skulpt standard lib
+      const skulptStdLib = document.createElement("script");
+      skulptStdLib.src = "https://skulpt.org/js/skulpt-stdlib.js";
+      document.body.appendChild(skulptStdLib);
+
+      // Wait for both scripts to load
+      await new Promise<void>((res) => {
+        skulptStdLib.onload = () => res();
       });
-      setPyodide(py);
+
       setLoading(false);
     }
-    init();
+
+    loadSkulpt();
   }, []);
 
+  // Skulpt output function
+  const outf = (text: string) => {
+    outputRef.current.push(text);
+    setOutput(outputRef.current.join(""));
+  };
+
+  // Skulpt input function
+  const inf = (prompt: string) => {
+    return new Promise<string>((resolve) => {
+      setInputPrompt(prompt);
+      setWaitingForInput(true);
+      inputResolveRef.current = resolve;
+    });
+  };
+
+  // Handle input submission
+  const handleInputSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inputResolveRef.current) {
+      inputResolveRef.current(inputValue);
+      inputResolveRef.current = null;
+      setWaitingForInput(false);
+      setInputValue("");
+      setInputPrompt("");
+    }
+  };
+
+  // Skulpt ready function (called when external modules are loaded)
+  const builtinRead = (x: string) => {
+    if (
+      window.Sk.builtinFiles === undefined ||
+      window.Sk.builtinFiles["files"][x] === undefined
+    )
+      throw "File not found: '" + x + "'";
+    return window.Sk.builtinFiles["files"][x];
+  };
+
   const handleRun = async () => {
-    if (loading || !pyodide) return;
+    if (loading) return;
+
+    // Clear previous output and input state
+    outputRef.current = [];
     setOutput("");
+    setWaitingForInput(false);
+    setInputPrompt("");
+    setInputValue("");
+    inputResolveRef.current = null;
+
     try {
-      const wrapped = `
-import sys, io, traceback
-sys.stdout = io.StringIO()
-sys.stderr = sys.stdout
-try:
-${code
-  .split("\n")
-  .map((line) => "    " + line)
-  .join("\n")}
-except Exception:
-    traceback.print_exc()
-`;
-      await pyodide.runPythonAsync(wrapped);
-      const result = await pyodide.runPythonAsync("sys.stdout.getvalue()");
-      setOutput(String(result));
+      // Configure Skulpt
+      window.Sk.configure({
+        output: outf,
+        read: builtinRead,
+        inputfun: inf as any,
+        inputfunTakesPrompt: true,
+      });
+
+      // Run the Python code
+      await window.Sk.misceval.asyncToPromise(() =>
+        window.Sk.importMainWithBody("<stdin>", false, code, true)
+      );
     } catch (err: any) {
-      setOutput(`Error: ${err.message || err}`);
+      outf(`Error: ${err.toString()}\n`);
     }
   };
 
@@ -162,13 +240,33 @@ except Exception:
               />
             </div>
 
-            {/* Output console */}
-            <div className="h-[400px] bg-neutral-900 rounded-lg p-4 font-mono text-sm text-neutral-100 overflow-auto">
+            {/* Output console with input field */}
+            <div className="h-[400px] bg-neutral-900 rounded-lg p-4 font-mono text-sm text-neutral-100 flex flex-col">
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-2 h-2 rounded-full bg-green-500"></span>
                 <span className="text-neutral-400">Output</span>
               </div>
-              <pre className="whitespace-pre-wrap">{output}</pre>
+              <div className="flex-1 overflow-auto">
+                <pre className="whitespace-pre-wrap">{output}</pre>
+              </div>
+              {waitingForInput && (
+                <form onSubmit={handleInputSubmit} className="mt-4 flex gap-2">
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder={inputPrompt}
+                    className="flex-1 bg-neutral-800 text-white px-3 py-2 rounded border border-neutral-700 focus:outline-none focus:border-primary-500"
+                    autoFocus
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50"
+                  >
+                    Enter
+                  </button>
+                </form>
+              )}
             </div>
           </div>
 
