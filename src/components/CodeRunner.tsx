@@ -168,12 +168,30 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
       // Prepare input as before
       let inputLines = tests[0].input.split(/\r?\n/).filter(Boolean);
       let inputIndex = 0;
+      let currentLineNumbers: string[] = [];
+      let currentLineIndex = 0;
+
       pyodide.globals.set("input", () => {
-        if (inputIndex < inputLines.length) {
-          return inputLines[inputIndex++];
-        } else {
-          throw new Error("No more input lines available");
+        if (currentLineIndex < currentLineNumbers.length) {
+          return currentLineNumbers[currentLineIndex++];
         }
+
+        if (inputIndex < inputLines.length) {
+          const line = inputLines[inputIndex++];
+          // If line contains spaces and all parts are numbers, split it
+          const parts = line.split(/\s+/).filter(Boolean);
+          const allNumbers = parts.every((part) => !isNaN(Number(part)));
+
+          if (allNumbers && parts.length > 1) {
+            currentLineNumbers = parts;
+            currentLineIndex = 0;
+            return currentLineNumbers[currentLineIndex++];
+          } else {
+            return line;
+          }
+        }
+
+        throw new Error("No more input lines available");
       });
       // Run user code directly
       try {
@@ -252,12 +270,30 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
           // Prepare input as before
           let inputLines = input.split(/\r?\n/).filter(Boolean);
           let inputIndex = 0;
+          let currentLineNumbers: string[] = [];
+          let currentLineIndex = 0;
+
           pyodide.globals.set("input", () => {
-            if (inputIndex < inputLines.length) {
-              return inputLines[inputIndex++];
-            } else {
-              throw new Error("No more input lines available");
+            if (currentLineIndex < currentLineNumbers.length) {
+              return currentLineNumbers[currentLineIndex++];
             }
+
+            if (inputIndex < inputLines.length) {
+              const line = inputLines[inputIndex++];
+              // If line contains spaces and all parts are numbers, split it
+              const parts = line.split(/\s+/).filter(Boolean);
+              const allNumbers = parts.every((part) => !isNaN(Number(part)));
+
+              if (allNumbers && parts.length > 1) {
+                currentLineNumbers = parts;
+                currentLineIndex = 0;
+                return currentLineNumbers[currentLineIndex++];
+              } else {
+                return line;
+              }
+            }
+
+            throw new Error("No more input lines available");
           });
           // Run user code directly
           try {

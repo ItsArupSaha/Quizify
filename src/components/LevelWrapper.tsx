@@ -20,6 +20,19 @@ export default function LevelWrapper({ level, questions }: LevelWrapperProps) {
   const [solvedMap, setSolvedMap] = useState<Record<string, boolean>>({});
   const [prevLevelIds, setPrevLevelIds] = useState<string[]>([]);
   const [locked, setLocked] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // Check if user is admin
+  useEffect(() => {
+    if (!user?.email) return;
+    const adminEmails = [
+      "growwitharup@gmail.com",
+      "hasanraj3100@gmail.com",
+      "abhishekchowdhury054@gmail.com",
+      "kazihalim44@gmail.com",
+    ];
+    setIsAdmin(adminEmails.includes(user.email));
+  }, [user]);
 
   // 1) Load the user's solved map
   useEffect(() => {
@@ -43,12 +56,16 @@ export default function LevelWrapper({ level, questions }: LevelWrapperProps) {
     setPrevLevelIds(prevQuestions.map((q) => q.id));
   }, [level]);
 
-  // 3) Lock if any previous‐level ID is unsolved
+  // 3) Lock if any previous‐level ID is unsolved (unless admin)
   useEffect(() => {
+    if (isAdmin) {
+      setLocked(false);
+      return;
+    }
     if (prevLevelIds.length === 0 && level !== "easy") return;
     const allPrevSolved = prevLevelIds.every((id) => solvedMap[id]);
     setLocked(!allPrevSolved);
-  }, [prevLevelIds, solvedMap, level]);
+  }, [prevLevelIds, solvedMap, level, isAdmin]);
 
   return (
     <div className="relative">
