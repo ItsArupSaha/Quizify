@@ -1630,6 +1630,676 @@
     ]
   },
   {
+    "id": "medium-031",
+    "level": "medium",
+    "prompt": "Determine if an integer n is positive, negative, or zero. Print \"Positive\", \"Negative\", or \"Zero\".",
+    "hint": "Use if-elif-else.",
+    "tests": [
+      { "input": "0", "output": "Zero", "hidden": false },
+      { "input": "15", "output": "Positive", "hidden": true },
+      { "input": "-8", "output": "Negative", "hidden": true },
+      { "input": "123", "output": "Positive", "hidden": true },
+      { "input": "-1", "output": "Negative", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-032",
+    "level": "medium",
+    "prompt": "Check if integer n is divisible by both 3 and 7. Print True or False.",
+    "hint": "Use n % 3 == 0 and n % 7 == 0.",
+    "tests": [
+      { "input": "42", "output": "True", "hidden": false },
+      { "input": "21", "output": "True", "hidden": true },
+      { "input": "14", "output": "False", "hidden": true },
+      { "input": "35", "output": "True", "hidden": true },
+      { "input": "20", "output": "False", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-033",
+    "level": "medium",
+    "prompt": "Given three integers a, b, c, determine if they can form a valid triangle. Print True or False.",
+    "hint": "A triangle is valid if sum of any two sides exceeds the third.",
+    "tests": [
+      { "input": "3 4 5", "output": "True", "hidden": false },
+      { "input": "1 2 3", "output": "False", "hidden": true },
+      { "input": "7 10 5", "output": "True", "hidden": true },
+      { "input": "6 6 6", "output": "True", "hidden": true },
+      { "input": "2 3 6", "output": "False", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-034",
+    "level": "medium",
+    "prompt": "Classify a triangle based on its sides. Input three integers a, b, c. Print Equilateral, Isosceles, Scalene, or Not a triangle.",
+    "hint": "Check validity, then compare side lengths.",
+    "tests": [
+      { "input": "3 3 3", "output": "Equilateral", "hidden": false },
+      { "input": "3 4 5", "output": "Scalene", "hidden": true },
+      { "input": "5 5 8", "output": "Isosceles", "hidden": true },
+      { "input": "1 2 3", "output": "Not a triangle", "hidden": true },
+      { "input": "7 10 7", "output": "Isosceles", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-035",
+    "level": "medium",
+    "prompt": "Given a score (0–100), print the letter grade using the scale: A≥80, B≥70, C≥60, D≥50, E≥40, else F.",
+    "hint": "Use nested if-else.",
+    "tests": [
+      { "input": "85", "output": "A", "hidden": false },
+      { "input": "73", "output": "B", "hidden": true },
+      { "input": "65", "output": "C", "hidden": true },
+      { "input": "50", "output": "D", "hidden": true },
+      { "input": "30", "output": "F", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-036",
+    "level": "medium",
+    "prompt": "Read two integers a and b and print '>' if a>b, '<' if a<b, or '==' if they are equal.",
+    "hint": "Use if-elif-else to compare.",
+    "tests": [
+      { "input": "5 3", "output": ">", "hidden": false },
+      { "input": "2 9", "output": "<", "hidden": true },
+      { "input": "7 7", "output": "==", "hidden": true },
+      { "input": "0 -1", "output": ">", "hidden": true },
+      { "input": "10 100", "output": "<", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-037",
+    "level": "medium",
+    "prompt": "Given four integers, print the largest.",
+    "hint": "Use nested if-else or max().",
+    "tests": [
+      { "input": "1 2 3 4", "output": "4", "hidden": false },
+      { "input": "10 5 8 6", "output": "10", "hidden": true },
+      { "input": "0 -1 -2 -3", "output": "0", "hidden": true },
+      { "input": "-5 -1 -6 -2", "output": "-1", "hidden": true },
+      { "input": "7 7 7 7", "output": "7", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-038",
+    "level": "medium",
+    "prompt": "Simple calculator. Input two integers a b and an operator op (+, -, *, /). Print the result (use integer division for '/').",
+    "hint": "Use if-elif to branch on op.",
+    "tests": [
+      { "input": "5 3 +", "output": "8", "hidden": false },
+      { "input": "10 4 -", "output": "6", "hidden": true },
+      { "input": "6 7 *", "output": "42", "hidden": true },
+      { "input": "20 4 /", "output": "5", "hidden": true },
+      { "input": "9 2 /", "output": "4", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-039",
+    "level": "medium",
+    "prompt": "Swap two integers and print them after swapping separated by a space.",
+    "hint": "Use a temporary variable.",
+    "tests": [
+      { "input": "5 9", "output": "9 5", "hidden": false },
+      { "input": "0 -1", "output": "-1 0", "hidden": true },
+      { "input": "100 200", "output": "200 100", "hidden": true },
+      { "input": "-3 -7", "output": "-7 -3", "hidden": true },
+      { "input": "12 12", "output": "12 12", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-040",
+    "level": "medium",
+    "prompt": "Compute the sum of squares of numbers from 1 to n inclusive.",
+    "hint": "Use a for-loop accumulating i*i.",
+    "tests": [
+      { "input": "5", "output": "55", "hidden": false },
+      { "input": "10", "output": "385", "hidden": true },
+      { "input": "1", "output": "1", "hidden": true },
+      { "input": "3", "output": "14", "hidden": true },
+      { "input": "7", "output": "140", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-041",
+    "level": "medium",
+    "prompt": "Compute the sum of all odd numbers from 1 to n inclusive.",
+    "hint": "Loop through numbers and add i when i%2==1.",
+    "tests": [
+      { "input": "10", "output": "25", "hidden": false },
+      { "input": "15", "output": "64", "hidden": true },
+      { "input": "1", "output": "1", "hidden": true },
+      { "input": "2", "output": "1", "hidden": true },
+      { "input": "9", "output": "25", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-042",
+    "level": "medium",
+    "prompt": "Print the product of the digits of integer n.",
+    "hint": "Extract digits in a loop.",
+    "tests": [
+      { "input": "123", "output": "6", "hidden": false },
+      { "input": "405", "output": "0", "hidden": true },
+      { "input": "7", "output": "7", "hidden": true },
+      { "input": "111", "output": "1", "hidden": true },
+      { "input": "990", "output": "0", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-043",
+    "level": "medium",
+    "prompt": "Count how many digits in integer n are greater than 5.",
+    "hint": "Loop through digits and compare.",
+    "tests": [
+      { "input": "9675", "output": "3", "hidden": false },
+      { "input": "1234", "output": "0", "hidden": true },
+      { "input": "5555", "output": "0", "hidden": true },
+      { "input": "0", "output": "0", "hidden": true },
+      { "input": "678", "output": "2", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-044",
+    "level": "medium",
+    "prompt": "Check if integer n is a perfect square. Print True or False.",
+    "hint": "Compare int(sqrt(n))^2 with n.",
+    "tests": [
+      { "input": "49", "output": "True", "hidden": false },
+      { "input": "50", "output": "False", "hidden": true },
+      { "input": "1", "output": "True", "hidden": true },
+      { "input": "0", "output": "True", "hidden": true },
+      { "input": "81", "output": "True", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-045",
+    "level": "medium",
+    "prompt": "Count the number of positive divisors of integer n.",
+    "hint": "Loop up to √n and count divisor pairs.",
+    "tests": [
+      { "input": "12", "output": "6", "hidden": false },
+      { "input": "13", "output": "2", "hidden": true },
+      { "input": "1", "output": "1", "hidden": true },
+      { "input": "36", "output": "9", "hidden": true },
+      { "input": "100", "output": "9", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-046",
+    "level": "medium",
+    "prompt": "Determine if a 3-digit integer n is an Armstrong number. Print True or False.",
+    "hint": "Sum of cubes of its digits equals the number.",
+    "tests": [
+      { "input": "153", "output": "True", "hidden": false },
+      { "input": "370", "output": "True", "hidden": true },
+      { "input": "371", "output": "True", "hidden": true },
+      { "input": "123", "output": "False", "hidden": true },
+      { "input": "407", "output": "True", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-047",
+    "level": "medium",
+    "prompt": "Print the first n Fibonacci numbers starting from 0, space-separated.",
+    "hint": "Iterate adding the previous two numbers.",
+    "tests": [
+      { "input": "5", "output": "0 1 1 2 3", "hidden": false },
+      { "input": "1", "output": "0", "hidden": true },
+      { "input": "2", "output": "0 1", "hidden": true },
+      { "input": "7", "output": "0 1 1 2 3 5 8", "hidden": true },
+      { "input": "10", "output": "0 1 1 2 3 5 8 13 21 34", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-048",
+    "level": "medium",
+    "prompt": "Print the multiplication table of integer n up to 12 (one result per line).",
+    "hint": "Use a for-loop from 1 to 12 and print n*i.",
+    "tests": [
+      {
+        "input": "3",
+        "output": "3\n6\n9\n12\n15\n18\n21\n24\n27\n30\n33\n36",
+        "hidden": false
+      },
+      {
+        "input": "1",
+        "output": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12",
+        "hidden": true
+      },
+      {
+        "input": "5",
+        "output": "5\n10\n15\n20\n25\n30\n35\n40\n45\n50\n55\n60",
+        "hidden": true
+      },
+      {
+        "input": "10",
+        "output": "10\n20\n30\n40\n50\n60\n70\n80\n90\n100\n110\n120",
+        "hidden": true
+      },
+      {
+        "input": "12",
+        "output": "12\n24\n36\n48\n60\n72\n84\n96\n108\n120\n132\n144",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "medium-049",
+    "level": "medium",
+    "prompt": "Compute the sum 1! + 2! + … + n! for a given n.",
+    "hint": "Accumulate factorial inside a loop.",
+    "tests": [
+      { "input": "3", "output": "9", "hidden": false },
+      { "input": "4", "output": "33", "hidden": true },
+      { "input": "1", "output": "1", "hidden": true },
+      { "input": "5", "output": "153", "hidden": true },
+      { "input": "6", "output": "873", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-050",
+    "level": "medium",
+    "prompt": "Count even numbers between 1 and n inclusive.",
+    "hint": "Loop from 1 to n and increment when i%2==0.",
+    "tests": [
+      { "input": "10", "output": "5", "hidden": false },
+      { "input": "1", "output": "0", "hidden": true },
+      { "input": "9", "output": "4", "hidden": true },
+      { "input": "20", "output": "10", "hidden": true },
+      { "input": "25", "output": "12", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-051",
+    "level": "medium",
+    "prompt": "List all divisors of integer n in ascending order separated by spaces.",
+    "hint": "Loop from 1 to n and check divisibility.",
+    "tests": [
+      { "input": "6", "output": "1 2 3 6", "hidden": false },
+      { "input": "1", "output": "1", "hidden": true },
+      { "input": "13", "output": "1 13", "hidden": true },
+      { "input": "15", "output": "1 3 5 15", "hidden": true },
+      { "input": "28", "output": "1 2 4 7 14 28", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-052",
+    "level": "medium",
+    "prompt": "Compute the digital root of integer n (repeatedly sum digits until one digit).",
+    "hint": "Use a loop summing digits until the result is <10.",
+    "tests": [
+      { "input": "9876", "output": "3", "hidden": false },
+      { "input": "14", "output": "5", "hidden": true },
+      { "input": "0", "output": "0", "hidden": true },
+      { "input": "12345", "output": "6", "hidden": true },
+      { "input": "9999", "output": "9", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-053",
+    "level": "medium",
+    "prompt": "Print the nth triangular number (sum of integers 1 through n).",
+    "hint": "Use formula or a loop.",
+    "tests": [
+      { "input": "7", "output": "28", "hidden": false },
+      { "input": "1", "output": "1", "hidden": true },
+      { "input": "10", "output": "55", "hidden": true },
+      { "input": "5", "output": "15", "hidden": true },
+      { "input": "20", "output": "210", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-054",
+    "level": "medium",
+    "prompt": "Given two integers a and b, check if they have opposite signs. Print True or False.",
+    "hint": "Signs differ if one is <0 and the other >0.",
+    "tests": [
+      { "input": "5 -3", "output": "True", "hidden": false },
+      { "input": "-4 -1", "output": "False", "hidden": true },
+      { "input": "0 1", "output": "False", "hidden": true },
+      { "input": "6 7", "output": "False", "hidden": true },
+      { "input": "-3 2", "output": "True", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-055",
+    "level": "medium",
+    "prompt": "Output the smallest divisor (>1) of integer n.",
+    "hint": "Loop from 2 upward until n%i==0.",
+    "tests": [
+      { "input": "91", "output": "7", "hidden": false },
+      { "input": "13", "output": "13", "hidden": true },
+      { "input": "2", "output": "2", "hidden": true },
+      { "input": "49", "output": "7", "hidden": true },
+      { "input": "100", "output": "2", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-056",
+    "level": "medium",
+    "prompt": "Output the greatest proper divisor of integer n (largest divisor less than n).",
+    "hint": "Loop downward from n//2.",
+    "tests": [
+      { "input": "12", "output": "6", "hidden": false },
+      { "input": "13", "output": "1", "hidden": true },
+      { "input": "1", "output": "0", "hidden": true },
+      { "input": "25", "output": "5", "hidden": true },
+      { "input": "100", "output": "50", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-057",
+    "level": "medium",
+    "prompt": "Check if a given string s is a palindrome (case-insensitive). Print True or False.",
+    "hint": "Compare the lowercase string with its reverse.",
+    "tests": [
+      { "input": "Level", "output": "True", "hidden": false },
+      { "input": "Python", "output": "False", "hidden": true },
+      { "input": "Madam", "output": "True", "hidden": true },
+      { "input": "noon", "output": "True", "hidden": true },
+      { "input": "ChatGPT", "output": "False", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-058",
+    "level": "medium",
+    "prompt": "Determine the length of a string without using len().",
+    "hint": "Iterate through characters and count.",
+    "tests": [
+      { "input": "hello", "output": "5", "hidden": false },
+      { "input": "", "output": "0", "hidden": true },
+      { "input": "abcde", "output": "5", "hidden": true },
+      { "input": "ChatGPT", "output": "7", "hidden": true },
+      { "input": "OpenAI", "output": "6", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-059",
+    "level": "medium",
+    "prompt": "Sum all numbers from 1 to n that are divisible by 3.",
+    "hint": "Loop adding i when i%3==0.",
+    "tests": [
+      { "input": "9", "output": "18", "hidden": false },
+      { "input": "10", "output": "18", "hidden": true },
+      { "input": "1", "output": "0", "hidden": true },
+      { "input": "30", "output": "165", "hidden": true },
+      { "input": "99", "output": "1683", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-060",
+    "level": "medium",
+    "prompt": "Given n integers, print the index (0-based) of the first maximum value.",
+    "hint": "Track current max and its index.",
+    "tests": [
+      { "input": "1 3 2 3", "output": "1", "hidden": false },
+      { "input": "5", "output": "0", "hidden": true },
+      { "input": "2 4 4 1", "output": "1", "hidden": true },
+      { "input": "7 8 3", "output": "1", "hidden": true },
+      { "input": "0 0 0", "output": "0", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-061",
+    "level": "medium",
+    "prompt": "Compute 2 raised to the power n using a loop without using **.",
+    "hint": "Start at 1 and multiply by 2 exactly n times.",
+    "tests": [
+      { "input": "5", "output": "32", "hidden": false },
+      { "input": "0", "output": "1", "hidden": true },
+      { "input": "1", "output": "2", "hidden": true },
+      { "input": "10", "output": "1024", "hidden": true },
+      { "input": "7", "output": "128", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-062",
+    "level": "medium",
+    "prompt": "Count uppercase letters in a string.",
+    "hint": "Use ch.isupper().",
+    "tests": [
+      { "input": "HelloWorld", "output": "2", "hidden": false },
+      { "input": "python", "output": "0", "hidden": true },
+      { "input": "ABCdef", "output": "3", "hidden": true },
+      { "input": "OpenAI", "output": "2", "hidden": true },
+      { "input": "camelCase", "output": "1", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-063",
+    "level": "medium",
+    "prompt": "Find the largest digit in integer n.",
+    "hint": "Extract each digit and compare.",
+    "tests": [
+      { "input": "9853", "output": "9", "hidden": false },
+      { "input": "0", "output": "0", "hidden": true },
+      { "input": "1111", "output": "1", "hidden": true },
+      { "input": "2468", "output": "8", "hidden": true },
+      { "input": "13579", "output": "9", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-064",
+    "level": "medium",
+    "prompt": "Given integer n and digit d, print the position (1-based from left) of first occurrence of d in n, or -1 if absent. Input: n d",
+    "hint": "Convert n to string and use find().",
+    "tests": [
+      { "input": "12345 3", "output": "3", "hidden": false },
+      { "input": "9876 0", "output": "-1", "hidden": true },
+      { "input": "111 1", "output": "1", "hidden": true },
+      { "input": "24680 5", "output": "-1", "hidden": true },
+      { "input": "7654 8", "output": "-1", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-065",
+    "level": "medium",
+    "prompt": "Convert a non-negative decimal integer n to binary string using loops.",
+    "hint": "Repeatedly divide by 2 and collect remainders.",
+    "tests": [
+      { "input": "10", "output": "1010", "hidden": false },
+      { "input": "0", "output": "0", "hidden": true },
+      { "input": "1", "output": "1", "hidden": true },
+      { "input": "8", "output": "1000", "hidden": true },
+      { "input": "31", "output": "11111", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-066",
+    "level": "medium",
+    "prompt": "Find the smallest k such that 1+2+...+k > n. Print k.",
+    "hint": "Keep a running sum until it exceeds n.",
+    "tests": [
+      { "input": "5", "output": "3", "hidden": false },
+      { "input": "1", "output": "2", "hidden": true },
+      { "input": "20", "output": "6", "hidden": true },
+      { "input": "55", "output": "11", "hidden": true },
+      { "input": "100", "output": "14", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-067",
+    "level": "medium",
+    "prompt": "Check if a string contains at least one vowel and at least one consonant. Print True or False.",
+    "hint": "Loop through characters and track categories.",
+    "tests": [
+      { "input": "sky", "output": "False", "hidden": false },
+      { "input": "aeiou", "output": "False", "hidden": true },
+      { "input": "Hello", "output": "True", "hidden": true },
+      { "input": "bcdF", "output": "False", "hidden": true },
+      { "input": "AEIOUb", "output": "True", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-068",
+    "level": "medium",
+    "prompt": "Count how many digits of integer n are even.",
+    "hint": "Loop through digits and check digit%2==0.",
+    "tests": [
+      { "input": "2468", "output": "4", "hidden": false },
+      { "input": "1357", "output": "0", "hidden": true },
+      { "input": "0", "output": "1", "hidden": true },
+      { "input": "123456", "output": "3", "hidden": true },
+      { "input": "86420", "output": "5", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-069",
+    "level": "medium",
+    "prompt": "Given n integers, print the second highest distinct value.",
+    "hint": "Track the two largest unique values.",
+    "tests": [
+      { "input": "5 1 5 3", "output": "3", "hidden": false },
+      { "input": "7", "output": "7", "hidden": true },
+      { "input": "2 2 2", "output": "2", "hidden": true },
+      { "input": "1 4 3 2", "output": "3", "hidden": true },
+      { "input": "10 9 8 11", "output": "10", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-070",
+    "level": "medium",
+    "prompt": "Print the factorial of the sum of digits of integer n.",
+    "hint": "First sum the digits, then compute its factorial.",
+    "tests": [
+      { "input": "123", "output": "720", "hidden": false },
+      { "input": "0", "output": "1", "hidden": true },
+      { "input": "99", "output": "40320", "hidden": true },
+      { "input": "111", "output": "6", "hidden": true },
+      { "input": "56", "output": "3628800", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-071",
+    "level": "medium",
+    "prompt": "Given n integers, determine if they form a strictly increasing sequence. Print True or False.",
+    "hint": "Every element must be greater than the previous.",
+    "tests": [
+      { "input": "1 2 3 4", "output": "True", "hidden": false },
+      { "input": "1 1 2", "output": "False", "hidden": true },
+      { "input": "5 4 3", "output": "False", "hidden": true },
+      { "input": "10", "output": "True", "hidden": true },
+      { "input": "7 8 9 9", "output": "False", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-072",
+    "level": "medium",
+    "prompt": "Compute the GCD of three positive integers a, b, c.",
+    "hint": "Use gcd twice.",
+    "tests": [
+      { "input": "12 18 24", "output": "6", "hidden": false },
+      { "input": "7 11 13", "output": "1", "hidden": true },
+      { "input": "42 56 70", "output": "14", "hidden": true },
+      { "input": "100 80 60", "output": "20", "hidden": true },
+      { "input": "3 6 9", "output": "3", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-073",
+    "level": "medium",
+    "prompt": "Compute the LCM of three positive integers a, b, c.",
+    "hint": "Apply lcm pairwise.",
+    "tests": [
+      { "input": "3 4 5", "output": "60", "hidden": false },
+      { "input": "2 7 3", "output": "42", "hidden": true },
+      { "input": "6 8 12", "output": "24", "hidden": true },
+      { "input": "5 10 15", "output": "30", "hidden": true },
+      { "input": "9 12 18", "output": "36", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-074",
+    "level": "medium",
+    "prompt": "Count how many perfect squares are between 1 and n inclusive.",
+    "hint": "Use floor(sqrt(n)).",
+    "tests": [
+      { "input": "10", "output": "3", "hidden": false },
+      { "input": "1", "output": "1", "hidden": true },
+      { "input": "25", "output": "5", "hidden": true },
+      { "input": "30", "output": "5", "hidden": true },
+      { "input": "100", "output": "10", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-075",
+    "level": "medium",
+    "prompt": "Compute the sum of the cubes of the digits of integer n.",
+    "hint": "Cube each digit and sum them.",
+    "tests": [
+      { "input": "123", "output": "36", "hidden": false },
+      { "input": "0", "output": "0", "hidden": true },
+      { "input": "999", "output": "2187", "hidden": true },
+      { "input": "370", "output": "370", "hidden": true },
+      { "input": "512", "output": "134", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-076",
+    "level": "medium",
+    "prompt": "Check if integer n is a Strong number (sum of factorials of its digits equals n). Print True or False.",
+    "hint": "Sum factorial(d) for each digit.",
+    "tests": [
+      { "input": "145", "output": "True", "hidden": false },
+      { "input": "2", "output": "True", "hidden": true },
+      { "input": "123", "output": "False", "hidden": true },
+      { "input": "1", "output": "True", "hidden": true },
+      { "input": "40585", "output": "True", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-077",
+    "level": "medium",
+    "prompt": "Compute the harmonic sum 1 + 1/2 + … + 1/n rounded to 4 decimal places.",
+    "hint": "Accumulate a float sum in a loop.",
+    "tests": [
+      { "input": "1", "output": "1.0000", "hidden": false },
+      { "input": "2", "output": "1.5000", "hidden": true },
+      { "input": "5", "output": "2.2833", "hidden": true },
+      { "input": "10", "output": "2.9289", "hidden": true },
+      { "input": "20", "output": "3.5977", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-078",
+    "level": "medium",
+    "prompt": "Given a year y, print the number of days in that year (365 or 366).",
+    "hint": "Use leap-year rules: divisible by 400, or by 4 but not 100.",
+    "tests": [
+      { "input": "2000", "output": "366", "hidden": false },
+      { "input": "1900", "output": "365", "hidden": true },
+      { "input": "2024", "output": "366", "hidden": true },
+      { "input": "2025", "output": "365", "hidden": true },
+      { "input": "2100", "output": "365", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-079",
+    "level": "medium",
+    "prompt": "Given integer n, count how many prime numbers are between 1 and n inclusive.",
+    "hint": "Sieve of Eratosthenes or trial division.",
+    "tests": [
+      { "input": "10", "output": "4", "hidden": false },
+      { "input": "1", "output": "0", "hidden": true },
+      { "input": "2", "output": "1", "hidden": true },
+      { "input": "20", "output": "8", "hidden": true },
+      { "input": "30", "output": "10", "hidden": true }
+    ]
+  },
+  {
+    "id": "medium-080",
+    "level": "medium",
+    "prompt": "Print the second last digit (tens place) of integer n.",
+    "hint": "Use (n // 10) % 10.",
+    "tests": [
+      { "input": "123", "output": "2", "hidden": false },
+      { "input": "5", "output": "0", "hidden": true },
+      { "input": "0", "output": "0", "hidden": true },
+      { "input": "90", "output": "9", "hidden": true },
+      { "input": "9876", "output": "7", "hidden": true }
+    ]
+  },
+  {
     "id": "hard-001",
     "level": "hard",
     "prompt": "Reverse the given string.",
