@@ -165,15 +165,8 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
           `import sys, io; sys.stdout = io.StringIO(); sys.stderr = sys.stdout`
         )
       );
-
-      const input = tests[0].input;
-
-      // Split only by newlines to preserve other delimiters within each line
-      let inputLines = input
-        .split(/\r?\n/)
-        .map((line) => [line.trim()])
-        .flat();
-
+      // Prepare input as before
+      let inputLines = tests[0].input.split(/\r?\n/).filter(Boolean);
       let inputIndex = 0;
       pyodide.globals.set("input", () => {
         if (inputIndex < inputLines.length) {
@@ -256,13 +249,8 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
               `import sys, io; sys.stdout = io.StringIO(); sys.stderr = sys.stdout`
             )
           );
-
-          // Split only by newlines to preserve other delimiters within each line
-          let inputLines = input
-            .split(/\r?\n/)
-            .map((line) => [line.trim()])
-            .flat();
-
+          // Prepare input as before
+          let inputLines = input.split(/\r?\n/).filter(Boolean);
           let inputIndex = 0;
           pyodide.globals.set("input", () => {
             if (inputIndex < inputLines.length) {
