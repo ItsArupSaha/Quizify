@@ -1651,7 +1651,7 @@
       { "input": "42", "output": "True", "hidden": false },
       { "input": "21", "output": "True", "hidden": true },
       { "input": "14", "output": "False", "hidden": true },
-      { "input": "35", "output": "True", "hidden": true },
+      { "input": "35", "output": "False", "hidden": true },
       { "input": "20", "output": "False", "hidden": true }
     ]
   },
