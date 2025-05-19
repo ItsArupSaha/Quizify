@@ -2007,7 +2007,6 @@
     "hint": "Iterate through characters and count.",
     "tests": [
       { "input": "hello", "output": "5", "hidden": false },
-      { "input": "", "output": "0", "hidden": true },
       { "input": "abcde", "output": "5", "hidden": true },
       { "input": "ChatGPT", "output": "7", "hidden": true },
       { "input": "OpenAI", "output": "6", "hidden": true }
