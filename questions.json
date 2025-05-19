@@ -1795,7 +1795,7 @@
       { "input": "1234", "output": "0", "hidden": true },
       { "input": "5555", "output": "0", "hidden": true },
       { "input": "0", "output": "0", "hidden": true },
-      { "input": "678", "output": "2", "hidden": true }
+      { "input": "678", "output": "3", "hidden": true }
     ]
   },
   {
