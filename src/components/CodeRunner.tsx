@@ -149,7 +149,104 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
     });
   }, [user]);
 
-  // 2) Handle Run (public test only)
+  const runCode = async (testCase: TestCase, question: any) => {
+    // Set up sys.stdout and sys.stderr in JS before running user code
+    await withTimeout(
+      pyodide.runPythonAsync(
+        `import sys, io; sys.stdout = io.StringIO(); sys.stderr = sys.stdout`
+      )
+    );
+
+    const input = testCase.input;
+    const inputFormat = question.input_format;
+
+    // Handle different input formats
+    let inputProcessor: () => string;
+
+    if (inputFormat === "single_integer" || inputFormat === "single_string") {
+      // For single value inputs, just return the input as is
+      let inputValue = input;
+      inputProcessor = () => {
+        const value = inputValue;
+        inputValue = ""; // Clear after first use
+        return value;
+      };
+    } else if (inputFormat === "space_separated_integers") {
+      // Split space-separated integers and return one at a time
+      const numbers = input.split(/\s+/).filter(Boolean);
+      let index = 0;
+      inputProcessor = () => {
+        if (index < numbers.length) {
+          return numbers[index++];
+        }
+        throw new Error("No more input values available");
+      };
+    } else if (inputFormat === "multiline_integers") {
+      // For multiline input, handle each line separately
+      const lines = input.split(/\r?\n/).filter(Boolean);
+      let lineIndex = 0;
+      let currentLineNumbers: string[] = [];
+      let numberIndex = 0;
+
+      inputProcessor = () => {
+        // If we have numbers from current line, return the next one
+        if (numberIndex < currentLineNumbers.length) {
+          return currentLineNumbers[numberIndex++];
+        }
+
+        // Get next line
+        if (lineIndex < lines.length) {
+          const line = lines[lineIndex++];
+          // Split line into numbers if it contains multiple values
+          currentLineNumbers = line.split(/\s+/).filter(Boolean);
+          numberIndex = 0;
+          return currentLineNumbers[numberIndex++];
+        }
+
+        throw new Error("No more input values available");
+      };
+    } else if (inputFormat === "space_separated_with_operator") {
+      // For calculator-style input (like "5 + 3"), split into parts
+      const parts = input.split(/\s+/).filter(Boolean);
+      let index = 0;
+      inputProcessor = () => {
+        if (index < parts.length) {
+          return parts[index++];
+        }
+        throw new Error("No more input values available");
+      };
+    } else {
+      // Default fallback: split on whitespace or newlines
+      const values = input.split(/[\s\n]+/).filter(Boolean);
+      let index = 0;
+      inputProcessor = () => {
+        if (index < values.length) {
+          return values[index++];
+        }
+        throw new Error("No more input values available");
+      };
+    }
+
+    pyodide.globals.set("input", inputProcessor);
+
+    // Run user code and capture output
+    try {
+      await withTimeout(pyodide.runPythonAsync(code));
+      let rawActualOutput = await pyodide.runPythonAsync(
+        "sys.stdout.getvalue()"
+      );
+      if (typeof rawActualOutput !== "string")
+        rawActualOutput = String(rawActualOutput);
+      return rawActualOutput.trim() || "[no output]";
+    } catch (err: unknown) {
+      // Return error output if code fails
+      const errOut = await pyodide.runPythonAsync("sys.stdout.getvalue()");
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      throw new Error(errOut || errorMessage);
+    }
+  };
+
+  // Modify handleRun to use the new runCode function
   const handleRun = async () => {
     console.log("🔘 Run clicked");
     if (loading || !pyodide) {
@@ -158,67 +255,18 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
     }
     try {
       setOutput("");
-
-      // Set up sys.stdout and sys.stderr in JS before running user code
-      await withTimeout(
-        pyodide.runPythonAsync(
-          `import sys, io; sys.stdout = io.StringIO(); sys.stderr = sys.stdout`
-        )
-      );
-      // Prepare input as before
-      let inputLines = tests[0].input.split(/\r?\n/).filter(Boolean);
-      let inputIndex = 0;
-      let currentLineNumbers: string[] = [];
-      let currentLineIndex = 0;
-
-      pyodide.globals.set("input", () => {
-        if (currentLineIndex < currentLineNumbers.length) {
-          return currentLineNumbers[currentLineIndex++];
-        }
-
-        if (inputIndex < inputLines.length) {
-          const line = inputLines[inputIndex++];
-          // If line contains spaces and all parts are numbers, split it
-          const parts = line.split(/\s+/).filter(Boolean);
-          const allNumbers = parts.every((part) => !isNaN(Number(part)));
-
-          if (allNumbers && parts.length > 1) {
-            currentLineNumbers = parts;
-            currentLineIndex = 0;
-            return currentLineNumbers[currentLineIndex++];
-          } else {
-            return line;
-          }
-        }
-
-        throw new Error("No more input lines available");
-      });
-      // Run user code directly
-      try {
-        await withTimeout(pyodide.runPythonAsync(code));
-      } catch (err) {
-        // Capture Python errors as output
-        const errOut = await pyodide.runPythonAsync("sys.stdout.getvalue()");
-        setOutput(
-          `Input:\n${tests[0].input}\n\n` +
-            `Expected Output:\n${tests[0].output}\n\n` +
-            `Your Output:\n${errOut}\n\n` +
-            `😢 Try again!`
-        );
-        return;
+      const question = allQuestions.find((q) => q.id === questionId);
+      if (!question) {
+        throw new Error("Question not found");
       }
-      let rawActualOutput = await pyodide.runPythonAsync(
-        "sys.stdout.getvalue()"
-      );
-      if (typeof rawActualOutput !== "string")
-        rawActualOutput = String(rawActualOutput);
-      if (rawActualOutput.trim() === "") {
-        rawActualOutput = "[no output]";
-      }
-      // Use normalized values only for comparison
+
+      const rawActualOutput = await runCode(tests[0], question);
+
+      // Use normalized values for comparison
       const normalizedExpected = tests[0].output.trim().toLowerCase();
       const normalizedActual = rawActualOutput.trim().toLowerCase();
       let passed = false;
+
       // Float-tolerant comparison
       const tryParseFloat = (s: string) => {
         const n = Number(s);
@@ -231,6 +279,7 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
       } else {
         passed = normalizedActual === normalizedExpected;
       }
+
       const status = passed ? "🔥 You did it!!" : "😢 Try again!";
       const message =
         `Input:\n${tests[0].input}\n\n` +
@@ -244,7 +293,7 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
     }
   };
 
-  // 3) Handle Submit (all tests + Firestore write)
+  // Modify handleSubmit to use the new runCode function
   const handleSubmit = async () => {
     console.log("🔘 Submit clicked");
     if (loading || !pyodide) {
@@ -257,93 +306,58 @@ export default function CodeRunner({ questionId, tests }: CodeRunnerProps) {
       const lines: string[] = [];
       let anyHiddenFailed = false;
 
-      for (const { input, output: expected, hidden } of tests) {
-        let actualOutput = "";
+      const question = allQuestions.find((q) => q.id === questionId);
+      if (!question) {
+        throw new Error("Question not found");
+      }
+
+      for (const testCase of tests) {
+        const { input, output: expected, hidden } = testCase;
         let passed = false;
+
         try {
-          // Set up sys.stdout and sys.stderr in JS before running user code
-          await withTimeout(
-            pyodide.runPythonAsync(
-              `import sys, io; sys.stdout = io.StringIO(); sys.stderr = sys.stdout`
-            )
-          );
-          // Prepare input as before
-          let inputLines = input.split(/\r?\n/).filter(Boolean);
-          let inputIndex = 0;
-          let currentLineNumbers: string[] = [];
-          let currentLineIndex = 0;
+          const actualOutput = await runCode(testCase, question);
+          const normalizedExpected = expected.trim().toLowerCase();
+          const normalizedActual = actualOutput.trim().toLowerCase();
 
-          pyodide.globals.set("input", () => {
-            if (currentLineIndex < currentLineNumbers.length) {
-              return currentLineNumbers[currentLineIndex++];
-            }
-
-            if (inputIndex < inputLines.length) {
-              const line = inputLines[inputIndex++];
-              // If line contains spaces and all parts are numbers, split it
-              const parts = line.split(/\s+/).filter(Boolean);
-              const allNumbers = parts.every((part) => !isNaN(Number(part)));
-
-              if (allNumbers && parts.length > 1) {
-                currentLineNumbers = parts;
-                currentLineIndex = 0;
-                return currentLineNumbers[currentLineIndex++];
-              } else {
-                return line;
-              }
-            }
-
-            throw new Error("No more input lines available");
-          });
-          // Run user code directly
-          try {
-            await withTimeout(pyodide.runPythonAsync(code));
-          } catch (err) {
-            // Capture Python errors as output
-            actualOutput = await pyodide.runPythonAsync(
-              "sys.stdout.getvalue()"
-            );
-            if (typeof actualOutput !== "string")
-              actualOutput = String(actualOutput);
-            actualOutput = actualOutput.trim();
-            if (actualOutput === "") {
-              actualOutput = "[no output]";
-            }
-            throw new Error(actualOutput);
-          }
-          actualOutput = await pyodide.runPythonAsync("sys.stdout.getvalue()");
-          if (typeof actualOutput !== "string")
-            actualOutput = String(actualOutput);
-          actualOutput = actualOutput.trim();
-          if (actualOutput === "") {
-            actualOutput = "[no output]";
-          }
           // Float-tolerant comparison
           const tryParseFloat = (s: string) => {
             const n = Number(s);
             return isNaN(n) ? null : n;
           };
-          const expectedFloat = tryParseFloat(expected.trim());
-          const actualFloat = tryParseFloat(actualOutput.trim());
+          const expectedFloat = tryParseFloat(normalizedExpected);
+          const actualFloat = tryParseFloat(normalizedActual);
           if (expectedFloat !== null && actualFloat !== null) {
             passed = Math.abs(expectedFloat - actualFloat) < 1e-2;
           } else {
-            passed = actualOutput.trim() === expected.trim();
+            passed = normalizedActual === normalizedExpected;
           }
-        } catch (err: any) {
-          actualOutput = `⚠️ ${err.message || err}`;
-        }
-        if (!passed) allPassed = false;
-        if (hidden && !passed) anyHiddenFailed = true;
-        if (!hidden) {
-          lines.push(
-            `Input:\n${input}\n` +
-              `Expected Output:\n${expected}\n` +
-              `Your Output:\n${actualOutput}\n` +
-              `${passed ? "✅" : "❌"}\n`
-          );
+
+          if (!passed) {
+            allPassed = false;
+            if (hidden) {
+              anyHiddenFailed = true;
+            } else {
+              lines.push(
+                `Input:\n${input}\n`,
+                `Expected Output:\n${expected}\n`,
+                `Your Output:\n${actualOutput}\n`
+              );
+            }
+          }
+        } catch (err: unknown) {
+          allPassed = false;
+          if (hidden) {
+            anyHiddenFailed = true;
+          } else {
+            lines.push(
+              `Input:\n${input}\n`,
+              `Error: ${err instanceof Error ? err.message : String(err)}\n`
+            );
+          }
         }
       }
+
       if (anyHiddenFailed) {
         setOutput("Some hidden test cases failed. Check for edge cases!");
         return;

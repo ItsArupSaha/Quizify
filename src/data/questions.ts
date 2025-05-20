@@ -5,6 +5,7 @@ export type Question = {
   level: string;
   prompt: string;
   hint: string;
+  input_format: string;
   tests: {
     input: string;
     output: string;
