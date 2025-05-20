@@ -2550,5 +2550,193 @@
         "hidden": true
       }
     ]
+  },
+  {
+    "id": "hard-015",
+    "level": "hard",
+    "prompt": "Write a program to validate a password. A valid password must:\n- Be at least 8 characters long\n- Contain at least one uppercase letter\n- Contain at least one lowercase letter\n- Contain at least one digit\n- Contain at least one special character (!@#$%^&*)\nPrint True if the password is valid, False otherwise.",
+    "hint": "Check each requirement separately using string methods and any().",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "Pass123!", "output": "True", "hidden": false },
+      { "input": "password123", "output": "False", "hidden": true },
+      { "input": "Pass1234", "output": "False", "hidden": true },
+      { "input": "P@ssw0rd", "output": "True", "hidden": true },
+      { "input": "Ab1!defgh", "output": "True", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-016",
+    "level": "hard",
+    "prompt": "Given a sentence, remove extra spaces and make it title case (capitalize the first letter of each word, lowercase the rest). For example:\n- 'hello   world' → 'Hello World'\n- '  python IS great  ' → 'Python Is Great'\n- 'a b   c' → 'A B C'\nIgnore any non-letter characters when capitalizing.",
+    "hint": "Split by spaces, remove empty strings, capitalize each word, then join.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "hello   world", "output": "Hello World", "hidden": false },
+      {
+        "input": "  python IS great  ",
+        "output": "Python Is Great",
+        "hidden": true
+      },
+      { "input": "a b   c", "output": "A B C", "hidden": true },
+      {
+        "input": "wELcome To PYTHON",
+        "output": "Welcome To Python",
+        "hidden": true
+      },
+      { "input": "hello  WORLD!", "output": "Hello World!", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-017",
+    "level": "hard",
+    "prompt": "Given a list of student scores (integers), find:\n1. The average score (rounded to 2 decimal places)\n2. Number of students above average\n3. Number of students below average\nOutput these three numbers separated by spaces.",
+    "hint": "Calculate average first, then count scores above and below it.",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "5\n80 90 70 85 95", "output": "84.00 2 2", "hidden": false },
+      { "input": "4\n70 70 70 70", "output": "70.00 0 0", "hidden": true },
+      {
+        "input": "6\n100 90 80 70 60 50",
+        "output": "75.00 3 3",
+        "hidden": true
+      },
+      { "input": "3\n100 75 50", "output": "75.00 1 1", "hidden": true },
+      {
+        "input": "7\n85 82 88 90 75 72 95",
+        "output": "83.86 3 3",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-018",
+    "level": "hard",
+    "prompt": "Create a simple calculator that evaluates a mathematical expression. Support +, -, *, / operations and parentheses. Assume spaces between all numbers and operators. For example:\n- '2 + 3' → 5\n- '4 * ( 2 + 3 )' → 20\n- '10 - ( 3 + 2 )' → 5\n- '8 / 2' → 4",
+    "hint": "Process parentheses first, then follow operator precedence.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "2 + 3", "output": "5", "hidden": false },
+      { "input": "4 * ( 2 + 3 )", "output": "20", "hidden": true },
+      { "input": "10 - ( 3 + 2 )", "output": "5", "hidden": true },
+      { "input": "8 / 2", "output": "4", "hidden": true },
+      { "input": "( 1 + 2 ) * 3", "output": "9", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-019",
+    "level": "hard",
+    "prompt": "Write a program to convert a decimal number to Roman numerals (1 to 3999). Use the following Roman numeral symbols:\n- I (1), V (5), X (10), L (50), C (100), D (500), M (1000)\nFor example:\n- 3 → 'III'\n- 4 → 'IV'\n- 9 → 'IX'\n- 58 → 'LVIII'\n- 1994 → 'MCMXCIV'",
+    "hint": "Process thousands, hundreds, tens, and ones separately. Handle special cases like 4 and 9.",
+    "input_format": "single_integer",
+    "tests": [
+      { "input": "3", "output": "III", "hidden": false },
+      { "input": "4", "output": "IV", "hidden": true },
+      { "input": "9", "output": "IX", "hidden": true },
+      { "input": "58", "output": "LVIII", "hidden": true },
+      { "input": "1994", "output": "MCMXCIV", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-020",
+    "level": "hard",
+    "prompt": "Check if two words are anagrams of each other, ignoring spaces and letter case. An anagram is a word formed by rearranging letters of another word. For example:\n- 'listen' and 'silent' → True\n- 'triangle' and 'integral' → True\n- 'hello' and 'world' → False\n- 'Debit Card' and 'Bad Credit' → True",
+    "hint": "Remove spaces, convert to lowercase, sort characters, and compare.",
+    "input_format": "multiline_input",
+    "tests": [
+      { "input": "listen\nsilent", "output": "True", "hidden": false },
+      { "input": "triangle\nintegral", "output": "True", "hidden": true },
+      { "input": "hello\nworld", "output": "False", "hidden": true },
+      { "input": "Debit Card\nBad Credit", "output": "True", "hidden": true },
+      { "input": "python\njava", "output": "False", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-021",
+    "level": "hard",
+    "prompt": "Convert a time from 12-hour format to 24-hour format. Input will be in the format 'HH:MM AM/PM'. For example:\n- '12:00 AM' → '00:00'\n- '12:00 PM' → '12:00'\n- '01:30 PM' → '13:30'\n- '11:45 PM' → '23:45'\n- '09:20 AM' → '09:20'",
+    "hint": "Handle 12 AM and 12 PM as special cases. For PM, add 12 to hours (except 12 PM).",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "12:00 AM", "output": "00:00", "hidden": false },
+      { "input": "12:00 PM", "output": "12:00", "hidden": true },
+      { "input": "01:30 PM", "output": "13:30", "hidden": true },
+      { "input": "11:45 PM", "output": "23:45", "hidden": true },
+      { "input": "09:20 AM", "output": "09:20", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-022",
+    "level": "hard",
+    "prompt": "Process a list of grades and generate a summary. Each grade is 0-100. Output:\n1. Letter grade distribution (A:90-100, B:80-89, C:70-79, D:60-69, F:0-59)\n2. Class average\nSeparate by comma. Example: '2A,3B,1C,0D,1F,82.50' means:\n- 2 students got A\n- 3 got B\n- 1 got C\n- 0 got D\n- 1 got F\n- Class average is 82.50",
+    "hint": "Count grades in each range. Calculate average separately.",
+    "input_format": "multiline_integers",
+    "tests": [
+      {
+        "input": "7\n95 85 75 85 90 85 55",
+        "output": "2A,3B,1C,0D,1F,81.43",
+        "hidden": false
+      },
+      {
+        "input": "5\n100 90 80 70 60",
+        "output": "2A,1B,1C,1D,0F,80.00",
+        "hidden": true
+      },
+      {
+        "input": "4\n100 100 100 100",
+        "output": "4A,0B,0C,0D,0F,100.00",
+        "hidden": true
+      },
+      {
+        "input": "3\n55 45 35",
+        "output": "0A,0B,0C,0D,3F,45.00",
+        "hidden": true
+      },
+      {
+        "input": "6\n88 92 85 90 87 91",
+        "output": "3A,3B,0C,0D,0F,88.83",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-023",
+    "level": "hard",
+    "prompt": "Create a word frequency analyzer that counts word occurrences in a sentence, ignoring case and punctuation. Output the top 3 most frequent words and their counts in format 'word1:count1,word2:count2,word3:count3'. If fewer than 3 unique words exist, output all words. Sort by frequency (descending), then alphabetically. For example:\n- 'The cat and the dog and the bird' → 'the:3,and:2,bird:1'\n- 'Hello hello HELLO world' → 'hello:3,world:1'\n- 'Python Python Python' → 'python:3'",
+    "hint": "Convert to lowercase, split into words, count frequencies, sort by count then word.",
+    "input_format": "single_string",
+    "tests": [
+      {
+        "input": "The cat and the dog and the bird",
+        "output": "the:3,and:2,bird:1",
+        "hidden": false
+      },
+      {
+        "input": "Hello hello HELLO world",
+        "output": "hello:3,world:1",
+        "hidden": true
+      },
+      { "input": "Python Python Python", "output": "python:3", "hidden": true },
+      {
+        "input": "I am what I am",
+        "output": "i:2,am:2,what:1",
+        "hidden": true
+      },
+      { "input": "a b c d e", "output": "a:1,b:1,c:1", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-024",
+    "level": "hard",
+    "prompt": "Given coordinates of a shape's vertices (x,y pairs), determine if it forms a square. A square has:\n- All sides equal length\n- All angles 90 degrees\nInput format: x1 y1 x2 y2 x3 y3 x4 y4. Print True or False. For example:\n- '0 0 0 1 1 1 1 0' → True (square with sides 1)\n- '0 0 0 2 1 2 1 0' → False (rectangle)\n- '0 0 0 1 2 1 2 0' → True (square with sides sqrt(2))",
+    "hint": "Calculate all distances between points. A square has 4 equal sides and 2 equal diagonals.",
+    "input_format": "space_separated_integers",
+    "tests": [
+      { "input": "0 0 0 1 1 1 1 0", "output": "True", "hidden": false },
+      { "input": "0 0 0 2 1 2 1 0", "output": "False", "hidden": true },
+      { "input": "0 0 0 1 2 1 2 0", "output": "True", "hidden": true },
+      { "input": "1 1 1 4 4 4 4 1", "output": "True", "hidden": true },
+      { "input": "0 0 1 1 1 2 0 1", "output": "False", "hidden": true }
+    ]
   }
 ]
