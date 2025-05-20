@@ -2419,324 +2419,632 @@
     "id": "hard-001",
     "level": "hard",
     "prompt": "Reverse the given string.",
-    "hint": "Use slicing s[::-1].",
+    "hint": "Use slicing with step -1: s[::-1].",
     "input_format": "single_string",
     "tests": [
-      {
-        "input": "onmzubtxzq",
-        "output": "qzxtbuzmno",
-        "hidden": false
-      },
-      {
-        "input": "kpyd",
-        "output": "dypk",
-        "hidden": true
-      },
-      {
-        "input": "pwob",
-        "output": "bowp",
-        "hidden": true
-      },
-      {
-        "input": "eegfxmq",
-        "output": "qmxfgee",
-        "hidden": true
-      },
-      {
-        "input": "kcsrblwxju",
-        "output": "ujxwlbrsck",
-        "hidden": true
-      }
+      { "input": "hello", "output": "olleh", "hidden": false },
+      { "input": "Python", "output": "nohtyP", "hidden": true },
+      { "input": "Racecar", "output": "racecaR", "hidden": true }
     ]
   },
   {
     "id": "hard-002",
     "level": "hard",
-    "prompt": "Check if the given string is a palindrome. Print True or False.",
-    "hint": "Compare with its reverse.",
+    "prompt": "Print the length of the given string.",
+    "hint": "Use len(s).",
     "input_format": "single_string",
     "tests": [
-      {
-        "input": "glzeho",
-        "output": "False",
-        "hidden": false
-      },
-      {
-        "input": "kakkak",
-        "output": "True",
-        "hidden": true
-      },
-      {
-        "input": "fwswm",
-        "output": "False",
-        "hidden": true
-      },
-      {
-        "input": "pxrsxy",
-        "output": "False",
-        "hidden": true
-      },
-      {
-        "input": "oo",
-        "output": "True",
-        "hidden": true
-      }
+      { "input": "quizify", "output": "7", "hidden": false },
+      { "input": "", "output": "0", "hidden": true },
+      { "input": "12345", "output": "5", "hidden": true }
     ]
   },
   {
     "id": "hard-003",
     "level": "hard",
-    "prompt": "Count vowels in the string.",
-    "hint": "Check each char in 'aeiouAEIOU'.",
+    "prompt": "Count the number of vowels in the string (aeiouAEIOU).",
+    "hint": "Check each char against a vowel set.",
     "input_format": "single_string",
     "tests": [
-      {
-        "input": "CIhipYEZ",
-        "output": "3",
-        "hidden": false
-      },
-      {
-        "input": "rNPHXiIW",
-        "output": "2",
-        "hidden": true
-      },
-      {
-        "input": "SYjJllrLtD",
-        "output": "0",
-        "hidden": true
-      },
-      {
-        "input": "PZlacUbarskQp",
-        "output": "3",
-        "hidden": true
-      },
-      {
-        "input": "whPeFyorot",
-        "output": "3",
-        "hidden": true
-      }
+      { "input": "Education", "output": "5", "hidden": false },
+      { "input": "xyz", "output": "0", "hidden": true },
+      { "input": "AEIOUaeiou", "output": "10", "hidden": true }
     ]
   },
   {
     "id": "hard-004",
     "level": "hard",
-    "prompt": "Count consonants in the string (letters that are not vowels).",
-    "hint": "Use isalpha() and not in vowels.",
+    "prompt": "Check if the string is a palindrome. Print True or False.",
+    "hint": "Compare s to s[::-1] ignoring case.",
     "input_format": "single_string",
     "tests": [
-      {
-        "input": "dUeABR",
-        "output": "3",
-        "hidden": false
-      },
-      {
-        "input": "eVadJWanxGk",
-        "output": "8",
-        "hidden": true
-      },
-      {
-        "input": "bKJqCtZfZUp",
-        "output": "10",
-        "hidden": true
-      },
-      {
-        "input": "NIsTbJYPLFYhK",
-        "output": "12",
-        "hidden": true
-      },
-      {
-        "input": "keFyyVPmlDrbEE",
-        "output": "11",
-        "hidden": true
-      }
+      { "input": "Madam", "output": "True", "hidden": false },
+      { "input": "Hello", "output": "False", "hidden": true },
+      { "input": "racecar", "output": "True", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-005",
+    "level": "hard",
+    "prompt": "Print the first character of the string.",
+    "hint": "Use s[0], assume non-empty.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "Python", "output": "P", "hidden": false },
+      { "input": "quiz", "output": "q", "hidden": true },
+      { "input": "A", "output": "A", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-006",
+    "level": "hard",
+    "prompt": "Print the last character of the string.",
+    "hint": "Use s[-1], assume non-empty.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "quizify", "output": "y", "hidden": false },
+      { "input": "code", "output": "e", "hidden": true },
+      { "input": "X", "output": "X", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-007",
+    "level": "hard",
+    "prompt": "Compute the sum of integers in a list.",
+    "hint": "Use sum(lst).",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "5\n1 2 3 4 5", "output": "15", "hidden": false },
+      { "input": "3\n-1 0 1", "output": "0", "hidden": true },
+      { "input": "4\n10 10 10 10", "output": "40", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-008",
+    "level": "hard",
+    "prompt": "Find the maximum element in a list of integers.",
+    "hint": "Use max(lst).",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "4\n5 2 9 1", "output": "9", "hidden": false },
+      { "input": "3\n-5 -2 -8", "output": "-2", "hidden": true },
+      { "input": "5\n3 3 3 3 3", "output": "3", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-009",
+    "level": "hard",
+    "prompt": "Count the even numbers in a list.",
+    "hint": "Filter with x % 2 == 0 and count.",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "6\n1 2 3 4 5 6", "output": "3", "hidden": false },
+      { "input": "3\n1 3 5", "output": "0", "hidden": true },
+      { "input": "5\n2 4 6 8 10", "output": "5", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-010",
+    "level": "hard",
+    "prompt": "Get the element at index k (0-based) from a tuple of integers.",
+    "hint": "Use tpl[k].",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "5 2\n10 20 30 40 50", "output": "30", "hidden": false },
+      { "input": "3 0\n5 6 7", "output": "5", "hidden": true },
+      { "input": "4 3\n1 2 3 4", "output": "4", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-011",
+    "level": "hard",
+    "prompt": "Print the length of a tuple.",
+    "hint": "Use len(tpl).",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "4\n1 2 3 4", "output": "4", "hidden": false },
+      { "input": "1\n100", "output": "1", "hidden": true },
+      { "input": "5\n5 5 5 5 5", "output": "5", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-012",
+    "level": "hard",
+    "prompt": "Print the number of elements in a set of integers.",
+    "hint": "Convert list to set and len().",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "5\n1 2 2 3 4", "output": "4", "hidden": false },
+      { "input": "3\n5 5 5", "output": "1", "hidden": true },
+      { "input": "4\n1 2 3 4", "output": "4", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-013",
+    "level": "hard",
+    "prompt": "Check if x is in the set. Print True or False.",
+    "hint": "Use x in s.",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "5 3\n1 2 3 4 5", "output": "True", "hidden": false },
+      { "input": "4 6\n1 2 3 4", "output": "False", "hidden": true },
+      { "input": "3 1\n1 1 1", "output": "True", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-014",
+    "level": "hard",
+    "prompt": "Retrieve the value for key k in a dictionary of int:int pairs; print -1 if missing.",
+    "hint": "Use d.get(k, -1).",
+    "input_format": "multiline_input",
+    "tests": [
+      { "input": "3\n1:10 2:20 3:30\n2", "output": "20", "hidden": false },
+      { "input": "2\n1:5 2:10\n3", "output": "-1", "hidden": true },
+      { "input": "1\n5:50\n5", "output": "50", "hidden": true }
     ]
   },
   {
     "id": "hard-015",
     "level": "hard",
-    "prompt": "Write a program to validate a password. A valid password must:\n- Be at least 8 characters long\n- Contain at least one uppercase letter\n- Contain at least one lowercase letter\n- Contain at least one digit\n- Contain at least one special character (!@#$%^&*)\nPrint True if the password is valid, False otherwise.",
-    "hint": "Check each requirement separately using string methods and any().",
-    "input_format": "single_string",
+    "prompt": "Print all keys of a dictionary sorted ascending.",
+    "hint": "Use sorted(d.keys()).",
+    "input_format": "multiline_input",
     "tests": [
-      { "input": "Pass123!", "output": "True", "hidden": false },
-      { "input": "password123", "output": "False", "hidden": true },
-      { "input": "Pass1234", "output": "False", "hidden": true },
-      { "input": "P@ssw0rd", "output": "True", "hidden": true },
-      { "input": "Ab1!defgh", "output": "True", "hidden": true }
+      { "input": "3\nb:2 a:1 c:3", "output": "a b c", "hidden": false },
+      { "input": "2\nx:10 y:20", "output": "x y", "hidden": true },
+      { "input": "4\n4:40 2:20 1:10 3:30", "output": "1 2 3 4", "hidden": true }
     ]
   },
   {
     "id": "hard-016",
     "level": "hard",
-    "prompt": "Given a sentence, remove extra spaces and make it title case (capitalize the first letter of each word, lowercase the rest). For example:\n- 'hello   world' → 'Hello World'\n- '  python IS great  ' → 'Python Is Great'\n- 'a b   c' → 'A B C'\nIgnore any non-letter characters when capitalizing.",
-    "hint": "Split by spaces, remove empty strings, capitalize each word, then join.",
-    "input_format": "single_string",
+    "prompt": "Count occurrences of substring p in text t (may overlap).",
+    "hint": "Slide and compare or use t.find in loop with start+1.",
+    "input_format": "multiline_input",
     "tests": [
-      { "input": "hello   world", "output": "Hello World", "hidden": false },
-      {
-        "input": "  python IS great  ",
-        "output": "Python Is Great",
-        "hidden": true
-      },
-      { "input": "a b   c", "output": "A B C", "hidden": true },
-      {
-        "input": "wELcome To PYTHON",
-        "output": "Welcome To Python",
-        "hidden": true
-      },
-      { "input": "hello  WORLD!", "output": "Hello World!", "hidden": true }
+      { "input": "abababa\naba", "output": "3", "hidden": false },
+      { "input": "aaaa\naa", "output": "3", "hidden": true },
+      { "input": "hello\nll", "output": "1", "hidden": true }
     ]
   },
   {
     "id": "hard-017",
     "level": "hard",
-    "prompt": "Given a list of student scores (integers), find:\n1. The average score (rounded to 2 decimal places)\n2. Number of students above average\n3. Number of students below average\nOutput these three numbers separated by spaces.",
-    "hint": "Calculate average first, then count scores above and below it.",
+    "prompt": "Remove duplicates from a list while preserving order.",
+    "hint": "Use a seen set and append unseen.",
     "input_format": "multiline_integers",
     "tests": [
-      { "input": "5\n80 90 70 85 95", "output": "84.00 2 2", "hidden": false },
-      { "input": "4\n70 70 70 70", "output": "70.00 0 0", "hidden": true },
-      {
-        "input": "6\n100 90 80 70 60 50",
-        "output": "75.00 3 3",
-        "hidden": true
-      },
-      { "input": "3\n100 75 50", "output": "75.00 1 1", "hidden": true },
-      {
-        "input": "7\n85 82 88 90 75 72 95",
-        "output": "83.86 3 3",
-        "hidden": true
-      }
+      { "input": "7\n1 2 2 3 1 4 2", "output": "1 2 3 4", "hidden": false },
+      { "input": "5\n5 5 5 5 5", "output": "5", "hidden": true },
+      { "input": "6\n1 2 3 4 3 2", "output": "1 2 3 4", "hidden": true }
     ]
   },
   {
     "id": "hard-018",
     "level": "hard",
-    "prompt": "Create a simple calculator that evaluates a mathematical expression. Support +, -, *, / operations and parentheses. Assume spaces between all numbers and operators. For example:\n- '2 + 3' → 5\n- '4 * ( 2 + 3 )' → 20\n- '10 - ( 3 + 2 )' → 5\n- '8 / 2' → 4",
-    "hint": "Process parentheses first, then follow operator precedence.",
-    "input_format": "single_string",
+    "prompt": "Find common elements of two sets and print sorted.",
+    "hint": "Use set intersection.",
+    "input_format": "multiline_integers",
     "tests": [
-      { "input": "2 + 3", "output": "5", "hidden": false },
-      { "input": "4 * ( 2 + 3 )", "output": "20", "hidden": true },
-      { "input": "10 - ( 3 + 2 )", "output": "5", "hidden": true },
-      { "input": "8 / 2", "output": "4", "hidden": true },
-      { "input": "( 1 + 2 ) * 3", "output": "9", "hidden": true }
+      {
+        "input": "5 5\n1 2 3 4 5\n3 4 5 6 7",
+        "output": "3 4 5",
+        "hidden": false
+      },
+      { "input": "3 3\n1 2 3\n4 5 6", "output": "", "hidden": true },
+      { "input": "4 4\n1 1 2 2\n2 3 4 1", "output": "1 2", "hidden": true }
     ]
   },
   {
     "id": "hard-019",
     "level": "hard",
-    "prompt": "Write a program to convert a decimal number to Roman numerals (1 to 3999). Use the following Roman numeral symbols:\n- I (1), V (5), X (10), L (50), C (100), D (500), M (1000)\nFor example:\n- 3 → 'III'\n- 4 → 'IV'\n- 9 → 'IX'\n- 58 → 'LVIII'\n- 1994 → 'MCMXCIV'",
-    "hint": "Process thousands, hundreds, tens, and ones separately. Handle special cases like 4 and 9.",
-    "input_format": "single_integer",
+    "prompt": "Remove all occurrences of x from a list.",
+    "hint": "Use list comprehension [y for y in lst if y!=x].",
+    "input_format": "multiline_integers",
     "tests": [
-      { "input": "3", "output": "III", "hidden": false },
-      { "input": "4", "output": "IV", "hidden": true },
-      { "input": "9", "output": "IX", "hidden": true },
-      { "input": "58", "output": "LVIII", "hidden": true },
-      { "input": "1994", "output": "MCMXCIV", "hidden": true }
+      { "input": "6 2\n1 2 3 2 4 2", "output": "1 3 4", "hidden": false },
+      { "input": "4 5\n5 5 5 5", "output": "", "hidden": true },
+      { "input": "5 3\n1 3 3 3 5", "output": "1 5", "hidden": true }
     ]
   },
   {
     "id": "hard-020",
     "level": "hard",
-    "prompt": "Check if two words are anagrams of each other, ignoring spaces and letter case. An anagram is a word formed by rearranging letters of another word. For example:\n- 'listen' and 'silent' → True\n- 'triangle' and 'integral' → True\n- 'hello' and 'world' → False\n- 'Debit Card' and 'Bad Credit' → True",
-    "hint": "Remove spaces, convert to lowercase, sort characters, and compare.",
-    "input_format": "multiline_input",
+    "prompt": "Find the median of a list of integers (odd length).",
+    "hint": "Sort and take middle index.",
+    "input_format": "multiline_integers",
     "tests": [
-      { "input": "listen\nsilent", "output": "True", "hidden": false },
-      { "input": "triangle\nintegral", "output": "True", "hidden": true },
-      { "input": "hello\nworld", "output": "False", "hidden": true },
-      { "input": "Debit Card\nBad Credit", "output": "True", "hidden": true },
-      { "input": "python\njava", "output": "False", "hidden": true }
+      { "input": "5\n5 1 3 2 4", "output": "3", "hidden": false },
+      { "input": "3\n10 20 30", "output": "20", "hidden": true },
+      { "input": "7\n7 1 5 3 9 11 13", "output": "7", "hidden": true }
     ]
   },
   {
     "id": "hard-021",
     "level": "hard",
-    "prompt": "Convert a time from 12-hour format to 24-hour format. Input will be in the format 'HH:MM AM/PM'. For example:\n- '12:00 AM' → '00:00'\n- '12:00 PM' → '12:00'\n- '01:30 PM' → '13:30'\n- '11:45 PM' → '23:45'\n- '09:20 AM' → '09:20'",
-    "hint": "Handle 12 AM and 12 PM as special cases. For PM, add 12 to hours (except 12 PM).",
-    "input_format": "single_string",
+    "prompt": "Flatten a list of lists into a single list.",
+    "hint": "Use nested loops or sum(lists, []).",
+    "input_format": "multiline_integers_list",
     "tests": [
-      { "input": "12:00 AM", "output": "00:00", "hidden": false },
-      { "input": "12:00 PM", "output": "12:00", "hidden": true },
-      { "input": "01:30 PM", "output": "13:30", "hidden": true },
-      { "input": "11:45 PM", "output": "23:45", "hidden": true },
-      { "input": "09:20 AM", "output": "09:20", "hidden": true }
+      { "input": "3\n1 2\n3 4\n5 6", "output": "1 2 3 4 5 6", "hidden": false },
+      { "input": "2\n1\n2 3 4", "output": "1 2 3 4", "hidden": true },
+      { "input": "1\n10 20 30", "output": "10 20 30", "hidden": true }
     ]
   },
   {
     "id": "hard-022",
     "level": "hard",
-    "prompt": "Process a list of grades and generate a summary. Each grade is 0-100. Output:\n1. Letter grade distribution (A:90-100, B:80-89, C:70-79, D:60-69, F:0-59)\n2. Class average\nSeparate by comma. Example: '2A,3B,1C,0D,1F,82.50' means:\n- 2 students got A\n- 3 got B\n- 1 got C\n- 0 got D\n- 1 got F\n- Class average is 82.50",
-    "hint": "Count grades in each range. Calculate average separately.",
+    "prompt": "Convert a tuple of ints to a list and back to a tuple.",
+    "hint": "Use list(tpl) and tuple(lst).",
     "input_format": "multiline_integers",
     "tests": [
-      {
-        "input": "7\n95 85 75 85 90 85 55",
-        "output": "2A,3B,1C,0D,1F,81.43",
-        "hidden": false
-      },
-      {
-        "input": "5\n100 90 80 70 60",
-        "output": "2A,1B,1C,1D,0F,80.00",
-        "hidden": true
-      },
-      {
-        "input": "4\n100 100 100 100",
-        "output": "4A,0B,0C,0D,0F,100.00",
-        "hidden": true
-      },
-      {
-        "input": "3\n55 45 35",
-        "output": "0A,0B,0C,0D,3F,45.00",
-        "hidden": true
-      },
-      {
-        "input": "6\n88 92 85 90 87 91",
-        "output": "3A,3B,0C,0D,0F,88.83",
-        "hidden": true
-      }
+      { "input": "4\n1 2 3 4", "output": "1 2 3 4", "hidden": false },
+      { "input": "3\n5 6 7", "output": "5 6 7", "hidden": true },
+      { "input": "5\n9 8 7 6 5", "output": "9 8 7 6 5", "hidden": true }
     ]
   },
   {
     "id": "hard-023",
     "level": "hard",
-    "prompt": "Create a word frequency analyzer that counts word occurrences in a sentence, ignoring case and punctuation. Output the top 3 most frequent words and their counts in format 'word1:count1,word2:count2,word3:count3'. If fewer than 3 unique words exist, output all words. Sort by frequency (descending), then alphabetically. For example:\n- 'The cat and the dog and the bird' → 'the:3,and:2,bird:1'\n- 'Hello hello HELLO world' → 'hello:3,world:1'\n- 'Python Python Python' → 'python:3'",
-    "hint": "Convert to lowercase, split into words, count frequencies, sort by count then word.",
-    "input_format": "single_string",
+    "prompt": "Group list elements by parity into a dict with keys 'even' and 'odd'.",
+    "hint": "Iterate and append to two lists then assign to dict.",
+    "input_format": "multiline_integers",
     "tests": [
       {
-        "input": "The cat and the dog and the bird",
-        "output": "the:3,and:2,bird:1",
+        "input": "6\n1 2 3 4 5 6",
+        "output": "even:[2,4,6] odd:[1,3,5]",
         "hidden": false
       },
+      { "input": "3\n1 3 5", "output": "even:[] odd:[1,3,5]", "hidden": true },
       {
-        "input": "Hello hello HELLO world",
-        "output": "hello:3,world:1",
+        "input": "4\n2 4 6 8",
+        "output": "even:[2,4,6,8] odd:[]",
         "hidden": true
-      },
-      { "input": "Python Python Python", "output": "python:3", "hidden": true },
-      {
-        "input": "I am what I am",
-        "output": "i:2,am:2,what:1",
-        "hidden": true
-      },
-      { "input": "a b c d e", "output": "a:1,b:1,c:1", "hidden": true }
+      }
     ]
   },
   {
     "id": "hard-024",
     "level": "hard",
-    "prompt": "Given coordinates of a shape's vertices (x,y pairs), determine if it forms a square. A square has:\n- All sides equal length\n- All angles 90 degrees\nInput format: x1 y1 x2 y2 x3 y3 x4 y4. Print True or False. For example:\n- '0 0 0 1 1 1 1 0' → True (square with sides 1)\n- '0 0 0 2 1 2 1 0' → False (rectangle)\n- '0 0 0 1 2 1 2 0' → True (square with sides sqrt(2))",
-    "hint": "Calculate all distances between points. A square has 4 equal sides and 2 equal diagonals.",
-    "input_format": "space_separated_integers",
+    "prompt": "Find the longest word in a list of words.",
+    "hint": "Use max(words, key=len).",
+    "input_format": "multiline_strings",
     "tests": [
-      { "input": "0 0 0 1 1 1 1 0", "output": "True", "hidden": false },
-      { "input": "0 0 0 2 1 2 1 0", "output": "False", "hidden": true },
-      { "input": "0 0 0 1 2 1 2 0", "output": "True", "hidden": true },
-      { "input": "1 1 1 4 4 4 4 1", "output": "True", "hidden": true },
-      { "input": "0 0 1 1 1 2 0 1", "output": "False", "hidden": true }
+      {
+        "input": "3\napple banana cherry",
+        "output": "banana",
+        "hidden": false
+      },
+      { "input": "2\nhi hello", "output": "hello", "hidden": true },
+      { "input": "4\na ab abc abcd", "output": "abcd", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-025",
+    "level": "hard",
+    "prompt": "Count frequency of each word in a list and print key:value sorted by key.",
+    "hint": "Use a dict to count, then sorted keys.",
+    "input_format": "multiline_strings",
+    "tests": [
+      {
+        "input": "5\napple banana apple orange banana",
+        "output": "apple:2 banana:2 orange:1",
+        "hidden": false
+      },
+      { "input": "3\ncat dog cat", "output": "cat:2 dog:1", "hidden": true },
+      { "input": "4\none two one two", "output": "one:2 two:2", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-026",
+    "level": "hard",
+    "prompt": "Merge two dicts of k:v (int) summing values for duplicate keys.",
+    "hint": "Iterate one and add into the other with dict.get.",
+    "input_format": "multiline_input",
+    "tests": [
+      { "input": "a:1 b:2\nb:3 c:4", "output": "a:1 b:5 c:4", "hidden": false },
+      { "input": "x:5\nx:5 y:5", "output": "x:10 y:5", "hidden": true },
+      {
+        "input": "k:1 l:1\nm:1 n:1",
+        "output": "k:1 l:1 m:1 n:1",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-027",
+    "level": "hard",
+    "prompt": "Sort a dict of int keys by values ascending and print key:value.",
+    "hint": "Use sorted(d.items(), key=lambda kv: kv[1]).",
+    "input_format": "multiline_input",
+    "tests": [
+      { "input": "a:3 b:1 c:2", "output": "b:1 c:2 a:3", "hidden": false },
+      { "input": "x:10 y:5", "output": "y:5 x:10", "hidden": true },
+      { "input": "k:2 l:2 m:1", "output": "m:1 k:2 l:2", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-028",
+    "level": "hard",
+    "prompt": "Rotate a tuple right by k positions.",
+    "hint": "Convert to list, slice and back to tuple.",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "5 2\n1 2 3 4 5", "output": "4 5 1 2 3", "hidden": false },
+      { "input": "3 1\n7 8 9", "output": "9 7 8", "hidden": true },
+      { "input": "4 4\n1 2 3 4", "output": "1 2 3 4", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-029",
+    "level": "hard",
+    "prompt": "Check if list A is a subset of list B (as multisets). Print True or False.",
+    "hint": "Use Counter from collections to compare counts.",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "3 5\n1 2 2\n1 2 2 3 4", "output": "True", "hidden": false },
+      { "input": "3 3\n1 1 2\n1 2 3", "output": "True", "hidden": true },
+      { "input": "2 2\n1 2\n2 3", "output": "False", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-030",
+    "level": "hard",
+    "prompt": "Compute the intersection of two dicts by keys, printing key:value from dict1.",
+    "hint": "Use set(d1)&set(d2) and iterate sorted.",
+    "input_format": "multiline_input",
+    "tests": [
+      { "input": "a:1 b:2 c:3\na:9 b:8", "output": "a:1 b:2", "hidden": false },
+      { "input": "x:5 y:6\nz:7", "output": "", "hidden": true },
+      { "input": "k:1 l:2 m:3\nl:5 m:6", "output": "l:2 m:3", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-031",
+    "level": "hard",
+    "prompt": "Find length of the longest substring without repeating characters.",
+    "hint": "Use sliding window with dict for last seen.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "abcabcbb", "output": "3", "hidden": false },
+      { "input": "bbbbb", "output": "1", "hidden": true },
+      { "input": "pwwkew", "output": "3", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-032",
+    "level": "hard",
+    "prompt": "Run-length encode a string compressing consecutive runs.",
+    "hint": "Count runs while iterating and append char+count.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "aaabbc", "output": "a3b2c1", "hidden": false },
+      { "input": "abcd", "output": "a1b1c1d1", "hidden": true },
+      { "input": "wwww", "output": "w4", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-033",
+    "level": "hard",
+    "prompt": "Decode a run-length encoded string like 'a3b2'.",
+    "hint": "Parse letters and numbers then repeat.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "a3b2c1", "output": "aaabbc", "hidden": false },
+      { "input": "x1y2", "output": "xyy", "hidden": true },
+      { "input": "z5", "output": "zzzzz", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-034",
+    "level": "hard",
+    "prompt": "Count all palindromic substrings in a string.",
+    "hint": "Expand around centers for odd and even.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "aaa", "output": "6", "hidden": false },
+      { "input": "aba", "output": "4", "hidden": true },
+      { "input": "abc", "output": "3", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-035",
+    "level": "hard",
+    "prompt": "Find all starting indices of anagram of p in s (space-separated).",
+    "hint": "Use sliding window with char counts.",
+    "input_format": "multiline_input",
+    "tests": [
+      { "input": "cbaebabacd\nabc", "output": "0 6", "hidden": false },
+      { "input": "abab\nab", "output": "0 1 2", "hidden": true },
+      { "input": "abcd\ndcba", "output": "0", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-036",
+    "level": "hard",
+    "prompt": "Check if sentence is pangram (a–z). Print True/False.",
+    "hint": "Lowercase, filter letters, compare set to ascii_lowercase.",
+    "input_format": "single_string",
+    "tests": [
+      {
+        "input": "The quick brown fox jumps over the lazy dog",
+        "output": "True",
+        "hidden": false
+      },
+      { "input": "Hello world", "output": "False", "hidden": true },
+      {
+        "input": "Sphinx of black quartz, judge my vow",
+        "output": "True",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-037",
+    "level": "hard",
+    "prompt": "Remove all vowels from the string.",
+    "hint": "Filter out chars in 'aeiouAEIOU'.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "Hello World", "output": "Hll Wrld", "hidden": false },
+      { "input": "AEIOU", "output": "", "hidden": true },
+      { "input": "quizify", "output": "qzfy", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-038",
+    "level": "hard",
+    "prompt": "Convert string to title case trimming extra spaces.",
+    "hint": "Split on whitespace, capitalize each, join with ' '.",
+    "input_format": "single_string",
+    "tests": [
+      {
+        "input": "  hello   world  ",
+        "output": "Hello World",
+        "hidden": false
+      },
+      { "input": "python", "output": "Python", "hidden": true },
+      {
+        "input": "  multiple   words",
+        "output": "Multiple Words",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-039",
+    "level": "hard",
+    "prompt": "Sort characters by descending frequency, ties by char ascending.",
+    "hint": "Count with dict, sort by (-count, char).",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "banana", "output": "aaannb", "hidden": false },
+      { "input": "abc", "output": "abc", "hidden": true },
+      { "input": "mississippi", "output": "iiiissssppm", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-040",
+    "level": "hard",
+    "prompt": "Compute symmetric difference of two integer sets, sorted.",
+    "hint": "Use set1.symmetric_difference(set2).",
+    "input_format": "multiline_integers",
+    "tests": [
+      {
+        "input": "4 4\n1 2 3 4\n3 4 5 6",
+        "output": "1 2 5 6",
+        "hidden": false
+      },
+      { "input": "3 3\n1 2 3\n1 2 3", "output": "", "hidden": true },
+      {
+        "input": "5 3\n1 2 3 4 5\n4 6 8",
+        "output": "1 2 3 5 6 8",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "hard-041",
+    "level": "hard",
+    "prompt": "Compute moving average of window k over list, round to 2 decimals.",
+    "hint": "Slide window sum and divide, format with '%.2f'.",
+    "input_format": "multiline_integers",
+    "tests": [
+      {
+        "input": "5 3\n1 2 3 4 5",
+        "output": "2.00 3.00 4.00",
+        "hidden": false
+      },
+      {
+        "input": "4 2\n10 20 30 40",
+        "output": "15.00 25.00 35.00",
+        "hidden": true
+      },
+      { "input": "3 3\n5 7 9", "output": "7.00", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-042",
+    "level": "hard",
+    "prompt": "Remove duplicates from a tuple preserving order.",
+    "hint": "Convert to list, use seen set, rebuild tuple.",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "7\n1 2 2 3 1 4 2", "output": "1 2 3 4", "hidden": false },
+      { "input": "5\n5 5 5 5 5", "output": "5", "hidden": true },
+      { "input": "4\n1 2 3 4", "output": "1 2 3 4", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-043",
+    "level": "hard",
+    "prompt": "Find maximum product of two distinct elements in a tuple.",
+    "hint": "Sort and consider two largest or two smallest (negatives).",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "5\n1 2 3 4 5", "output": "20", "hidden": false },
+      { "input": "4\n-1 -2 -3 -4", "output": "12", "hidden": true },
+      { "input": "3\n-1 0 1", "output": "0", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-044",
+    "level": "hard",
+    "prompt": "Invert a dictionary of k:v to v:k and print sorted by v.",
+    "hint": "Swap key and value, sort items by new key.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "a:1 b:2 c:3", "output": "1:a 2:b 3:c", "hidden": false },
+      { "input": "x:5 y:4", "output": "4:y 5:x", "hidden": true },
+      { "input": "k:10 l:20", "output": "10:k 20:l", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-045",
+    "level": "hard",
+    "prompt": "Print two keys with highest values in dict (ties lex ascending).",
+    "hint": "Sort items by (-value, key), take first two keys.",
+    "input_format": "single_string",
+    "tests": [
+      { "input": "a:1 b:3 c:2", "output": "b c", "hidden": false },
+      { "input": "x:5 y:5 z:2", "output": "x y", "hidden": true },
+      { "input": "k:10 l:20 m:20", "output": "l m", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-046",
+    "level": "hard",
+    "prompt": "Reorder list so evens appear first then odds, preserving order.",
+    "hint": "Use two list comprehensions for even and odd.",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "6\n1 2 3 4 5 6", "output": "2 4 6 1 3 5", "hidden": false },
+      { "input": "5\n7 5 2 8 9", "output": "2 8 7 5 9", "hidden": true },
+      { "input": "4\n1 3 5 7", "output": "1 3 5 7", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-047",
+    "level": "hard",
+    "prompt": "Count unique elements in a tuple and print the count.",
+    "hint": "Convert to set and len().",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "5\n1 2 2 3 4", "output": "4", "hidden": false },
+      { "input": "4\n5 5 5 5", "output": "1", "hidden": true },
+      { "input": "6\n1 2 3 1 2 3", "output": "3", "hidden": true }
+    ]
+  },
+  {
+    "id": "hard-048",
+    "level": "hard",
+    "prompt": "Find second smallest and second largest distinct numbers in a list.",
+    "hint": "Use sorted(set(lst)).",
+    "input_format": "multiline_integers",
+    "tests": [
+      { "input": "5\n5 1 3 2 4", "output": "2 4", "hidden": false },
+      { "input": "4\n1 1 1 1", "output": "1 1", "hidden": true },
+      { "input": "6\n10 20 30 40 50 60", "output": "20 50", "hidden": true }
     ]
   }
 ]
