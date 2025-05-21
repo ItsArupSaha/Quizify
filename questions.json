@@ -2622,7 +2622,7 @@
   {
     "id": "hard-018",
     "level": "hard",
-    "prompt": "Find common elements of two sets and print sorted.",
+    "prompt": "Find common elements of two sets and print sorted. If none, print 0.",
     "hint": "Use set intersection.",
     "input_format": "multiline_integers",
     "tests": [
@@ -2638,7 +2638,7 @@
   {
     "id": "hard-019",
     "level": "hard",
-    "prompt": "Remove all occurrences of x from a list.",
+    "prompt": "Remove all occurrences of x from a list and print it. If empty, print 0.",
     "hint": "Use list comprehension [y for y in lst if y!=x].",
     "input_format": "multiline_integers",
     "tests": [
