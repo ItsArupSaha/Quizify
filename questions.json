@@ -2574,7 +2574,7 @@
   {
     "id": "hard-014",
     "level": "hard",
-    "prompt": "Retrieve the value for key k in a dictionary of int:int pairs; print -1 if missing.",
+    "prompt": "Write a program to work with a dictionary where both keys and values are integers. First line contains N (number of key-value pairs). Second line contains N space-separated key:value pairs in format 'k:v'. Third line contains an integer key K to look up. Print the value associated with K, or -1 if K is not found in dictionary. For example: For input '3\\n1:10 2:20 3:30\\n2', output should be '20' as 2 maps to 20.",
     "hint": "Use d.get(k, -1).",
     "input_format": "multiline_input",
     "tests": [
@@ -2598,7 +2598,7 @@
   {
     "id": "hard-016",
     "level": "hard",
-    "prompt": "Count occurrences of substring p in text t (may overlap).",
+    "prompt": "Write a program that counts how many times a pattern string appears in a text string (including overlapping occurrences). First line contains the text string. Second line contains the pattern to search for. For example, in text 'abababa' with pattern 'aba', there are 3 occurrences at positions 0, 2, and 4.",
     "hint": "Slide and compare or use t.find in loop with start+1.",
     "input_format": "multiline_input",
     "tests": [
@@ -2662,7 +2662,7 @@
   {
     "id": "hard-021",
     "level": "hard",
-    "prompt": "Flatten a list of lists into a single list.",
+    "prompt": "Write a program to flatten a list of lists into a single list. First line contains N (number of sublists). Next N lines each contain space-separated integers forming a sublist. Print all integers from all sublists in a single line, space-separated, maintaining the order in which they appear. For example, if input is 3 sublists: [1,2], [3,4], [5,6], output should be: 1 2 3 4 5 6",
     "hint": "Use nested loops or sum(lists, []).",
     "input_format": "multiline_integers_list",
     "tests": [
@@ -2738,7 +2738,7 @@
   {
     "id": "hard-026",
     "level": "hard",
-    "prompt": "Merge two dicts of k:v (int) summing values for duplicate keys.",
+    "prompt": "Write a program to merge two dictionaries where both keys and values are integers. Each dictionary is provided as space-separated 'key:value' pairs. When a key exists in both dictionaries, sum their values. First line contains pairs for first dictionary, second line for second dictionary. Print the merged result sorted by keys. Example: For 'a:1 b:2' and 'b:3 c:4', output 'a:1 b:5 c:4' because b's values (2+3) are summed.",
     "hint": "Iterate one and add into the other with dict.get.",
     "input_format": "multiline_input",
     "tests": [
@@ -2838,7 +2838,7 @@
   {
     "id": "hard-034",
     "level": "hard",
-    "prompt": "Count all palindromic substrings in a string.",
+    "prompt": "Write a program to count all palindromic substrings in a string. A palindrome reads same backwards as forwards. For example, in string 'aaa' there are 6 palindromic substrings: three 'a's (each single character is a palindrome), two 'aa's, and one 'aaa'. Note that overlapping palindromes should be counted separately. Print the total count of all palindromic substrings.",
     "hint": "Expand around centers for odd and even.",
     "input_format": "single_string",
     "tests": [
@@ -2850,7 +2850,7 @@
   {
     "id": "hard-035",
     "level": "hard",
-    "prompt": "Find all starting indices of anagram of p in s (space-separated).",
+    "prompt": "Write a program to find all starting indices where an anagram of pattern P appears in string S. An anagram is a rearrangement of characters (e.g., 'abc' and 'bca' are anagrams). First line contains string S, second line contains pattern P. Print all starting indices (0-based) where any anagram of P appears in S, space-separated in ascending order. For example: In 'cbaebabacd' with pattern 'abc', anagrams appear at indices 0 ('cba') and 6 ('bac').",
     "hint": "Use sliding window with char counts.",
     "input_format": "multiline_input",
     "tests": [
@@ -2946,7 +2946,7 @@
   {
     "id": "hard-041",
     "level": "hard",
-    "prompt": "Compute moving average of window k over list, round to 2 decimals.",
+    "prompt": "Write a program to compute moving averages. First line contains N K (N=list length, K=window size). Second line contains N space-separated integers. For each window of size K, compute average of its elements. Print (N-K+1) space-separated averages rounded to 2 decimal places. Example: For input '5 3\\n1 2 3 4 5', first window avg=(1+2+3)/3=2.00, second=(2+3+4)/3=3.00, third=(3+4+5)/3=4.00.",
     "hint": "Slide window sum and divide, format with '%.2f'.",
     "input_format": "multiline_integers",
     "tests": [
