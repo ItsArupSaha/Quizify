@@ -1362,7 +1362,7 @@
   {
     "id": "medium-021",
     "level": "medium",
-    "prompt": "Given n integers, print the second largest number.",
+    "prompt": "Given n integers, print the second largest number. If there is no second largest, print 0",
     "hint": "Sort the list or track two largest values.",
     "input_format": "multiline_integers",
     "tests": [
