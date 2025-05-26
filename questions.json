@@ -1373,12 +1373,12 @@
       },
       {
         "input": "4\n5 1 5 3",
-        "output": "5",
+        "output": "3",
         "hidden": true
       },
       {
         "input": "6\n7 7 7 7 7 7",
-        "output": "7",
+        "output": "0",
         "hidden": true
       },
       {
